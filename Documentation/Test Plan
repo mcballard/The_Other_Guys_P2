@@ -1,0 +1,61 @@
+Test Plan
+
+    Technologies being used:
+        AWS, postgres DB, EC2 Security groups, S3 bucket for front end
+        github for version control and collaboration
+        IntelliJ for development and testing
+        database integeration goes here
+        Javalin for API integration
+        Postman for RESTful testing
+        Excalidraw for wireframe design https://excalidraw.com
+        Cucumber to help interpret our user acceptance criteria into steps
+
+    Deadlines:
+        Daily Standups will be conducted.
+            Each team member will be asked to host at least one session per week.
+        Overall project completion deadline is 4/29/2022
+        Documentation completed by 4/15/2022
+            Test Strategy
+            Test Plan
+            User Stories
+            Acceptance Criteria
+            Wireframe
+            Create module tracking spreadsheet
+        Design test suite for data layer should be completed
+            unit testing for at least CRUD actions required
+        Implement data layer and develop any edge case tests, should be completed
+            unit testing for edge cases and database errors
+        Design test suites for service layer and API should be completed
+            unit tests for business logic required
+        Implement service layer and API and design tests for any edge cases should be completed
+            unit tests for edge cases and input errors
+        Final two days allow for bug resolution and test result organization for presentation
+            (fill in when we come to test results presentation)
+
+    Testing Requirements:
+        All Data Access Layer methods must meet the following testing requirements:
+            they must have one positive test
+                test for insert
+                test for select
+                test for delete
+            tests must be unit tests if possible
+        All Service Layer methods must meet the following testing requirements:
+            applicable methods must have one positive test
+            all business logic must have negative tests
+                request description should not exceed 250 chars and be greater than 1 char
+                client must not have more than 1 open request
+                technician must assign category when creating a ticket
+                usernames should not have special characters and not exceed 12 characters
+                passwords should not have special characters and not exceed 12 characters
+            tests must be unit tests if possible
+            Mocking and stubbing should be included in your testing
+        All API methods must meet the following testing requirements:
+            they must all have a positive test on postman
+            they must all have a negative test for each way the request can fail on postman
+        Your application should meet the following integration test requirements:
+            every user story should have an End to End test
+            every feature should have its own feature file
+                these feature files should contain both the happy path and alternative path acceptance criteria
+
+    Not testing and why:
+        <to be filled in later>
