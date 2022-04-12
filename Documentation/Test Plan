@@ -59,3 +59,23 @@ Test Plan
 
     Not testing and why:
         <to be filled in later>
+
+
+    User Stories:
+    Clients:
+    As a client, I can log in so that I can submit a help request (client_login)
+    As a client, I can submit a request (client_request)
+    As a client, I can logout (client_logout)
+    As a client, I can update my request description (client_update_request)
+    As a client, I can update my personal info (client_update_personal_info)
+    As a client, I can cancel my request (client_cancel_request)
+    As a client, I can view requests status (client_request_status)
+
+    Technicians:
+    As a technician, I can log in so that I can resolve help requests (technician_login)
+    As a technician, I can logout (technician_logout)
+    As a technician, I view the request pool (technician_request_pool)
+    As a technician, I can create work tickets (technician_create_ticket)
+    As a technician, I can update ticket info (technician_update_ticket)
+    As a technician, I can resolve tickets (technician_close_ticket)
+    As a technician, I can update my own personal info (technician_update_personal_info)
