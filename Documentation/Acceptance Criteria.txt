@@ -12,15 +12,21 @@ Scenario: As a client, I should be able to log in
 
 Scenario: As a client, I should not be able to log in with the wrong username
 
-	Given:
-	When:
-	Then:
+	Given:I am on the login page
+	When:I enter wrong username
+	when: I enter my password
+	When: I click submit button
+	When:I notified for bad username input
+	Then:I am redirected to login page
 
 Scenario: As a client, I should not be able to log in with the wrong password
 
-	Given:
-	When:
-	Then:
+	Given:I am on the login page
+    When:I enter username
+    when: I enter my wrong password
+    When: I click submit button
+    When:I notified for bad password input
+    Then:I am redirected to login page
 
 Scenario: As a client, I should be able to log out
 
@@ -32,6 +38,12 @@ Scenario: As a client, I should be able to log out
 
 Feature: As a client, I should be able to login and submit a help request
 
+Scenario: as client I should be informed for too long description
+       Given:I am logged in and on the client home page
+       When: I enter bad  description
+       When: I click the submit button
+       Then: I am notified that the request has been too longin and on the client home page
+
 Scenario: As a client, I should be able to submit a help request
 
 	Given: I am logged in and on the client home page
@@ -40,10 +52,15 @@ Scenario: As a client, I should be able to submit a help request
 	Then: I am notified that the request has been submitted
 
 Feature: As a client, I should be able to update my help request
+Scenario: As a client, I should be informed the description is too long
+    Given: I am logged in and on the client home page
+  	When: I enter bad  description
+  	When: I click the submit button
+  	Then: I am notified that the description has been too long
 
 Scenario: As a client, I should be able to update my help request
 
-Given: I am logged in and on the client home page
+
 	When: I click the update request button
 	When: I edit my help request description
 	When: I click the submit button
