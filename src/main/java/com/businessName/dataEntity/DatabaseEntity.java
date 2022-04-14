@@ -45,8 +45,8 @@ public class DatabaseEntity {
     }
 
     public String returnSqlForSelectOne() {
-        String sqlQuery = "";
-        return sqlQuery;
+
+        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where ";";
     }
 
     public String returnSqlForUpdateOne() {

@@ -22,14 +22,18 @@ public class EntityTests {
                 "('status_id','employee_id','description','ticket_requests_id') " +
                 "values ('0','1','this is something',default) returning *;");
     }
-/*
-    @Test
-    public void selectEmployeeByIdSuccess() {
-        Employee employee = employeeDAO.selectById(1);
-        Assert.assertEquals(employee.getFirstName(),"james");
-    }
 
     @Test
+    public void returnSqlForSelectOne() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("ticket_request_id", "1");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        Assert.assertEquals(testDbEntity.returnSqlForSelectOne(),"select * from p2_sandbox.ticket_requests;");
+
+    }
+
+   /* @Test
     public void selectAllEmployeesSuccess() {
         List<Employee> employees = employeeDAO.selectAllEmployees();
         Assert.assertTrue(employees.size() >= 1);
