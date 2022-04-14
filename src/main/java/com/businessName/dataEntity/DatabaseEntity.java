@@ -19,6 +19,17 @@ public class DatabaseEntity {
     }
 
     public String returnSqlForInsertOne() {
+        /*
+            i break the instruction into 4 seperate sections
+                action
+                columns affected
+                column values
+                trailer arguments
+            insert into table_name + (column, column1, column2) + values (value, value1, value2) + returning *;
+            string = "insert into " + schemaPrefix + "." + newRowObject.get("tableName") + " ";
+            string = "(";
+            string = " values (";
+        */
         String sqlQuery = "insert into "+schemaPrefix+"."+newRowObject.get("tableName")+" ";
         String columnNames = "(";
         String columnValues = " values (";
