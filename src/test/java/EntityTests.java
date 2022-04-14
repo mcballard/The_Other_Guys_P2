@@ -34,14 +34,24 @@ public class EntityTests {
         List<Employee> employees = employeeDAO.selectAllEmployees();
         Assert.assertTrue(employees.size() >= 1);
     }
-
+*/
     @Test
     public void updateEmployeeSuccess() {
-        Employee employee = new Employee(3, "someone", "else");
-        Employee updated = employeeDAO.updateEmployeeById(employee);
-        Assert.assertEquals(updated.getFirstName(),"someone");
-    }
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","employees");
+        test.put("employees_id", "2");
+        test.put("first_name", "Bobby");
+        test.put("last_name", "Hill");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        Assert.assertEquals(testDbEntity.returnSqlForUpdateOne(),"update p2_sandbox.employees " +
+                "set last_name = 'Hill',first_name = 'Bobby' " +
+                "where employees_id = 2;");
 
+//        Employee employee = new Employee(3, "someone", "else");
+//        Employee updated = employeeDAO.updateEmployeeById(employee);
+//        Assert.assertEquals(updated.getFirstName(),"someone");
+    }
+/*
     @Test
     public void deleteByIdSuccess() {
         Assert.assertTrue(employeeDAO.deleteEmployeeById(3));
