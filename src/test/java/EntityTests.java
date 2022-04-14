@@ -51,12 +51,16 @@ public class EntityTests {
 //        Employee updated = employeeDAO.updateEmployeeById(employee);
 //        Assert.assertEquals(updated.getFirstName(),"someone");
     }
-/*
+
     @Test
-    public void deleteByIdSuccess() {
-        Assert.assertTrue(employeeDAO.deleteEmployeeById(3));
+    public void returnDeleteRequest() {
+        HashMap<String , String> test = new HashMap<>();
+        test.put("tableName", "ticket_requests");
+        test.put("requestID", "1");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        Assert.assertEquals(testDbEntity.returnSqlForDeleteOne(),"delete from p2_sandbox.ticket_requests where request_id=1");
     }
 
- */
+
 }
 
