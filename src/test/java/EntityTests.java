@@ -1,11 +1,8 @@
 import com.businessName.dataEntity.DatabaseEntity;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.HashMap;
-import java.util.List;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+
 
 
 public class EntityTests {
@@ -19,7 +16,7 @@ public class EntityTests {
         test.put("status_id","0");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         Assert.assertEquals(testDbEntity.returnSqlForInsertOne(),"insert into p2_sandbox.ticket_requests " +
-                "('status_id','employee_id','description','ticket_requests_id') " +
+                "(status_id,employee_id,description,ticket_requests_id) " +
                 "values ('0','1','this is something',default) returning *;");
     }
 
@@ -27,9 +24,9 @@ public class EntityTests {
     public void returnSqlForSelectOne() {
         HashMap<String,String> test = new HashMap<>();
         test.put("tableName","ticket_requests");
-        test.put("ticket_request_id", "1");
+        test.put("ticket_requests_id", "1");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
-        Assert.assertEquals(testDbEntity.returnSqlForSelectOne(),"select * from p2_sandbox.ticket_requests;");
+        Assert.assertEquals(testDbEntity.returnSqlForSelectOne(),"select * from p2_sandbox.ticket_requests where ticket_requests_id=1;");
 
     }
 
