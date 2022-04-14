@@ -50,10 +50,37 @@ public class DatabaseEntity {
     }
 
     public String returnSqlForUpdateOne() {
-        String sqlQuery;
-        sqlQuery = "";
+        String sqlQuery = "update "+schemaPrefix+"."+newRowObject.get("tableName")+" ";
+        String columnNames = "set ";
+        String columnValues = " where ";
+        int tooManyCommas = newRowObject.size() - 2;
+        int commas=0;
+        for (Map.Entry<String, String> entry : newRowObject.entrySet()) {
+            commas++;
+
+
+            if(entry.getKey() != "tableName" && entry.getKey() != "employees_id") {
+                columnNames +=  entry.getKey() + " = '" + entry.getValue() + "'";
+//            } else if(entry.getKey()=="tableName") {
+//                columnValues += entry.getValue() + "_id = " + "default" + ";";
+            }
+
+
+            if(commas<tooManyCommas){
+                columnNames += ",";
+//                columnValues += ",";
+            }
+        }
+//        columnNames += ")";
+//        columnValues += ")";
+        columnValues += "employees_id = "+newRowObject.get("employees_id")+";";
+        sqlQuery += columnNames + columnValues;
         return sqlQuery;
     }
+//        String sqlQuery;
+//        sqlQuery = "";
+//        return sqlQuery;
+//    }
 
     public String returnSqlForDeleteOne() {
         String sqlQuery = "";
