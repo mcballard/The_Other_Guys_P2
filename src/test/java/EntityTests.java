@@ -58,7 +58,7 @@ public class EntityTests {
         test.put("tableName", "ticket_requests");
         test.put("requestID", "1");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
-        Assert.assertEquals(testDbEntity.returnSqlForDeleteOne(),"delete from p2_sandbox.ticket_requests where request_id=1");
+        Assert.assertEquals(testDbEntity.returnSqlForDeleteOne(),"delete from p2_sandbox.ticket_requests where request_id=1;");
     }
 
 

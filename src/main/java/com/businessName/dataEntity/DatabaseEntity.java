@@ -83,7 +83,7 @@ public class DatabaseEntity {
 //    }
 
     public String returnSqlForDeleteOne() {
-        String sqlQuery = "delete from " +schemaPrefix+ "." +newRowObject.get("tableName")+" where request_id="+ newRowObject.get("requestID");
+        String sqlQuery = "delete from " +schemaPrefix+ "." +newRowObject.get("tableName")+" where request_id="+ newRowObject.get("requestID")+ ";";
         return sqlQuery;
     }
 /*
