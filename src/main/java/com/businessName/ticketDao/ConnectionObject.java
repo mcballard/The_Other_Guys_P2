@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionObject {
     public static Connection createConnection() {
         try {
-            Connection connection =
+            Connection dbConnection =
                     DriverManager.getConnection(String.format(
                             "jdbc:postgresql://%s:%s/%s?user=%s&password=%s",
                             System.getenv("HOST"),
@@ -16,7 +16,7 @@ public class ConnectionObject {
                             System.getenv("DBUSER"),
                             System.getenv("DBPASS")
                     ));
-            return connection;
+            return dbConnection;
         } catch(SQLException e) {
             e.printStackTrace();
             return null;
