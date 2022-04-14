@@ -27,10 +27,10 @@ public class DatabaseEntity {
         for (Map.Entry<String, String> entry : newRowObject.entrySet()) {
             commas++;
             if(entry.getKey() != "tableName") {
-                columnNames += "'" + entry.getKey() + "'";
+                columnNames += entry.getKey();
                 columnValues += "'" + entry.getValue() + "'";
             } else if(entry.getKey()=="tableName") {
-                columnNames+="'"+entry.getValue()+"_id'";
+                columnNames+=entry.getValue()+"_id";
                 columnValues+="default";
             }
             if(commas<tooManyCommas){
