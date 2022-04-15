@@ -44,9 +44,19 @@ public class DataAccessImp implements DataAccessInterface {
     }
 
     @Override
-    public boolean deleteObjectDb(String sql_query) {
-        return false;
+    public int deleteObjectDb(String sql_query) {
+        try(Connection connection = ConnectionObject.createConnection()) {
+            PreparedStatement ps = connection.prepareStatement(sql_query);
+            // get result set from query execution
+            int rowcount = ps.executeUpdate(sql_query);
+            return rowcount;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
+
+
 
     public static void main(String[] args) {
         DataAccessImp daoObj = new DataAccessImp();
