@@ -45,7 +45,7 @@ public class DataAccessImp implements DataAccessInterface {
             ResultSetMetaData columnMetadata = rs.getMetaData();
             rs.last();
             int totalRows = rs.getRow();
-            rs.first();
+            rs.beforeFirst();
             HashMap<String, String> resultHashMap = new HashMap<>(columnMetadata.getColumnCount());
             DatabaseEntity[] results = new DatabaseEntity[totalRows];
             int indexCount=0;
@@ -58,7 +58,6 @@ public class DataAccessImp implements DataAccessInterface {
                 results[indexCount] = viewDatabaseRow;
                 indexCount++;
             }
-            System.out.println(results[1]);
             return results;
         } catch(SQLException e) {
             e.printStackTrace();

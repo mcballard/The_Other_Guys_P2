@@ -7,6 +7,17 @@ import java.util.HashMap;
 public class EntityTests {
 
     @Test
+    public void sanitizeFromApiTestSuccess() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("description", "this is something");
+        test.put("employee_id", "1");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        testDbEntity.sanitizeFromApi();
+        Assert.assertTrue(test.containsKey("tableName"));
+    }
+
+    @Test
     public void sanitizeFromApiTestNoTableName() {
         HashMap<String,String> test = new HashMap<>();
         test.put("description", "this is something");
