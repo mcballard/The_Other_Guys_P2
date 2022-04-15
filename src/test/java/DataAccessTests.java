@@ -31,7 +31,7 @@ public class DataAccessTests {
         test.put("last_name", "Hill");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         DatabaseEntity updateTicketRequest = daoOBJ.updateObjectDb(testDbEntity.returnSqlForUpdateOne());
-        Assert.assertNotEquals(updateTicketRequest.newRowObject.get("first_name"), "Bobby");
+        Assert.assertEquals(updateTicketRequest.newRowObject.get("first_name"), "Bobby");
     }
 
     @Test
@@ -40,10 +40,10 @@ public class DataAccessTests {
         HashMap<String, String> test = new HashMap<>();
         test.put("tableName","employees");
         test.put("employees_id", "2");
-        test.put("first_name", "Bobby");
-        test.put("last_name", "Shmurda");
+        test.put("first_name", "Chief");
+        test.put("last_name", "Keef");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         DatabaseEntity updateTicketRequest = daoOBJ.updateObjectDb(testDbEntity.returnSqlForUpdateOne());
-        Assert.assertNotEquals(updateTicketRequest.newRowObject.get("last_name"), "shmurda");
+        Assert.assertEquals(updateTicketRequest.newRowObject.get("last_name"), "Keef");
     }
 }
