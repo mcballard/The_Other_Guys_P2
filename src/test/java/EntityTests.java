@@ -1,11 +1,100 @@
+import com.businessName.MalformedObjectException.MalformedObjectException;
 import com.businessName.dataEntity.DatabaseEntity;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.HashMap;
 
-
-
 public class EntityTests {
+
+    @Test
+    public void sanitizeFromApiTestNoTableName() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("description", "this is something");
+        test.put("employee_id", "1");
+        test.put("status_id","0");
+        try {
+            DatabaseEntity testDbEntity = new DatabaseEntity(test);
+            testDbEntity.sanitizeFromApi();
+            Assert.fail();
+        } catch(MalformedObjectException e) {
+            Assert.assertEquals(e.getMessage(),"Object does not contain tableName key!");
+        }
+    }
+
+    @Test
+    public void sanitizeFromApiTestIdValuesNotConvertible() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("description", "this is something");
+        test.put("employee_id", "1a");
+        try {
+            DatabaseEntity testDbEntity = new DatabaseEntity(test);
+            testDbEntity.sanitizeFromApi();
+            Assert.fail();
+        } catch(MalformedObjectException e) {
+            Assert.assertEquals(e.getMessage(),"Id cannot be converted to integer!");
+        }
+    }
+
+    @Test
+    public void sanitizeFromApiTestIdValuesNotConvertibleIsEmpty() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("description", "this is something");
+        test.put("employee_id", "");
+        try {
+            DatabaseEntity testDbEntity = new DatabaseEntity(test);
+            testDbEntity.sanitizeFromApi();
+            Assert.fail();
+        } catch(MalformedObjectException e) {
+            Assert.assertEquals(e.getMessage(),"Id cannot be converted to integer!");
+        }
+    }
+
+    @Test
+    public void sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("description", "this is something");
+        test.put("employeeId", "1a");
+        try {
+            DatabaseEntity testDbEntity = new DatabaseEntity(test);
+            testDbEntity.sanitizeFromApi();
+            Assert.fail();
+        } catch(MalformedObjectException e) {
+            Assert.assertEquals(e.getMessage(),"Id cannot be converted to integer!");
+        }
+    }
+
+    @Test
+    public void sanitizeFromApiTestDescriptionEmpty() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("description", "");
+        test.put("employee_id", "1");
+        try {
+            DatabaseEntity testDbEntity = new DatabaseEntity(test);
+            testDbEntity.sanitizeFromApi();
+            Assert.fail();
+        } catch(MalformedObjectException e) {
+            Assert.assertEquals(e.getMessage(),"Description must have at least 1 character!");
+        }
+    }
+
+    @Test
+    public void sanitizeFromApiTestDescriptionNull() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("description", null);
+        test.put("employee_id", "1");
+        try {
+            DatabaseEntity testDbEntity = new DatabaseEntity(test);
+            testDbEntity.sanitizeFromApi();
+            Assert.fail();
+        } catch(MalformedObjectException e) {
+            Assert.assertEquals(e.getMessage(),"Description must have at least 1 character!");
+        }
+    }
 
     @Test
     public void returnInsertQuerySuccess() {
@@ -48,9 +137,6 @@ public class EntityTests {
                 "set last_name = 'Hill',first_name = 'Bobby' " +
                 "where employees_id = 2;");
 
-//        Employee employee = new Employee(3, "someone", "else");
-//        Employee updated = employeeDAO.updateEmployeeById(employee);
-//        Assert.assertEquals(updated.getFirstName(),"someone");
     }
 
     @Test
@@ -61,7 +147,5 @@ public class EntityTests {
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         Assert.assertEquals(testDbEntity.returnSqlForDeleteOne(),"delete from p2_sandbox.ticket_requests where request_id=1;");
     }
-
-
 }
 

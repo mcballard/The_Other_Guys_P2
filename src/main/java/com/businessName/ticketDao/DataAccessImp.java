@@ -47,11 +47,13 @@ public class DataAccessImp implements DataAccessInterface {
     public boolean deleteObjectDb(String sql_query) {
         return false;
     }
-
+/*
     public static void main(String[] args) {
         DataAccessImp daoObj = new DataAccessImp();
         daoObj.insertObjectDb("insert into p2_sandbox.ticket_requests " +
                 "(status_id,employee_id,description,ticket_requests_id) " +
                 "values ('1','2','this is something',default) returning *;");
     }
+
+ */
 }

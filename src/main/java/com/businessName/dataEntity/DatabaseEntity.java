@@ -1,5 +1,7 @@
 package com.businessName.dataEntity;
 
+import com.businessName.MalformedObjectException.MalformedObjectException;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -14,8 +16,23 @@ public class DatabaseEntity {
         this.schemaPrefix = "p2_sandbox";
     }
 
-    public HashMap<String, String> sanitizeFromApi() {
-        return newRowObject;
+    public void sanitizeFromApi() {
+        if(newRowObject.containsKey("tableName")) {
+            for (Map.Entry<String, String> entry : newRowObject.entrySet()) {
+                if(entry.getKey()!="tableName") {
+                    if(entry.getKey().matches("\\w*Id\\b") || entry.getKey().matches("\\w*_id\\b")) {
+                        if(!entry.getValue().matches("\\d+")) {
+                            throw new MalformedObjectException("Id cannot be converted to integer!");
+                        }
+                    }
+                    if(entry.getKey()=="description" && (entry.getValue()=="" || entry.getValue()==null)) {
+                        throw new MalformedObjectException("Description must have at least 1 character!");
+                    }
+                }
+            }
+        } else {
+            throw new MalformedObjectException("Object does not contain tableName key!");
+        }
     }
 
     public String returnSqlForInsertOne() {
