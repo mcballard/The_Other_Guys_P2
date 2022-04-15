@@ -85,8 +85,9 @@ public class DatabaseEntity {
         }
 //        columnNames += ")";
 //        columnValues += ")";
-        columnValues += "employees_id = "+newRowObject.get("employees_id")+";";
-        sqlQuery += columnNames + columnValues + "returning */";
+        columnValues += "employees_id = "+newRowObject.get("employees_id");
+        sqlQuery += columnNames + columnValues + " returning *;";
+        System.out.println(sqlQuery);
         return sqlQuery;
     }
 //        String sqlQuery;
