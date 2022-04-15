@@ -86,50 +86,21 @@ public class DatabaseEntity {
         int commas=0;
         for (Map.Entry<String, String> entry : newRowObject.entrySet()) {
             commas++;
-
-
             if(entry.getKey() != "tableName" && entry.getKey() != "employees_id") {
                 columnNames +=  entry.getKey() + " = '" + entry.getValue() + "'";
-//            } else if(entry.getKey()=="tableName") {
-//                columnValues += entry.getValue() + "_id = " + "default" + ";";
             }
-
-
             if(commas<tooManyCommas){
                 columnNames += ",";
-//                columnValues += ",";
             }
         }
-//        columnNames += ")";
-//        columnValues += ")";
         columnValues += "employees_id = "+newRowObject.get("employees_id");
         sqlQuery += columnNames + columnValues + " returning *;";
-        System.out.println(sqlQuery);
         return sqlQuery;
     }
-//        String sqlQuery;
-//        sqlQuery = "";
-//        return sqlQuery;
-//    }
 
     public String returnSqlForDeleteOne() {
-        String sqlQuery = "delete from " +schemaPrefix+ "." +newRowObject.get("tableName")+" where request_id="+ newRowObject.get("requestID")+ ";";
+        String sqlQuery = "delete from " +schemaPrefix+ "." +newRowObject.get("tableName")+
+                " where "+newRowObject.get("tableName")+"_id"+"="+ newRowObject.get(newRowObject.get("tableName")+"_id")+ ";";
         return sqlQuery;
     }
-/*
-    public static void main(String[] args) {
-        HashMap<String, String> test = new HashMap<>();
-        test.put("tableName", "ticket_requests");
-        test.put("employee_id", "5");
-        test.put("description", "this is something");
-        test.put("status_id", "0");
-        DatabaseEntity testRow = new DatabaseEntity(test);
-        String resultSql = testRow.returnSqlForInsertOne();
-        System.out.println(resultSql);
-
-        resultSql = testRow.returnSqlForDeleteOne();
-        System.out.println(resultSql);
-        resultSql = testRow.returnSqlForSelectOne();
-        System.out.println(resultSql);
-    }*/
 }
