@@ -86,7 +86,7 @@ public class DatabaseEntity {
 //        columnNames += ")";
 //        columnValues += ")";
         columnValues += "employees_id = "+newRowObject.get("employees_id")+";";
-        sqlQuery += columnNames + columnValues;
+        sqlQuery += columnNames + columnValues + "returning */";
         return sqlQuery;
     }
 //        String sqlQuery;
