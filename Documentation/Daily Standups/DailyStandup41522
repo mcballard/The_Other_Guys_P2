@@ -1,0 +1,15 @@
+Daily Standup for 4/15/22
+
+Progress:
+    data access layer
+        data access methods
+        data access layer tests
+
+To do:
+    service layer
+        client
+        technician
+    api
+        postman testing
+    front-end
+        end-to-end testing
