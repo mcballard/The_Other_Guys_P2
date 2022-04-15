@@ -135,7 +135,7 @@ public class EntityTests {
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         Assert.assertEquals(testDbEntity.returnSqlForUpdateOne(),"update p2_sandbox.employees " +
                 "set last_name = 'Hill',first_name = 'Bobby' " +
-                "where employees_id = 2;");
+                "where employees_id = 2;returning */");
 
     }
 

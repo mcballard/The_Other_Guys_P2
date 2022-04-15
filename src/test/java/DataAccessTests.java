@@ -19,4 +19,31 @@ public class DataAccessTests {
         Assert.assertNotEquals(newTicketRequest.newRowObject.get("ticket_request_id"),"0");
 
     }
+
+
+    @Test
+    public void updateObjectDBSuccessFirstName() {
+        DataAccessImp daoOBJ = new DataAccessImp();
+        HashMap<String, String> test = new HashMap<>();
+        test.put("tableName","employees");
+        test.put("employees_id", "2");
+        test.put("first_name", "Bobby");
+        test.put("last_name", "Hill");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        DatabaseEntity updateTicketRequest = daoOBJ.updateObjectDb(testDbEntity.returnSqlForUpdateOne());
+        Assert.assertEquals(updateTicketRequest.newRowObject.get("first_name"), "Bobby");
+    }
+
+    @Test
+    public void updateObjectDBSuccessLastName() {
+        DataAccessImp daoOBJ = new DataAccessImp();
+        HashMap<String, String> test = new HashMap<>();
+        test.put("tableName","employees");
+        test.put("employees_id", "2");
+        test.put("first_name", "Chief");
+        test.put("last_name", "Keef");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        DatabaseEntity updateTicketRequest = daoOBJ.updateObjectDb(testDbEntity.returnSqlForUpdateOne());
+        Assert.assertEquals(updateTicketRequest.newRowObject.get("last_name"), "Keef");
+    }
 }
