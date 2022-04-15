@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class DataAccessTests {
     @Test
@@ -18,6 +19,18 @@ public class DataAccessTests {
         DatabaseEntity newTicketRequest = daoObj.insertObjectDb(testDbEntity.returnSqlForInsertOne());
         Assert.assertNotEquals(newTicketRequest.newRowObject.get("ticket_request_id"),"0");
 
+    }
+
+
+    @Test
+    public void selectObjectDBSuccess() {
+        DataAccessImp daoOBJ = new DataAccessImp();
+        HashMap<String, String> test = new HashMap<>();
+        test.put("tableName","employees");
+        test.put("employees_id", "2");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        DatabaseEntity[] selectOneTest = daoOBJ.selectObjectsDb(testDbEntity.returnSqlForSelectOne());
+        Assert.assertEquals(selectOneTest.length, 1);
     }
 
 
@@ -45,5 +58,17 @@ public class DataAccessTests {
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         DatabaseEntity updateTicketRequest = daoOBJ.updateObjectDb(testDbEntity.returnSqlForUpdateOne());
         Assert.assertEquals(updateTicketRequest.newRowObject.get("last_name"), "Keef");
+    }
+
+    @Test
+    public void deleteObjectDbSuccess() {
+        DataAccessImp daoObj = new DataAccessImp();
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","employees");
+        test.put("employees_id", "-3");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        int result = daoObj.deleteObjectDb(testDbEntity.returnSqlForDeleteOne());
+        Assert.assertNotEquals(result,0);
+
     }
 }

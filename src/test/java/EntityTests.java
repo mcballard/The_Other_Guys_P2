@@ -135,7 +135,7 @@ public class EntityTests {
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         Assert.assertEquals(testDbEntity.returnSqlForUpdateOne(),"update p2_sandbox.employees " +
                 "set last_name = 'Hill',first_name = 'Bobby' " +
-                "where employees_id = 2;returning */");
+                "where employees_id = 2 returning *;");
 
     }
 
@@ -143,9 +143,9 @@ public class EntityTests {
     public void returnDeleteRequest() {
         HashMap<String , String> test = new HashMap<>();
         test.put("tableName", "ticket_requests");
-        test.put("requestID", "1");
+        test.put("ticket_requests_id", "1");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
-        Assert.assertEquals(testDbEntity.returnSqlForDeleteOne(),"delete from p2_sandbox.ticket_requests where request_id=1;");
+        Assert.assertEquals(testDbEntity.returnSqlForDeleteOne(),"delete from p2_sandbox.ticket_requests where ticket_requests_id=1;");
     }
 }
 

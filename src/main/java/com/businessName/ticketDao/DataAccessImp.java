@@ -3,6 +3,7 @@ package com.businessName.ticketDao;
 import com.businessName.dataEntity.DatabaseEntity;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,36 @@ public class DataAccessImp implements DataAccessInterface {
     }
 
     @Override
-    public List<DatabaseEntity> selectObjectsDb(String sql_query) {return null;}
+    public DatabaseEntity[] selectObjectsDb(String sql_query) {
+        try(Connection connection = ConnectionObject.createConnection()) {
+            PreparedStatement ps = connection.prepareStatement(sql_query,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            // get result set from query execution
+            //Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = ps.executeQuery();
+            // retrieve column names from result set
+            ResultSetMetaData columnMetadata = rs.getMetaData();
+            rs.last();
+            int totalRows = rs.getRow();
+            rs.first();
+            HashMap<String, String> resultHashMap = new HashMap<>(columnMetadata.getColumnCount());
+            DatabaseEntity[] results = new DatabaseEntity[totalRows];
+            int indexCount=0;
+            while(rs.next()) {
+                for (int i = 1; i <= columnMetadata.getColumnCount(); ++i) {
+                    // put key value pair into hashmap (column name as string,column value converted to string)
+                    resultHashMap.put(columnMetadata.getColumnName(i), String.valueOf(rs.getObject(columnMetadata.getColumnName(i))));
+                }
+                DatabaseEntity viewDatabaseRow = new DatabaseEntity(resultHashMap);
+                results[indexCount] = viewDatabaseRow;
+                indexCount++;
+            }
+            System.out.println(results[1]);
+            return results;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public DatabaseEntity updateObjectDb(String sql_query) {
@@ -65,9 +95,8 @@ public class DataAccessImp implements DataAccessInterface {
     public int deleteObjectDb(String sql_query) {
         try(Connection connection = ConnectionObject.createConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql_query);
-            // get result set from query execution
-            int rowcount = ps.executeUpdate(sql_query);
-            return rowcount;
+            int rowCount = ps.executeUpdate();
+            return rowCount;
         } catch(SQLException e) {
             e.printStackTrace();
             return -1;
