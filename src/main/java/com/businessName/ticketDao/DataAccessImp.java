@@ -74,7 +74,7 @@ public class DataAccessImp implements DataAccessInterface {
         }
     }
 
-
+/*
 
     public static void main(String[] args) {
         DataAccessImp daoObj = new DataAccessImp();
@@ -82,4 +82,6 @@ public class DataAccessImp implements DataAccessInterface {
                 "(status_id,employee_id,description,ticket_requests_id) " +
                 "values ('1','2','this is something',default) returning *;");
     }
+
+ */
 }
