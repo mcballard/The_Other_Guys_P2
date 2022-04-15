@@ -3,7 +3,6 @@ package com.businessName.dataEntity;
 import com.businessName.MalformedObjectException.MalformedObjectException;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class DatabaseEntity {
@@ -73,9 +72,12 @@ public class DatabaseEntity {
     }
 
     public String returnSqlForSelectOne() {
-
         return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where " +
                 newRowObject.get("tableName")+"_id"+"="+newRowObject.get(newRowObject.get("tableName")+"_id")+";";
+    }
+
+    public String returnSqlForSelectAll() {
+        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + ";";
     }
 
     public String returnSqlForUpdateOne() {

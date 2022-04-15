@@ -2,9 +2,7 @@ import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.HashMap;
-import java.util.List;
 
 public class DataAccessTests {
     @Test
@@ -31,6 +29,16 @@ public class DataAccessTests {
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         DatabaseEntity[] selectOneTest = daoOBJ.selectObjectsDb(testDbEntity.returnSqlForSelectOne());
         Assert.assertEquals(selectOneTest.length, 1);
+    }
+
+    @Test
+    public void selectObjectsDBSuccess() {
+        DataAccessImp daoOBJ = new DataAccessImp();
+        HashMap<String, String> test = new HashMap<>();
+        test.put("tableName","employees");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        DatabaseEntity[] selectOneTest = daoOBJ.selectObjectsDb(testDbEntity.returnSqlForSelectAll());
+        Assert.assertEquals(selectOneTest.length, 4);
     }
 
 
