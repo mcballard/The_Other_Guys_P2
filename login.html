@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
+    <style>
+        body {
+            background-image: url("spyvsspy.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Employee Login</title>
+</head>
+<body bgcolor="black">
+    <table>
+        <tr>
+            <td><h3>Enter login information:</h3></td>
+        </tr>
+        <tr>
+            <td align="right">Username:</td>
+            <td><input id="username"></td>
+        </tr>
+        <tr>
+            <td align="right">Password:</td>
+            <td><input id="password" type="password"><br></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button id="submitInfo" onclick="doLogin()">Login</button></td>
+        </tr>
+    </table>
+</body>
+
+<script>
+  
+    async function doLogin() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        loginJSON = {
+            "tableName": "employees",
+            "username": username,
+            "pass": password
+        }
+        let loginInfo = {
+            method:"POST",
+            headers:{'Content-Type':"application/json"},
+            body: JSON.stringify(loginJSON)
+        }
+        const response = await fetch("http://localhost:8080/login", loginInfo);
+        if (response.status === 201) {
+            const apiResponse = await response.json();
+            swal.fire({
+                title: 'Successful login, click continue!',
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    alert(apiResponse.token);
+                    window.sessionStorage.setItem("token", apiResponse.token);
+                   // window.location.href="secretagentpage.html"
+                }
+                });
+        } else if (response.status === 400) {
+            const apiResponse = await response.json();
+            swal.fire(
+                'Unsuccessful login attempt!',
+                apiResponse.message,
+                'error'
+                );
+        } else {
+            alert("something went wrong?");
+        }
+    }
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+</html>

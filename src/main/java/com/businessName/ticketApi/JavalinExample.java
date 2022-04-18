@@ -15,7 +15,7 @@ public class JavalinExample {
 
         JavalinExampleController controller = new JavalinExampleController();
 
-        app.get("/", controller.helloWorld);
+        app.post("/login", controller.helloWorld);
 
         app.start();
 
