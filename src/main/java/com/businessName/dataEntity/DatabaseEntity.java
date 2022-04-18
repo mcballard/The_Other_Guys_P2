@@ -105,4 +105,9 @@ public class DatabaseEntity {
                 " where "+newRowObject.get("tableName")+"_id"+"="+ newRowObject.get(newRowObject.get("tableName")+"_id")+ ";";
         return sqlQuery;
     }
+
+    public String selectDoLogin() {
+        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where username='" +
+                newRowObject.get("username")+"';";
+    }
 }
