@@ -16,6 +16,7 @@ public class TechnicianInteractions implements EmployeeInteractions {
                 String.valueOf(jsonFromApi), new TypeToken<HashMap<String, String>>() {}.getType()
         );
         DatabaseEntity loginTech = new DatabaseEntity(loginMap);
+        loginTech.sanitizeFromApi();
         DatabaseEntity[] employeeInfo = daoObject.selectObjectsDb(loginTech.selectDoLogin());
         if(employeeInfo.length<1) {
             return "Incorrect Username!";
