@@ -1,4 +1,4 @@
-package com.businessName.MalformedObjectException;
+package com.businessName.CustomerExceptions;
 
 public class RecordNotFound extends RuntimeException{
 

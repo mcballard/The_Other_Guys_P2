@@ -49,6 +49,8 @@ public class ServiceLayerTests {
         Assert.assertEquals(authToken, "mb1_1_2");
     }
 
+
+    @Test
     public void testCreateHelpRequestSuccess() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","ticket_requests");
