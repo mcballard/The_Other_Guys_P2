@@ -20,7 +20,9 @@ public class ServiceLayerTests {
     public void setup(){
         //set up out divider object using mockito mock method
         daoTestObject = Mockito.mock(DataAccessImp.class);
+        DataAccessImp daoSuccessObject = new DataAccessImp();
         tiTestObject = new TechnicianInteractions(daoTestObject);
+        clientTestObject = new ClientInteractions(daoSuccessObject);
     }
 
 //    @Test

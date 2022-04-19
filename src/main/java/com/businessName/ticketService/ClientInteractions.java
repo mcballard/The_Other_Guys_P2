@@ -30,7 +30,7 @@ public class ClientInteractions extends EmployeeInteractions{
         if(helpRequestClient.newRowObject.containsKey("description")){
             if (helpRequestClient.newRowObject.get("description").length() > 250){
                 throw new MalformedObjectException("Please enter less than 250 characters in the description box");
-            } else if (daoObject.selectObjectsDb(helpRequestClient.returnSqlForSelectByEmployeeId())[0] == null){
+            } else if (daoObject.selectObjectsDb(helpRequestClient.returnSqlForSelectByEmployeeId()).length < 1){ System.out.println(helpRequestClient.returnSqlForInsertOne());
                  HashMap<String, String> databaseResponse = daoObject.insertObjectDb(helpRequestClient.returnSqlForInsertOne()).newRowObject;
                 JSONObject newRequestJson = new JSONObject(databaseResponse);
                 return String.valueOf(newRequestJson);
