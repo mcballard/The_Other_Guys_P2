@@ -43,7 +43,27 @@ public class ClientInteractions extends EmployeeInteractions{
 
     public String viewHelpRequest(String jsonFromApi) { return null; }
 
-    public String updateHelpRequest(String jsonFromApi) { return null; }
+
+    public String updateHelpRequest(String jsonFromApi) {
+        HashMap<String, String> updateMap = new Gson().fromJson(
+                String.valueOf(jsonFromApi),
+                new TypeToken<HashMap<String, String>>() {}.getType());
+        DatabaseEntity updateRequest = new DatabaseEntity(updateMap);
+        updateRequest.sanitizeFromApi();
+        if(updateRequest.newRowObject.containsKey("employee_id")) {
+            if (updateRequest.newRowObject.get("description").length() <= 250) {
+                HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateRequest.returnSqlForUpdateOne()).newRowObject;
+                JSONObject updateRequestJson = new JSONObject(databaseResponse);
+                return String.valueOf(updateRequestJson);
+            }
+            else {
+                throw new MalformedObjectException("Please enter less than 250 characters in description");
+            }
+        }
+        else {
+            throw new RecordNotFound("no active request");
+        }
+    }
 
     public String cancelHelpRequest(String jsonFromApi) { return null; }
 }
