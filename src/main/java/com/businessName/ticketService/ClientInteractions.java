@@ -20,6 +20,7 @@ public class ClientInteractions extends EmployeeInteractions{
     }
 
     public String createHelpRequest(String jsonFromApi) {
+        System.out.println("jsonFromApi");
         HashMap<String, String> helpRequestMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
                 new TypeToken<HashMap<String, String>>() {}.getType());
