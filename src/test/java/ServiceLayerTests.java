@@ -30,23 +30,24 @@ public class ServiceLayerTests {
     @Test
     public void testDoLoginSuccess() {
         HashMap<String, String> testLogin = new HashMap<>();
-        testLogin.put("tableName","employees");
-        testLogin.put("username","mb1");
-        testLogin.put("pass","pass");
+        testLogin.put("tableName", "employees");
+        testLogin.put("username", "mb1");
+        testLogin.put("pass", "pass");
         DatabaseEntity loginTech = new DatabaseEntity(testLogin);
         JSONObject json = new JSONObject(testLogin);
         HashMap<String, String> testResponse = new HashMap<>();
-        testResponse.put("employees_id","2");
-        testResponse.put("username","mb1");
+        testResponse.put("employees_id", "2");
+        testResponse.put("username", "mb1");
         testResponse.put("type_id", "1");
-        testResponse.put("pass","pass");
+        testResponse.put("pass", "pass");
         DatabaseEntity[] response = new DatabaseEntity[1];
         DatabaseEntity testEntity = new DatabaseEntity(testResponse);
         response[0] = testEntity;
         // define mocked response for when a particular method is called
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
         String authToken = tiTestObject.doLogin(String.valueOf(json));
-        Assert.assertEquals(authToken,"mb1_1_2");
+        Assert.assertEquals(authToken, "mb1_1_2");
+    }
 
     public void testCreateHelpRequestSuccess() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
