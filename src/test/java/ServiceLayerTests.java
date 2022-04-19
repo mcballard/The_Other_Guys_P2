@@ -1,6 +1,7 @@
 import com.businessName.CustomerExceptions.LoginFailedException;
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
+import com.businessName.ticketService.ClientInteractions;
 import com.businessName.ticketService.TechnicianInteractions;
 import org.json.JSONObject;
 import org.mockito.Mockito;
@@ -14,6 +15,7 @@ public class ServiceLayerTests {
 
     public static DataAccessImp daoTestObject;
     public static TechnicianInteractions tiTestObject;
+    public static ClientInteractions clientTestObject;
 
     @BeforeClass
     public void setup(){
@@ -21,6 +23,7 @@ public class ServiceLayerTests {
         daoTestObject = Mockito.mock(DataAccessImp.class);
         tiTestObject = new TechnicianInteractions(daoTestObject);
     }
+
 
     @Test
     public void testDoLoginSuccess() {
@@ -42,6 +45,29 @@ public class ServiceLayerTests {
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
         String authToken = tiTestObject.doLogin(String.valueOf(json));
         Assert.assertEquals(authToken,"mb1_1_2");
+
+    public void testCreateHelpRequestSuccess() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("employee_id","2");
+        testHelpRequest.put("description","I have a flat tire");
+        JSONObject json = new JSONObject(testHelpRequest);
+        System.out.println(json);
+//        DatabaseEntity helpRequestObject = new DatabaseEntity(testHelpRequest);
+        String result = clientTestObject.createHelpRequest(String.valueOf(json));
+        System.out.println(result);
+//        Assert.assertNotEquals(result.newRowObject.get("ticket_requests_id"), "0");
+    }
+
+    @Test
+    public void testUpdateHelpRequestSuccess(){
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("ticket_requests_id", "1");
+        testHelpRequest.put("description","I have two flat tires");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientTestObject.updateHelpRequest(String.valueOf(json));
+        Assert.assertTrue(result.matches("\\*I have two flat tires*"));
     }
 
     @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Username!")
@@ -78,3 +104,4 @@ public class ServiceLayerTests {
     }
 
 }
+
