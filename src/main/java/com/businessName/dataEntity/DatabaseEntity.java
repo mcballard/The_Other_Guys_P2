@@ -80,6 +80,11 @@ public class DatabaseEntity {
         return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + ";";
     }
 
+    public String returnSqlForSelectByEmployeeId() {
+        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where employees_id = " +
+                newRowObject.get("employees_id") + ";";
+    }
+
     public String returnSqlForUpdateOne() {
         String sqlQuery = "update "+schemaPrefix+"."+newRowObject.get("tableName")+" ";
         String columnNames = "set ";

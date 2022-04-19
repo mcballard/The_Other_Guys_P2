@@ -1,6 +1,10 @@
 package com.businessName.ticketService;
 
 import com.businessName.MalformedObjectException.MalformedObjectException;
+<<<<<<< HEAD
+=======
+import com.businessName.MalformedObjectException.RecordNotFound;
+>>>>>>> main
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketDao.DataAccessInterface;
@@ -18,7 +22,27 @@ public class ClientInteractions extends EmployeeInteractions{
         super(daoObject);
     }
 
-    public String createHelpRequest(String jsonFromApi) { return null; }
+    public String createHelpRequest(String jsonFromApi) {
+        System.out.println("jsonFromApi");
+        HashMap<String, String> helpRequestMap = new Gson().fromJson(
+                String.valueOf(jsonFromApi),
+                new TypeToken<HashMap<String, String>>() {}.getType());
+        DatabaseEntity helpRequestClient = new DatabaseEntity(helpRequestMap);
+        helpRequestClient.sanitizeFromApi();
+        if(helpRequestClient.newRowObject.containsKey("description")){
+            if (helpRequestClient.newRowObject.get("description").length() > 250){
+                throw new MalformedObjectException("Please enter less than 250 characters in the description box");
+            } else if (daoObject.selectObjectsDb(helpRequestClient.returnSqlForSelectByEmployeeId())[0] == null){
+                 HashMap<String, String> databaseResponse = daoObject.insertObjectDb(helpRequestClient.returnSqlForInsertOne()).newRowObject;
+                JSONObject newRequestJson = new JSONObject(databaseResponse);
+                return String.valueOf(newRequestJson);
+            } else {
+                throw new RecordNotFound("Can not have more than one request open at a time");
+            }
+        } else {
+            throw new RecordNotFound("Must include description");
+        }
+    }
 
     public String viewHelpRequest(String jsonFromApi) { return null; }
 
