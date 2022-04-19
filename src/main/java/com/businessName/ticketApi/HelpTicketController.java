@@ -1,6 +1,7 @@
 package com.businessName.ticketApi;
 
-import com.businessName.MalformedObjectException.MalformedObjectException;
+import com.businessName.CustomerExceptions.LoginFailedException;
+import com.businessName.CustomerExceptions.MalformedObjectException;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketService.TechnicianInteractions;
 import com.google.gson.Gson;
@@ -23,7 +24,7 @@ public class HelpTicketController {
             String response = "{\"token\":\""+tiObject.doLogin(body)+"\"}";
             ctx.result(response);
             ctx.status(201);
-        } catch (MalformedObjectException e) {
+        } catch (LoginFailedException e) {
             ctx.result("{'message':'"+e+"'}");
             ctx.status(400);
         }
