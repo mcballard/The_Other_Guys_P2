@@ -81,8 +81,8 @@ public class DatabaseEntity {
     }
 
     public String returnSqlForSelectByEmployeeId() {
-        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where employees_id = " +
-                newRowObject.get("employees_id") + ";";
+        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where employee_id = " +
+                newRowObject.get("employee_id") + ";";
     }
 
     public String returnSqlForUpdateOne() {
