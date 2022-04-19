@@ -22,6 +22,31 @@ public class ClientInteractions extends EmployeeInteractions{
 
     public String viewHelpRequest(String jsonFromApi) { return null; }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public String updateHelpRequest(String jsonFromApi) {
         HashMap<String, String> updateMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
