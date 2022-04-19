@@ -56,4 +56,15 @@ public class ServiceLayerTests {
 //        Assert.assertNotEquals(result.newRowObject.get("ticket_requests_id"), "0");
     }
 
+    @Test
+    public void testUpdateHelpRequestSuccess(){
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("ticket_requests_id", "1");
+        testHelpRequest.put("description","I have two flat tires");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientTestObject.updateHelpRequest(String.valueOf(json));
+        Assert.assertTrue(result.matches("\\*I have two flat tires*"));
+    }
+
 }

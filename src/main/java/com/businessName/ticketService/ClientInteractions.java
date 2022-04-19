@@ -1,10 +1,7 @@
 package com.businessName.ticketService;
 
 import com.businessName.MalformedObjectException.MalformedObjectException;
-<<<<<<< HEAD
-=======
 import com.businessName.MalformedObjectException.RecordNotFound;
->>>>>>> main
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketDao.DataAccessInterface;
@@ -47,30 +44,6 @@ public class ClientInteractions extends EmployeeInteractions{
     public String viewHelpRequest(String jsonFromApi) { return null; }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public String updateHelpRequest(String jsonFromApi) {
         HashMap<String, String> updateMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
@@ -78,9 +51,14 @@ public class ClientInteractions extends EmployeeInteractions{
         DatabaseEntity updateRequest = new DatabaseEntity(updateMap);
         updateRequest.sanitizeFromApi();
         if(updateRequest.newRowObject.containsKey("employee_id")) {
-            HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateRequest.returnSqlForUpdateOne()).newRowObject;
-            JSONObject updateRequestJson = new JSONObject(databaseResponse);
-            return String.valueOf(updateRequestJson);
+            if (updateRequest.newRowObject.get("description").length() <= 250) {
+                HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateRequest.returnSqlForUpdateOne()).newRowObject;
+                JSONObject updateRequestJson = new JSONObject(databaseResponse);
+                return String.valueOf(updateRequestJson);
+            }
+            else {
+                throw new MalformedObjectException("Please enter less than 250 characters in description");
+            }
         }
         else {
             throw new RecordNotFound("no active request");
