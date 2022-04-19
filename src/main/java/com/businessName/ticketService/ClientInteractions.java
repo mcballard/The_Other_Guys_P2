@@ -2,6 +2,7 @@ package com.businessName.ticketService;
 
 import com.businessName.MalformedObjectException.MalformedObjectException;
 import com.businessName.MalformedObjectException.RecordNotFound;
+
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketDao.DataAccessInterface;
@@ -65,5 +66,22 @@ public class ClientInteractions extends EmployeeInteractions{
         }
     }
 
-    public String cancelHelpRequest(String jsonFromApi) { return null; }
+    public String cancelHelpRequest(String jsonFromApi) {
+        HashMap<String, String> loginMap = new Gson().fromJson(
+                String.valueOf(jsonFromApi),
+                new TypeToken<HashMap<String, String>>() {}.getType());
+        DatabaseEntity cancelHelpRequest = new DatabaseEntity(loginMap);
+        cancelHelpRequest.sanitizeFromApi();
+        if(cancelHelpRequest.newRowObject.containsKey("ticket_request_id")) {
+            int result = daoObject.deleteObjectDb(cancelHelpRequest.returnSqlForDeleteOne());
+            if (result > 0){
+                return "record deleted success";
+            }else{
+                return "recordNotFound";
+            }
+        }
+        else{
+            throw new MalformedObjectException("missing key");
+        }
+    }
 }
