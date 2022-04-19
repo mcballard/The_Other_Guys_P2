@@ -1,5 +1,6 @@
 package com.businessName.ticketService;
 
+import com.businessName.CustomerExceptions.LoginFailedException;
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketDao.DataAccessInterface;
@@ -23,16 +24,14 @@ public class EmployeeInteractions {
         DatabaseEntity loginTech = new DatabaseEntity(loginMap);
         loginTech.sanitizeFromApi();
         DatabaseEntity[] employeeInfo = daoObject.selectObjectsDb(loginTech.selectDoLogin());
-        if(employeeInfo.length<1) {
-            return "Incorrect Username!";
+        if(employeeInfo.length<1 || employeeInfo[0]==null) {
+            throw new LoginFailedException("Incorrect Username!");
         } else if(Objects.equals(employeeInfo[0].newRowObject.get("pass"), loginMap.get("pass"))) {
             return employeeInfo[0].newRowObject.get("username")+
                 "_"+employeeInfo[0].newRowObject.get("type_id")+
                 "_"+employeeInfo[0].newRowObject.get("employees_id");
         } else {
-            System.out.println(employeeInfo[0].newRowObject.get("pass"));
-            System.out.println(loginMap.get("pass"));
-            return "Incorrect Password!";
+                throw new LoginFailedException("Incorrect Password!");
             }
         }
 

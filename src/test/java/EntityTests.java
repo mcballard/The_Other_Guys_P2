@@ -1,4 +1,4 @@
-import com.businessName.MalformedObjectException.MalformedObjectException;
+import com.businessName.CustomerExceptions.MalformedObjectException;
 import com.businessName.dataEntity.DatabaseEntity;
 import org.testng.Assert;
 import org.testng.annotations.Test;

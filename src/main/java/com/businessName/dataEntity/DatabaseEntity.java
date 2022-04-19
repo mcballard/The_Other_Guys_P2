@@ -1,6 +1,6 @@
 package com.businessName.dataEntity;
 
-import com.businessName.MalformedObjectException.MalformedObjectException;
+import com.businessName.CustomerExceptions.MalformedObjectException;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,3 +1,4 @@
+import com.businessName.CustomerExceptions.LoginFailedException;
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketService.ClientInteractions;
@@ -18,33 +19,35 @@ public class ServiceLayerTests {
 
     @BeforeClass
     public void setup(){
-        //set up out divider object using mockito mock method
+        // define class to mock
         daoTestObject = Mockito.mock(DataAccessImp.class);
         DataAccessImp daoSuccessObject = new DataAccessImp();
         tiTestObject = new TechnicianInteractions(daoTestObject);
         clientTestObject = new ClientInteractions(daoSuccessObject);
     }
 
-//    @Test
-//    public void testDoLoginSuccess() {
-//        HashMap<String, String> testLogin = new HashMap<>();
-//        testLogin.put("tableName","employees");
-//        testLogin.put("username","mb1");
-//        testLogin.put("pass","pass");
-//        JSONObject json = new JSONObject(testLogin);
-//        HashMap<String, String> testResponse = new HashMap<>();
-//        testLogin.put("employees_id","2");
-//        testLogin.put("username","mb1");
-//        testLogin.put("type_id", "1");
-//        testLogin.put("pass","pass");
-//        DatabaseEntity[] response = new DatabaseEntity[1];
-//        response[0] = new DatabaseEntity(testResponse);
-//        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(tiTestObject.doLogin(String.valueOf(json)));
-//        String authToken = tiTestObject.doLogin(String.valueOf(json));
-//        Assert.assertEquals(authToken,"mb1_1_2");
-//    }
 
     @Test
+    public void testDoLoginSuccess() {
+        HashMap<String, String> testLogin = new HashMap<>();
+        testLogin.put("tableName","employees");
+        testLogin.put("username","mb1");
+        testLogin.put("pass","pass");
+        DatabaseEntity loginTech = new DatabaseEntity(testLogin);
+        JSONObject json = new JSONObject(testLogin);
+        HashMap<String, String> testResponse = new HashMap<>();
+        testResponse.put("employees_id","2");
+        testResponse.put("username","mb1");
+        testResponse.put("type_id", "1");
+        testResponse.put("pass","pass");
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        DatabaseEntity testEntity = new DatabaseEntity(testResponse);
+        response[0] = testEntity;
+        // define mocked response for when a particular method is called
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
+        String authToken = tiTestObject.doLogin(String.valueOf(json));
+        Assert.assertEquals(authToken,"mb1_1_2");
+
     public void testCreateHelpRequestSuccess() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","ticket_requests");
@@ -67,6 +70,39 @@ public class ServiceLayerTests {
         JSONObject json = new JSONObject(testHelpRequest);
         String result = clientTestObject.updateHelpRequest(String.valueOf(json));
         Assert.assertTrue(result.matches("\\*I have two flat tires*"));
+    }
+
+    @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Username!")
+    public void testDoLoginBadUsername() {
+        HashMap<String, String> testLogin = new HashMap<>();
+        testLogin.put("tableName","employees");
+        testLogin.put("username","mb");
+        testLogin.put("pass","pass");
+        DatabaseEntity loginTech = new DatabaseEntity(testLogin);
+        JSONObject json = new JSONObject(testLogin);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
+        String authToken = tiTestObject.doLogin(String.valueOf(json));
+    }
+
+    @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Password!")
+    public void testDoLoginBadPassword() {
+        HashMap<String, String> testLogin = new HashMap<>();
+        testLogin.put("tableName","employees");
+        testLogin.put("username","mb1");
+        testLogin.put("pass","pas");
+        DatabaseEntity loginTech = new DatabaseEntity(testLogin);
+        JSONObject json = new JSONObject(testLogin);
+        HashMap<String, String> testResponse = new HashMap<>();
+        testResponse.put("employees_id","2");
+        testResponse.put("username","mb1");
+        testResponse.put("type_id", "1");
+        testResponse.put("pass","pass");
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        DatabaseEntity testEntity = new DatabaseEntity(testResponse);
+        response[0] = testEntity;
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
+        String authToken = tiTestObject.doLogin(String.valueOf(json));
     }
 
 }
