@@ -6,10 +6,10 @@ import com.businessName.ticketService.TechnicianInteractions;
 import com.google.gson.Gson;
 import io.javalin.http.Handler;
 
-public class JavalinExampleController {
+public class HelpTicketController {
 
 
-    public JavalinExampleController() {
+    public HelpTicketController() {
     }
 
     public Handler helloWorld = ctx -> {

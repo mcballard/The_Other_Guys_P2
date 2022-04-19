@@ -2,7 +2,7 @@ package com.businessName.ticketApi;
 
 import io.javalin.Javalin;
 
-public class JavalinExample {
+public class HelpTicketApi {
     /*
         javalin will be used to handle our http requests
      */
@@ -13,7 +13,7 @@ public class JavalinExample {
             config.enableDevLogging();
         });
 
-        JavalinExampleController controller = new JavalinExampleController();
+        HelpTicketController controller = new HelpTicketController();
 
         app.post("/login", controller.helloWorld);
 
