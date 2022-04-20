@@ -57,9 +57,9 @@
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    alert(apiResponse.token);
+                    //alert(apiResponse.token);
                     window.sessionStorage.setItem("token", apiResponse.token);
-                   // window.location.href="secretagentpage.html"
+                    window.location.href="employee.html"
                 }
                 });
         } else if (response.status === 400) {
