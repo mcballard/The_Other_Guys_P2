@@ -93,7 +93,7 @@ public class ClientInteractions extends EmployeeInteractions{
             if (result > 0){
                 return "record deleted success";
             }else{
-                return "recordNotFound";
+                throw new RecordNotFound("recordNotFound");
             }
         } else {
             throw new MalformedObjectException("missing key");
