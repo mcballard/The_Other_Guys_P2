@@ -64,8 +64,9 @@ public class ServiceLayerTests {
         Assert.assertTrue(result.matches("(.*)I have a flat tire(.*)"));
     }
 
-    @Test(priority = 1)
-    public void testUpdateHelpRequestSuccess() {
+
+    @Test(priority = 2)
+    public void testUpdateHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
@@ -76,8 +77,8 @@ public class ServiceLayerTests {
         Assert.assertTrue(result.matches("(.*)I have two flat tires(.*)"));
     }
 
-    @Test(priority = 2)
-    public void viewHelpRequestSuccess() {
+    @Test(priority = 3)
+    public void viewHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
@@ -86,8 +87,8 @@ public class ServiceLayerTests {
         Assert.assertTrue(result.matches("(.*)ticket_requests_id(.*)"));
     }
 
-    @Test(priority = 3)
-    public void testCancelHelpRequestSuccess() {
+    @Test(priority = 4)
+    public void testCancelHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
@@ -129,15 +130,80 @@ public class ServiceLayerTests {
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
         String authToken = clientMockObject.doLogin(String.valueOf(json));
     }
+    @Test(priority = 4, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "No request with id 1 was found.")
+    public void testUpdateHelpRequestNoRecord() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName", "ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        testHelpRequest.put("ticket_requests_id", "1");
+        testHelpRequest.put("description", "I have two flat tires");
+        DatabaseEntity noRecord = new DatabaseEntity(testHelpRequest);
+        JSONObject json = new JSONObject(testHelpRequest);
+        DatabaseEntity[] response = new DatabaseEntity[0];
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(noRecord.returnSqlForSelectByEmployeeId());
+        String result = clientMockObject.updateHelpRequest(String.valueOf(json));
+
+    }
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
+    public void testUpdateHelpRequestDescriptionLong() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName", "ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        testHelpRequest.put("ticket_requests_id", "1");
+        testHelpRequest.put("description", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+        JSONObject json = new JSONObject(testHelpRequest);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+//        Mockito.doReturn(response).when(daoTestObject).updateObjectDb();
+        String result = clientMockObject.updateHelpRequest(String.valueOf(json));
+    }
+
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
+    public void testCreateHelpRequestDescriptionTooLong() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("employee_id","2");
+        testHelpRequest.put("status_id","1");
+        testHelpRequest.put("description","Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat " +
+                "tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat" +
+                " tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a" +
+                " flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I " +
+                "have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire." +
+                "Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat" +
+                " tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientMockObject.createHelpRequest(String.valueOf(json));
+
+    }
+
+    @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "Can not have more than one request open at a time")
+    public void testCreateHelpRequestOneAlreadyExists() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("employee_id","2");
+        testHelpRequest.put("status_id","1");
+        testHelpRequest.put("description","I have a flat tire.");
+        DatabaseEntity createClient = new DatabaseEntity(testHelpRequest);
+        JSONObject json = new JSONObject(testHelpRequest);
+        HashMap<String, String> testHelpRequestMock = new HashMap<>();
+        testHelpRequestMock.put("tableName","ticket_requests");
+        testHelpRequestMock.put("employee_id","2");
+        testHelpRequestMock.put("status_id","1");
+        testHelpRequestMock.put("description","I have a flat tire.");
+        DatabaseEntity createClient2 = new DatabaseEntity(testHelpRequestMock);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        response[0] = createClient2;
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(createClient.returnSqlForSelectByEmployeeId());
+        String result = clientMockObject.createHelpRequest(String.valueOf(json));
+    }
 
     @Test(expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
     public void testCancelRecordNotFound() {
         HashMap<String, String> cancelRequest = new HashMap<>();
         cancelRequest.put("tableName", "ticket_requests");
         cancelRequest.put("employee_id", "2");
-        cancelRequest.put("ticket_requests_id", "-1");
+        cancelRequest.put("ticket_requests_id", "9001");
         DatabaseEntity ticketRequest = new DatabaseEntity(cancelRequest);
-        JSONObject json = new JSONObject(ticketRequest);
+        JSONObject json = new JSONObject(ticketRequest.newRowObject);
         DatabaseEntity[] response = new DatabaseEntity[1];
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(ticketRequest.returnSqlForDeleteOne());
         String cancelResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));

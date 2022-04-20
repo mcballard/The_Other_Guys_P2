@@ -23,8 +23,8 @@ public class LoginPom {
     @FindBy(id="submitInfo")
     public WebElement loginSubmitButton;
 
-  //  @FindBy(xpath="/html/body/div/div/div[3]/button[1]")
-  //  public WebElement sweetalertContinueButton;
+    @FindBy(xpath="/html/body/div/div/div[3]/button[1]")
+    public WebElement sweetalertContinueButton;
 
 
 }
