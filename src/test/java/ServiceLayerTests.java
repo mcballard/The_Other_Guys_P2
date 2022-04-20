@@ -140,7 +140,7 @@ public class ServiceLayerTests {
         JSONObject json = new JSONObject(ticketRequest);
         DatabaseEntity[] response = new DatabaseEntity[1];
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(ticketRequest.returnSqlForDeleteOne());
-        String canselResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
+        String cancelResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
     }
 }
 
