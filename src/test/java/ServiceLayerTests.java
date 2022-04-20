@@ -2,7 +2,6 @@ import com.businessName.CustomerExceptions.LoginFailedException;
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketService.ClientInteractions;
-import com.businessName.ticketService.TechnicianInteractions;
 import org.json.JSONObject;
 import org.mockito.Mockito;
 import org.testng.Assert;
@@ -14,7 +13,7 @@ import java.util.HashMap;
 public class ServiceLayerTests {
 
     public static DataAccessImp daoTestObject;
-    public static TechnicianInteractions tiTestObject;
+    public static ClientInteractions clientMockObject;
     public static ClientInteractions clientTestObject;
 
     @BeforeClass
@@ -23,7 +22,7 @@ public class ServiceLayerTests {
         daoTestObject = Mockito.mock(DataAccessImp.class);
         DataAccessImp daoSuccessObject = new DataAccessImp();
         daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.ticket_requests RESTART IDENTITY CASCADE;");
-        tiTestObject = new TechnicianInteractions(daoTestObject);
+        clientMockObject = new ClientInteractions(daoTestObject);
         clientTestObject = new ClientInteractions(daoSuccessObject);
     }
 
@@ -46,7 +45,7 @@ public class ServiceLayerTests {
         response[0] = testEntity;
         // define mocked response for when a particular method is called
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
-        String authToken = tiTestObject.doLogin(String.valueOf(json));
+        String authToken = clientMockObject.doLogin(String.valueOf(json));
         Assert.assertEquals(authToken, "mb1_1_2");
     }
 
@@ -106,7 +105,7 @@ public class ServiceLayerTests {
         JSONObject json = new JSONObject(testLogin);
         DatabaseEntity[] response = new DatabaseEntity[1];
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
-        String authToken = tiTestObject.doLogin(String.valueOf(json));
+        String authToken = clientMockObject.doLogin(String.valueOf(json));
     }
 
     @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Password!")
@@ -126,7 +125,7 @@ public class ServiceLayerTests {
         DatabaseEntity testEntity = new DatabaseEntity(testResponse);
         response[0] = testEntity;
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
-        String authToken = tiTestObject.doLogin(String.valueOf(json));
+        String authToken = clientMockObject.doLogin(String.valueOf(json));
     }
 
 }
