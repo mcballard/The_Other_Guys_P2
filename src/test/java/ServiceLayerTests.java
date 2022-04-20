@@ -201,6 +201,39 @@ public class ServiceLayerTests {
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(createClient.returnSqlForSelectByEmployeeId());
         String result = clientMockObject.createHelpRequest(String.valueOf(json));
     }
+    @Test
+    public void testUpdatePersonalInfoFirstNameSuccess(){
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","employees");
+        testHelpRequest.put("employees_id", "2");
+        testHelpRequest.put("first_name", "Chicken");
+        testHelpRequest.put("last_name", "Little");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientTestObject.updatePersonalInfo(String.valueOf(json));
+        Assert.assertTrue(result.matches("(.*)Chicken(.*)"));
+    }
+    @Test
+    public void testUpdatePersonalInfoLastNameSuccess(){
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","employees");
+        testHelpRequest.put("employees_id", "2");
+        testHelpRequest.put("first_name", "Chicken");
+        testHelpRequest.put("last_name", "Little");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientTestObject.updatePersonalInfo(String.valueOf(json));
+        Assert.assertTrue(result.matches("(.*)Little(.*)"));
+    }
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 12 characters in the description box")
+    public void testUpdatePersonalInfoTooManyCharacters(){
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","employees");
+        testHelpRequest.put("employees_id", "2");
+        testHelpRequest.put("first_name", "ChickenChickenChicken");
+        testHelpRequest.put("last_name", "Little");
+        JSONObject json = new JSONObject(testHelpRequest);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        String result = clientMockObject.updatePersonalInfo(String.valueOf(json));
+    }
 
 
     @Test
