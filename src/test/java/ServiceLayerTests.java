@@ -93,6 +93,18 @@ public class ServiceLayerTests {
         Assert.assertTrue(result.matches("(.*)ticket_requests_id(.*)"));
     }
 
+    @Test(priority = 4, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "You have no open help requests.")
+    public void testViewHelpRequestNoRecord() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName", "ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        DatabaseEntity noRecord = new DatabaseEntity(testHelpRequest);
+        JSONObject json = new JSONObject(testHelpRequest);
+        DatabaseEntity[] response = new DatabaseEntity[0];
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(noRecord.returnSqlForSelectByEmployeeId());
+        String result = clientTestObject.viewHelpRequest(String.valueOf(json));
+    }
+
     @Test(priority = 4)
     public void testCancelHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
