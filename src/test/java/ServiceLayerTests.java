@@ -1,4 +1,6 @@
 import com.businessName.CustomerExceptions.LoginFailedException;
+import com.businessName.CustomerExceptions.MalformedObjectException;
+import com.businessName.CustomerExceptions.RecordNotFound;
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketService.ClientInteractions;
@@ -126,6 +128,32 @@ public class ServiceLayerTests {
         response[0] = testEntity;
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(loginTech.selectDoLogin());
         String authToken = clientMockObject.doLogin(String.valueOf(json));
+    }
+    @Test(priority = 4, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "No request with id 1 was found.")
+    public void testUpdateHelpRequestNoRecord() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName", "ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        testHelpRequest.put("ticket_requests_id", "1");
+        testHelpRequest.put("description", "I have two flat tires");
+        DatabaseEntity noRecord = new DatabaseEntity(testHelpRequest);
+        JSONObject json = new JSONObject(testHelpRequest);
+        DatabaseEntity[] response = new DatabaseEntity[0];
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(noRecord.returnSqlForSelectByEmployeeId());
+        String result = clientMockObject.updateHelpRequest(String.valueOf(json));
+
+    }
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
+    public void testUpdateHelpRequestDescriptionLong() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName", "ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        testHelpRequest.put("ticket_requests_id", "1");
+        testHelpRequest.put("description", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+        JSONObject json = new JSONObject(testHelpRequest);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+//        Mockito.doReturn(response).when(daoTestObject).updateObjectDb();
+        String result = clientMockObject.updateHelpRequest(String.valueOf(json));
     }
 
 }
