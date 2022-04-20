@@ -16,29 +16,31 @@ public class TechnicianInteractions extends EmployeeInteractions {
     public TechnicianInteractions(DataAccessInterface daoObject) {
         super(daoObject);
     }
-/*
+
     public String createTicket(String jsonFromApi) {
         HashMap<String, String> helpRequestMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
                 new TypeToken<HashMap<String, String>>() {}.getType());
-        DatabaseEntity helpRequestClient = new DatabaseEntity(helpRequestMap);
-        helpRequestClient.sanitizeFromApi();
-        if(helpRequestClient.newRowObject.containsKey("description")){
-            if (helpRequestClient.newRowObject.get("description").length() > 250){
-                throw new MalformedObjectException("Please enter less than 250 characters in the description box");
-            } else if (daoObject.selectObjectsDb(helpRequestClient.returnSqlForSelectByEmployeeId()).length < 1){
+        DatabaseEntity helpTicketTech = new DatabaseEntity(helpRequestMap);
+        helpTicketTech.sanitizeFromApi();
+        if(helpTicketTech.newRowObject.containsKey("ticket_comments")){
+            if (helpTicketTech.newRowObject.get("ticket_comments").length() > 250){
+                throw new MalformedObjectException("Please enter less than 250 characters in the comments box");}
+            if (!Objects.equals(helpTicketTech.newRowObject.get("category"), "1") && !Objects.equals(helpTicketTech.newRowObject.get("category"), "2")){
+                throw new MalformedObjectException("The category you have entered does not exist");}
+            if (daoObject.selectObjectsDb(helpTicketTech.returnSqlForSelectByEmployeeId()).length < 1){
                 HashMap<String, String> databaseResponse =
-                        daoObject.insertObjectDb(helpRequestClient.returnSqlForInsertOne()).newRowObject;
+                        daoObject.insertObjectDb(helpTicketTech.returnSqlForInsertOne()).newRowObject;
                 JSONObject newRequestJson = new JSONObject(databaseResponse);
                 return String.valueOf(newRequestJson);
             } else {
                 throw new RecordNotFound("Can not have more than one request open at a time");
             }
         } else {
-            throw new RecordNotFound("Must include description");
+            throw new RecordNotFound("Something went wrong");
         }
     }
-
+/*
     public String viewHelpRequest(String jsonFromApi) {
         HashMap<String, String> viewMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
