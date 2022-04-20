@@ -4,6 +4,7 @@ import com.businessName.CustomerExceptions.RecordNotFound;
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketService.ClientInteractions;
+import com.businessName.ticketService.TechnicianInteractions;
 import org.json.JSONObject;
 import org.mockito.Mockito;
 import org.testng.Assert;
@@ -17,6 +18,7 @@ public class ServiceLayerTests {
     public static DataAccessImp daoTestObject;
     public static ClientInteractions clientMockObject;
     public static ClientInteractions clientTestObject;
+    public static TechnicianInteractions techTestObject;
 
     @BeforeClass
     public void setup() {
@@ -24,8 +26,12 @@ public class ServiceLayerTests {
         daoTestObject = Mockito.mock(DataAccessImp.class);
         DataAccessImp daoSuccessObject = new DataAccessImp();
         daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.ticket_requests RESTART IDENTITY CASCADE;");
+        daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.tickets RESTART IDENTITY CASCADE;");
+
         clientMockObject = new ClientInteractions(daoTestObject);
         clientTestObject = new ClientInteractions(daoSuccessObject);
+        techTestObject = new TechnicianInteractions(daoSuccessObject);
+
     }
 
 
@@ -195,6 +201,20 @@ public class ServiceLayerTests {
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(createClient.returnSqlForSelectByEmployeeId());
         String result = clientMockObject.createHelpRequest(String.valueOf(json));
     }
+
+
+    @Test
+    public void testCreateHelpTicketSuccess() {
+        HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("tableName", "tickets");
+        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("category", "1");
+        testHelpTicket.put("ticket_comments", "Buddy has a flat tire");
+        JSONObject json = new JSONObject(testHelpTicket);
+        String result = techTestObject.createTicket(String.valueOf(json));
+        Assert.assertTrue(result.matches("(.*)Buddy has a flat tire(.*)"));
+    }
+
 
     @Test(expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
     public void testCancelRecordNotFound() {
