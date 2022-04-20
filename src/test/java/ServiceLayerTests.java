@@ -19,7 +19,7 @@ public class ServiceLayerTests {
     public static ClientInteractions clientTestObject;
 
     @BeforeClass
-    public void setup(){
+    public void setup() {
         // define class to mock
         daoTestObject = Mockito.mock(DataAccessImp.class);
         DataAccessImp daoSuccessObject = new DataAccessImp();
@@ -55,22 +55,23 @@ public class ServiceLayerTests {
     @Test(priority = 0)
     public void testCreateHelpRequestSuccess() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
-        testHelpRequest.put("tableName","ticket_requests");
-        testHelpRequest.put("employee_id","2");
-        testHelpRequest.put("status_id","1");
-        testHelpRequest.put("description","I have a flat tire");
+        testHelpRequest.put("tableName", "ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        testHelpRequest.put("status_id", "1");
+        testHelpRequest.put("description", "I have a flat tire");
         JSONObject json = new JSONObject(testHelpRequest);
         String result = clientTestObject.createHelpRequest(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)I have a flat tire(.*)"));
     }
 
+
     @Test(priority = 2)
     public void testUpdateHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
-        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("ticket_requests_id", "1");
-        testHelpRequest.put("description","I have two flat tires");
+        testHelpRequest.put("description", "I have two flat tires");
         JSONObject json = new JSONObject(testHelpRequest);
         String result = clientTestObject.updateHelpRequest(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)I have two flat tires(.*)"));
@@ -79,7 +80,7 @@ public class ServiceLayerTests {
     @Test(priority = 3)
     public void viewHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
-        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         JSONObject json = new JSONObject(testHelpRequest);
         String result = clientTestObject.viewHelpRequest(String.valueOf(json));
@@ -89,7 +90,7 @@ public class ServiceLayerTests {
     @Test(priority = 4)
     public void testCancelHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
-        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("ticket_requests_id", "1");
         JSONObject json = new JSONObject(testHelpRequest);
@@ -100,9 +101,9 @@ public class ServiceLayerTests {
     @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Username!")
     public void testDoLoginBadUsername() {
         HashMap<String, String> testLogin = new HashMap<>();
-        testLogin.put("tableName","employees");
-        testLogin.put("username","mb");
-        testLogin.put("pass","pass");
+        testLogin.put("tableName", "employees");
+        testLogin.put("username", "mb");
+        testLogin.put("pass", "pass");
         DatabaseEntity loginTech = new DatabaseEntity(testLogin);
         JSONObject json = new JSONObject(testLogin);
         DatabaseEntity[] response = new DatabaseEntity[1];
@@ -113,16 +114,16 @@ public class ServiceLayerTests {
     @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Password!")
     public void testDoLoginBadPassword() {
         HashMap<String, String> testLogin = new HashMap<>();
-        testLogin.put("tableName","employees");
-        testLogin.put("username","mb1");
-        testLogin.put("pass","pas");
+        testLogin.put("tableName", "employees");
+        testLogin.put("username", "mb1");
+        testLogin.put("pass", "pas");
         DatabaseEntity loginTech = new DatabaseEntity(testLogin);
         JSONObject json = new JSONObject(testLogin);
         HashMap<String, String> testResponse = new HashMap<>();
-        testResponse.put("employees_id","2");
-        testResponse.put("username","mb1");
+        testResponse.put("employees_id", "2");
+        testResponse.put("username", "mb1");
         testResponse.put("type_id", "1");
-        testResponse.put("pass","pass");
+        testResponse.put("pass", "pass");
         DatabaseEntity[] response = new DatabaseEntity[1];
         DatabaseEntity testEntity = new DatabaseEntity(testResponse);
         response[0] = testEntity;
@@ -195,5 +196,21 @@ public class ServiceLayerTests {
         String result = clientMockObject.createHelpRequest(String.valueOf(json));
     }
 
+    @Test(expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
+    public void testCancelRecordNotFound() {
+        HashMap<String, String> cancelRequest = new HashMap<>();
+        cancelRequest.put("tableName", "ticket_requests");
+        cancelRequest.put("employee_id", "2");
+        cancelRequest.put("ticket_requests_id", "-1");
+        DatabaseEntity ticketRequest = new DatabaseEntity(cancelRequest);
+        JSONObject json = new JSONObject(ticketRequest);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(ticketRequest.returnSqlForDeleteOne());
+        String canselResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
+    }
 }
+
+
+
+
 
