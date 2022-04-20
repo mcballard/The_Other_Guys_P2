@@ -201,12 +201,12 @@ public class ServiceLayerTests {
         HashMap<String, String> cancelRequest = new HashMap<>();
         cancelRequest.put("tableName", "ticket_requests");
         cancelRequest.put("employee_id", "2");
-        cancelRequest.put("ticket_requests_id", "-1");
+        cancelRequest.put("ticket_requests_id", "9001");
         DatabaseEntity ticketRequest = new DatabaseEntity(cancelRequest);
-        JSONObject json = new JSONObject(ticketRequest);
+        JSONObject json = new JSONObject(ticketRequest.newRowObject);
         DatabaseEntity[] response = new DatabaseEntity[1];
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(ticketRequest.returnSqlForDeleteOne());
-        String canselResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
+        String cancelResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
     }
 }
 
