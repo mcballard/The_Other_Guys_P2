@@ -1,9 +1,9 @@
 package com.businessName.dataEntity;
 
 import com.businessName.CustomerExceptions.MalformedObjectException;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DatabaseEntity {
 
@@ -53,10 +53,10 @@ public class DatabaseEntity {
         int commas=0;
         for (Map.Entry<String, String> entry : newRowObject.entrySet()) {
             commas++;
-            if(entry.getKey() != "tableName") {
+            if(!Objects.equals(entry.getKey(), "tableName")) {
                 columnNames += entry.getKey();
                 columnValues += "'" + entry.getValue() + "'";
-            } else if(entry.getKey()=="tableName") {
+            } else if(entry.getKey().equals("tableName")) {
                 columnNames+=entry.getValue()+"_id";
                 columnValues+="default";
             }
@@ -81,26 +81,34 @@ public class DatabaseEntity {
     }
 
     public String returnSqlForSelectByEmployeeId() {
-        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where employee_id = " +
-                newRowObject.get("employee_id") + ";";
+        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where (employee_id=" +
+                newRowObject.get("employee_id") + ") and (status_id=1);";
     }
 
     public String returnSqlForUpdateOne() {
         String sqlQuery = "update "+schemaPrefix+"."+newRowObject.get("tableName")+" ";
         String columnNames = "set ";
         String columnValues = " where ";
-        int tooManyCommas = newRowObject.size() - 2;
+        int tooManyCommas = newRowObject.size() - 1;
         int commas=0;
         for (Map.Entry<String, String> entry : newRowObject.entrySet()) {
             commas++;
-            if(entry.getKey() != "tableName" && entry.getKey() != "employees_id") {
+            if(!Objects.equals(entry.getKey(), "tableName")
+                    && (
+                            !Objects.equals(entry.getKey(), "employees_id") && !Objects.equals(entry.getKey(), "ticket_requests_id")
+                    )
+                ) {
                 columnNames +=  entry.getKey() + " = '" + entry.getValue() + "'";
-            }
+            } else { commas++; }
             if(commas<tooManyCommas){
                 columnNames += ",";
             }
         }
-        columnValues += "employees_id = "+newRowObject.get("employees_id");
+        if(!newRowObject.containsKey("employees_id")) {
+            columnValues += "ticket_requests_id = "+newRowObject.get("ticket_requests_id");
+        } else {
+            columnValues += "employees_id = " + newRowObject.get("employees_id");
+        }
         sqlQuery += columnNames + columnValues + " returning *;";
         return sqlQuery;
     }

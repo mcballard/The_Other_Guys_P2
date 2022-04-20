@@ -13,7 +13,7 @@ public class HelpTicketController {
     public HelpTicketController() {
     }
 
-    public Handler helloWorld = ctx -> {
+    public Handler employeeLogin = ctx -> {
         DataAccessImp daoObject = new DataAccessImp();
         TechnicianInteractions tiObject = new TechnicianInteractions(daoObject);
         Gson gson = new Gson();
@@ -25,7 +25,7 @@ public class HelpTicketController {
             ctx.result(response);
             ctx.status(201);
         } catch (LoginFailedException e) {
-            ctx.result("{'message':'"+e+"'}");
+            ctx.result("{\"message\":\""+e.getMessage()+"\"}");
             ctx.status(400);
         }
     };
