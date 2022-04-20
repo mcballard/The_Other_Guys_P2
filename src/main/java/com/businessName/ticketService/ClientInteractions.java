@@ -2,7 +2,6 @@ package com.businessName.ticketService;
 
 import com.businessName.CustomerExceptions.MalformedObjectException;
 import com.businessName.CustomerExceptions.RecordNotFound;
-
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessInterface;
 import com.google.gson.Gson;
@@ -19,7 +18,6 @@ public class ClientInteractions extends EmployeeInteractions{
     }
 
     public String createHelpRequest(String jsonFromApi) {
-        System.out.println("jsonFromApi");
         HashMap<String, String> helpRequestMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
                 new TypeToken<HashMap<String, String>>() {}.getType());
@@ -28,8 +26,9 @@ public class ClientInteractions extends EmployeeInteractions{
         if(helpRequestClient.newRowObject.containsKey("description")){
             if (helpRequestClient.newRowObject.get("description").length() > 250){
                 throw new MalformedObjectException("Please enter less than 250 characters in the description box");
-            } else if (daoObject.selectObjectsDb(helpRequestClient.returnSqlForSelectByEmployeeId()).length < 1){ System.out.println(helpRequestClient.returnSqlForInsertOne());
-                 HashMap<String, String> databaseResponse = daoObject.insertObjectDb(helpRequestClient.returnSqlForInsertOne()).newRowObject;
+            } else if (daoObject.selectObjectsDb(helpRequestClient.returnSqlForSelectByEmployeeId()).length < 1){
+                HashMap<String, String> databaseResponse =
+                        daoObject.insertObjectDb(helpRequestClient.returnSqlForInsertOne()).newRowObject;
                 JSONObject newRequestJson = new JSONObject(databaseResponse);
                 return String.valueOf(newRequestJson);
             } else {
@@ -40,7 +39,19 @@ public class ClientInteractions extends EmployeeInteractions{
         }
     }
 
-    public String viewHelpRequest(String jsonFromApi) { return null; }
+    public String viewHelpRequest(String jsonFromApi) {
+        HashMap<String, String> viewMap = new Gson().fromJson(
+                String.valueOf(jsonFromApi),
+                new TypeToken<HashMap<String, String>>() {}.getType());
+        DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
+        viewRequest.sanitizeFromApi();
+        DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectByEmployeeId());
+        if(viewResponse.length < 1) {
+            throw new RecordNotFound("You have no open help requests.");
+        }
+        JSONObject viewResponseJson = new JSONObject(viewResponse[0].newRowObject);
+        return String.valueOf(viewResponseJson);
+    }
 
 
     public String updateHelpRequest(String jsonFromApi) {
@@ -49,9 +60,16 @@ public class ClientInteractions extends EmployeeInteractions{
                 new TypeToken<HashMap<String, String>>() {}.getType());
         DatabaseEntity updateRequest = new DatabaseEntity(updateMap);
         updateRequest.sanitizeFromApi();
-        if(updateRequest.newRowObject.containsKey("employee_id")) {
+        if(updateRequest.newRowObject.containsKey("ticket_requests_id")) {
             if (updateRequest.newRowObject.get("description").length() <= 250) {
+                if(daoObject.selectObjectsDb(updateRequest.returnSqlForSelectByEmployeeId()).length < 1) {
+                    throw new RecordNotFound("No request with id "
+                            +updateRequest.newRowObject.get("ticket_requests_id")+" was found.");
+                }
                 HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateRequest.returnSqlForUpdateOne()).newRowObject;
+                if(databaseResponse.isEmpty()) {
+                    throw new RecordNotFound("Unable to locate record with id "+updateRequest.newRowObject.get("ticket_requests_id"));
+                }
                 JSONObject updateRequestJson = new JSONObject(databaseResponse);
                 return String.valueOf(updateRequestJson);
             }
@@ -60,7 +78,7 @@ public class ClientInteractions extends EmployeeInteractions{
             }
         }
         else {
-            throw new RecordNotFound("no active request");
+            throw new MalformedObjectException("Key not found for ticket requests");
         }
     }
 
@@ -70,15 +88,14 @@ public class ClientInteractions extends EmployeeInteractions{
                 new TypeToken<HashMap<String, String>>() {}.getType());
         DatabaseEntity cancelHelpRequest = new DatabaseEntity(loginMap);
         cancelHelpRequest.sanitizeFromApi();
-        if(cancelHelpRequest.newRowObject.containsKey("ticket_request_id")) {
+        if(cancelHelpRequest.newRowObject.containsKey("ticket_requests_id")) {
             int result = daoObject.deleteObjectDb(cancelHelpRequest.returnSqlForDeleteOne());
             if (result > 0){
                 return "record deleted success";
             }else{
                 return "recordNotFound";
             }
-        }
-        else{
+        } else {
             throw new MalformedObjectException("missing key");
         }
     }

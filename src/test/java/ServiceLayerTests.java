@@ -22,6 +22,7 @@ public class ServiceLayerTests {
         // define class to mock
         daoTestObject = Mockito.mock(DataAccessImp.class);
         DataAccessImp daoSuccessObject = new DataAccessImp();
+        daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.ticket_requests RESTART IDENTITY CASCADE;");
         tiTestObject = new TechnicianInteractions(daoTestObject);
         clientTestObject = new ClientInteractions(daoSuccessObject);
     }
@@ -50,29 +51,49 @@ public class ServiceLayerTests {
     }
 
 
-    @Test
+    @Test(priority = 0)
     public void testCreateHelpRequestSuccess() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","ticket_requests");
         testHelpRequest.put("employee_id","2");
+        testHelpRequest.put("status_id","1");
         testHelpRequest.put("description","I have a flat tire");
         JSONObject json = new JSONObject(testHelpRequest);
-        System.out.println(json);
-//        DatabaseEntity helpRequestObject = new DatabaseEntity(testHelpRequest);
         String result = clientTestObject.createHelpRequest(String.valueOf(json));
-        System.out.println(result);
-//        Assert.assertNotEquals(result.newRowObject.get("ticket_requests_id"), "0");
+        Assert.assertTrue(result.matches("(.*)I have a flat tire(.*)"));
     }
 
-    @Test
+    @Test(priority = 1)
     public void testUpdateHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("ticket_requests_id", "1");
         testHelpRequest.put("description","I have two flat tires");
         JSONObject json = new JSONObject(testHelpRequest);
         String result = clientTestObject.updateHelpRequest(String.valueOf(json));
-        Assert.assertTrue(result.matches("\\*I have two flat tires*"));
+        Assert.assertTrue(result.matches("(.*)I have two flat tires(.*)"));
+    }
+
+    @Test(priority = 2)
+    public void viewHelpRequestSuccess(){
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientTestObject.viewHelpRequest(String.valueOf(json));
+        Assert.assertTrue(result.matches("(.*)ticket_requests_id(.*)"));
+    }
+
+    @Test(priority = 3)
+    public void testCancelHelpRequestSuccess(){
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName","ticket_requests");
+        testHelpRequest.put("employee_id", "2");
+        testHelpRequest.put("ticket_requests_id", "1");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientTestObject.cancelHelpRequest(String.valueOf(json));
+        Assert.assertEquals(result, "record deleted success");
     }
 
     @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Username!")

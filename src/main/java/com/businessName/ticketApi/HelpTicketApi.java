@@ -15,7 +15,7 @@ public class HelpTicketApi {
 
         HelpTicketController controller = new HelpTicketController();
 
-        app.post("/login", controller.helloWorld);
+        app.post("/login", controller.employeeLogin);
 
         app.start();
 
