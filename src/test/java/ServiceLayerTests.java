@@ -116,7 +116,7 @@ public class ServiceLayerTests {
         Assert.assertEquals(result, "record deleted success");
     }
 
-    @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Username!")
+    @Test(priority = 1, expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Username!")
     public void testDoLoginBadUsername() {
         HashMap<String, String> testLogin = new HashMap<>();
         testLogin.put("tableName", "employees");
@@ -129,7 +129,7 @@ public class ServiceLayerTests {
         String authToken = clientMockObject.doLogin(String.valueOf(json));
     }
 
-    @Test(expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Password!")
+    @Test(priority = 1, expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Password!")
     public void testDoLoginBadPassword() {
         HashMap<String, String> testLogin = new HashMap<>();
         testLogin.put("tableName", "employees");
@@ -162,7 +162,7 @@ public class ServiceLayerTests {
         String result = clientMockObject.updateHelpRequest(String.valueOf(json));
 
     }
-    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
+    @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
     public void testUpdateHelpRequestDescriptionLong() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName", "ticket_requests");
@@ -174,7 +174,7 @@ public class ServiceLayerTests {
         String result = clientMockObject.updateHelpRequest(String.valueOf(json));
     }
 
-    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
+    @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
     public void testCreateHelpRequestDescriptionTooLong() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","ticket_requests");
@@ -211,7 +211,7 @@ public class ServiceLayerTests {
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(createClient.returnSqlForSelectByEmployeeId());
         String result = clientMockObject.createHelpRequest(String.valueOf(json));
     }
-    @Test
+    @Test(priority = 1)
     public void testUpdatePersonalInfoFirstNameSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","employees");
@@ -222,7 +222,7 @@ public class ServiceLayerTests {
         String result = clientTestObject.updatePersonalInfo(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)Chicken(.*)"));
     }
-    @Test
+    @Test(priority = 1)
     public void testUpdatePersonalInfoLastNameSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","employees");
@@ -233,7 +233,7 @@ public class ServiceLayerTests {
         String result = clientTestObject.updatePersonalInfo(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)Little(.*)"));
     }
-    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 12 characters in the description box")
+    @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 12 characters in the description box")
     public void testUpdatePersonalInfoTooManyCharacters(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("tableName","employees");
@@ -258,7 +258,7 @@ public class ServiceLayerTests {
         Assert.assertTrue(result.matches("(.*)Buddy has a flat tire(.*)"));
     }
 
-    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the comments box")
+    @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the comments box")
     public void testCreateHelpTicketCommentTooLong(){
         HashMap<String, String> testHelpTicket = new HashMap<>();
         testHelpTicket.put("tableName", "tickets");
@@ -275,7 +275,7 @@ public class ServiceLayerTests {
         String result = techTestObject.createTicket(String.valueOf(json));
     }
 
-    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "The category you have entered does not exist")
+    @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "The category you have entered does not exist")
     public void testCreateHelpTicketIncorrectCategory() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
         testHelpTicket.put("tableName", "tickets");
@@ -297,8 +297,30 @@ public class ServiceLayerTests {
         String result = techTestObject.createTicket(String.valueOf(json));
     }
 
+    @Test(priority = 1)
+    public void viewHelpTicketSuccess() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName", "tickets");
+        testHelpRequest.put("employee_id", "2");
+        JSONObject json = new JSONObject(testHelpRequest);
+        String result = clientTestObject.viewHelpRequest(String.valueOf(json));
+        Assert.assertTrue(result.matches("(.*)tickets_id(.*)"));
+    }
 
-    @Test(expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
+    @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "You have no open tickets.")
+    public void viewHelpTicketNoOpenTicket() {
+        HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("tableName", "tickets");
+        testHelpRequest.put("employee_id", "5");
+        DatabaseEntity noRecord = new DatabaseEntity(testHelpRequest);
+        JSONObject json = new JSONObject(testHelpRequest);
+        DatabaseEntity[] response = new DatabaseEntity[0];
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(noRecord.returnSqlForSelectByEmployeeId());
+        String result = techTestObject.viewOpenTicket(String.valueOf(json));
+    }
+
+
+    @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
     public void testCancelRecordNotFound() {
         HashMap<String, String> cancelRequest = new HashMap<>();
         cancelRequest.put("tableName", "ticket_requests");
