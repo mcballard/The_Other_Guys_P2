@@ -22,6 +22,14 @@ public class HelpTicketApi {
 
         app.post("/login", controller.employeeLogin);
 
+        app.post("/client/requests", controller.clientCreateHelpRequest);
+
+        app.get("/client/requests", controller.viewRequestStatus);
+
+        app.patch("/client/requests", controller.clientUpdateHelpRequest);
+
+        app.delete("/client/requests", controller.clientCancelHelpRequest);
+
         app.start();
 
     }
