@@ -1,6 +1,6 @@
 package com.businessName.steps;
 
-import com.businessName.poms.runner.TestRunner;
+import com.businessName.runner.TestRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
