@@ -34,7 +34,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 JSONObject newRequestJson = new JSONObject(databaseResponse);
                 return String.valueOf(newRequestJson);
             } else {
-                throw new RecordNotFound("Can not have more than one request open at a time");
+                throw new RecordNotFound("Can not have more than one ticket open at a time");
             }
         } else {
             throw new RecordNotFound("Something went wrong");
