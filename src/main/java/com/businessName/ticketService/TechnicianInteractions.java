@@ -16,7 +16,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
     public TechnicianInteractions(DataAccessInterface daoObject) {
         super(daoObject);
     }
-/*
+
     public String createTicket(String jsonFromApi) {
         HashMap<String, String> helpRequestMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
@@ -45,7 +45,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 new TypeToken<HashMap<String, String>>() {}.getType());
         DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
         viewRequest.sanitizeFromApi();
-        DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectByEmployeeId());
+        DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectAll());
         if(viewResponse.length < 1) {
             throw new RecordNotFound("You have no open help requests.");
         }
@@ -99,5 +99,5 @@ public class TechnicianInteractions extends EmployeeInteractions {
             throw new MalformedObjectException("missing key");
         }
     }
-    */
+
 }
