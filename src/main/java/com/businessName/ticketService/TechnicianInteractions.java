@@ -44,7 +44,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
         }
     }
 
-    /*
+
 
         public String viewOpenRequests(String jsonFromApi) {
             //for viewing all open client help requests
@@ -60,7 +60,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
             JSONObject viewResponseJson = new JSONObject(viewResponse[0].newRowObject);
             return String.valueOf(viewResponseJson);
         }
-    */
+
     public String viewOpenTicket(String jsonFromApi) {
         //for viewing only open ticket for specified employee_id
 
