@@ -48,7 +48,6 @@ public class EmployeeInteractions {
                 }.getType());
         DatabaseEntity updatePersonalInfo = new DatabaseEntity(updateMap);
         updatePersonalInfo.sanitizeFromApi();
-        System.out.println(updateMap);
         if (updatePersonalInfo.newRowObject.get("first_name").length() <= 12) {
             if (updatePersonalInfo.newRowObject.get("last_name").length() <= 12) {
                 HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updatePersonalInfo.returnSqlForUpdateOne()).newRowObject;

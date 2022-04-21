@@ -171,7 +171,6 @@ public class ServiceLayerTests {
         testHelpRequest.put("description", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
         JSONObject json = new JSONObject(testHelpRequest);
         DatabaseEntity[] response = new DatabaseEntity[1];
-//        Mockito.doReturn(response).when(daoTestObject).updateObjectDb();
         String result = clientMockObject.updateHelpRequest(String.valueOf(json));
     }
 

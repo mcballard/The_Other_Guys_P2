@@ -67,9 +67,6 @@ public class ClientInteractions extends EmployeeInteractions{
                             +updateRequest.newRowObject.get("ticket_requests_id")+" was found.");
                 }
                 HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateRequest.returnSqlForUpdateOne()).newRowObject;
-//                if(databaseResponse.isEmpty()) {
-//                    throw new RecordNotFound("Unable to locate record with id "+updateRequest.newRowObject.get("ticket_requests_id"));
-//                }
                 JSONObject updateRequestJson = new JSONObject(databaseResponse);
                 return String.valueOf(updateRequestJson);
             }
