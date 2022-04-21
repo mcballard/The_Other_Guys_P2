@@ -189,7 +189,6 @@ public class ServiceLayerTests {
                 " tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.Oh NO! I have a flat tire.");
         JSONObject json = new JSONObject(testHelpRequest);
         String result = clientMockObject.createHelpRequest(String.valueOf(json));
-
     }
 
     @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "Can not have more than one request open at a time")
