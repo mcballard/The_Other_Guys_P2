@@ -332,6 +332,20 @@ public class ServiceLayerTests {
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(ticketRequest.returnSqlForDeleteOne());
         String cancelResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
     }
+
+    @Test
+    public void testUpdateTicketSuccess(){
+        HashMap<String, String> updateTicket = new HashMap<>();
+        updateTicket.put("tableName", "tickets");
+        updateTicket.put("tickets_id", "1");
+        updateTicket.put("employee_id", "2");
+        updateTicket.put("ticket_comments", "I have two flat tires");
+        updateTicket.put("category", "1");
+        JSONObject json = new JSONObject(updateTicket);
+        String result = techTestObject.updateTicket(String.valueOf(json));
+        Assert.assertTrue(result.matches("(.*)I have two flat tires(.*)"));
+    }
+
 }
 
 
