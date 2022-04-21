@@ -30,9 +30,9 @@ public class TestRunner {
 
     @BeforeClass
     public static void setup() {
-        File file = new File("src/test/resources/geckodriver.exe");
-        System.setProperty("webdriver.gecko.driver",file.getAbsolutePath());
-        driver = new FirefoxDriver();
+        File file = new File("src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver",file.getAbsolutePath());
+        driver = new ChromeDriver();
         loginPom = new LoginPom(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
