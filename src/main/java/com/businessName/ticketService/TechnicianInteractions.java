@@ -41,13 +41,31 @@ public class TechnicianInteractions extends EmployeeInteractions {
         }
     }
 /*
-    public String viewHelpRequest(String jsonFromApi) {
+
+    public String viewOpenRequests(String jsonFromApi) {
+        //for viewing all open client help requests
         HashMap<String, String> viewMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
                 new TypeToken<HashMap<String, String>>() {}.getType());
         DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
         viewRequest.sanitizeFromApi();
         DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectByEmployeeId());
+        if(viewResponse.length < 1) {
+            throw new RecordNotFound("You have no open help requests.");
+        }
+        JSONObject viewResponseJson = new JSONObject(viewResponse[0].newRowObject);
+        return String.valueOf(viewResponseJson);
+    }
+
+    public String viewOpenTicket(String jsonFromApi) {
+        //for viewing only open ticket for specified employee_id
+
+        HashMap<String, String> viewMap = new Gson().fromJson(
+                String.valueOf(jsonFromApi),
+                new TypeToken<HashMap<String, String>>() {}.getType());
+        DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
+        viewRequest.sanitizeFromApi();
+        DatabaseEntity[] viewResponse = daoObject.selectObjectDb(viewRequest.returnSqlForSelectByEmployeeId());
         if(viewResponse.length < 1) {
             throw new RecordNotFound("You have no open help requests.");
         }

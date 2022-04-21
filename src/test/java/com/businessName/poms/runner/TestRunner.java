@@ -1,4 +1,4 @@
-package com.businessName.runner;
+package com.businessName.poms.runner;
 
 import com.businessName.poms.LoginPom;
 import io.cucumber.junit.Cucumber;
