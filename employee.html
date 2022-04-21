@@ -25,6 +25,10 @@
         background-color: #ccc;
         }
 
+        .client, .technician {
+            display: hidden;
+        }
+
         /* Style the collapsible content. Note: hidden by default */
         .content {
             padding: 0 18px;
@@ -35,58 +39,83 @@
             width: 75%;
             margin-left: 10%;
         }
+        body {
+            background-image: url("spyvsspy.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        table {
+            margin-left: 15%;
+        }
     </style>
     <title>Employee Home Page</title>
 </head>
-<body bgcolor="black">
+<body bgcolor="black" onload="pickEmployeeType()">
     <button type="button">Update Personal Info</button>
-    <button type="button" style="margin-left: 80%;">Log Out</button>
-    <button type="button" class="collapsible" id="createCollapseButton">Create Help Request</button>
+    <button type="button" style="margin-left: 80%;" onclick="doLogout()">Log Out</button>
+    <button type="button" class="collapsible client" id="createCollapseButton"></button>
     <div class="content">
         <table>
-             <tr>
-                <td><h3>Enter comment describing the problem:</h3></td>
+            <tr>
+               <!-- <td><h3>Select the reason for reimbursement:</h3></td>
+                <td><select id="reason">
+                        filled with javascript
+                    </select>
+                </td>-->
+            </tr>
+            <tr>
+                <td><h3>Enter description of help request:</h3></td>
                 <td><textarea id="help_request_comment" rows="5" cols="50"></textarea></td>
             </tr>  
             <tr>
-                <td><button id="create_request" onclick="">Create Request</button></td>
+                
             </tr>
-         </table>
-        </div>
-        <!--
-    <button type="button" class="collapsible" id="viewCollapseButton">View My Total Amount Requested</button>
+            <tr>
+                <td><button id="create_request" onclick="createRequest()">Create Request</button></td>
+            </tr>
+        </table>
+    </div>
+    <button type="button" class="collapsible client" id="viewCollapseButton"></button>
     <div class="content">
         <table>
             <tr>
-                <td><button id="viewTotal" onclick="">View Total Amount</button></td>
+                <td><button id="view_request" onclick="viewTotalById()">View Request</button></td>
+            </tr>
+            <tr>
+
             </tr>
         </table>
     </div> 
-    <button type="button" class="collapsible" id="cancelCollapseButton">Cancel Reimbursement Request</button>
+    <button type="button" class="collapsible client" id="updateCollapseButton"></button>
     <div class="content">
         <table>
             <tr>
-                <td><h3>Please enter the reimbursement request id number:</h3></td>
-                <td><input type="number" id="reimbursement_request_id"></td>
+                <td><h3>Enter description of help request:</h3></td>
+                <td><textarea id="help_request_comment" rows="5" cols="50"></textarea></td>
             </tr>
             <tr>
-                <td><button id="cancelRequest" onclick="">Cancel Request</button></td>
+                <td><button id="update_request" onclick="">Update Request</button></td>
             </tr>
         </table>
     </div> 
-    <button type="button" class="collapsible" id="logoutCollapseButton">Log Out</button>
+    <button type="button" class="collapsible client" id="cancelCollapseButton"></button>
     <div class="content">
         <table>
             <tr>
-                <td><button id="logOut" onclick="">Log Out</button></td>
+                <td><h3>Please enter the request id number:</h3></td>
+                <td><input type="number" id="ticket_requests_id"></td>
+            </tr> 
+            <tr>
+                <td><button id="cancel_request" onclick="cancelRequestById()">Cancel Request</button></td>
             </tr>
         </table>
-    </div>-->
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script>
     //for testing creating token to observe edits on page
-    window.sessionStorage.setItem("token", "1");
+    window.sessionStorage.setItem("token", "mb1_1_2");
         if(!window.sessionStorage.getItem("token")) {
             swal.fire({
                 title: 'You do not have access to this page!',
@@ -98,7 +127,8 @@
                 } 
             });
         }
-/*
+
+
         function resetInputs() {
             document.getElementById("reason").value="";
             document.getElementById("reimbursement_request_comment").value="";
@@ -106,10 +136,24 @@
             document.getElementById("reimbursement_request_id").value="";
         }
 
-        const employeeId = window.sessionStorage.getItem("token").split("_").pop();
+        const employeeId = window.sessionStorage.getItem("token").split("_")[2];
+        const employeeType = window.sessionStorage.getItem("token").split("_")[1];
+        //alert(employeeId);
         const tableName =  "reimbursement_requests";
         const apiURL = "http://localhost:5000/home";
         const fillURL = "http://localhost:5000/";
+
+        function pickEmployeeType() {
+            if(employeeType==1) {
+                for (let el of document.querySelectorAll('.client')) el.style.display = 'block';
+                document.getElementById("createCollapseButton").innerText = "Create Help Request";
+                document.getElementById("viewCollapseButton").innerText = "View My Help Request";
+                document.getElementById("updateCollapseButton").innerText = "Update My Help Request";
+                document.getElementById("cancelCollapseButton").innerText = "Cancel My Help Request";
+            } else {
+                for (let el of document.querySelectorAll('.client')) el.style.display = 'none';
+            }
+        }
 
         async function fillReasonSelect() {
 
@@ -146,7 +190,7 @@
                 title: 'Successfully logged out!',
                 confirmButtonText: 'return to log in page.',
                 }).then(function (result) {
-                /* Read more about isConfirmed, isDenied below *//*
+                /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     window.location.href="login.html"
                 } 
@@ -178,7 +222,6 @@
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
-                /*
                 if (result.isConfirmed) {
                     resetInputs();
                 } 
@@ -221,7 +264,6 @@
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
-                /*
                 if (result.isConfirmed) {
                     resetInputs();
                 } 
@@ -263,7 +305,6 @@
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
-                /*
                 if (result.isConfirmed) {
                     resetInputs();
                 } 
@@ -300,6 +341,6 @@
                 }
             });
         } 
-    */
+    
 </script>
 </html>
