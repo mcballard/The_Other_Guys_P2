@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 
 public class DataAccessTests {
-    @Test
+    @Test(priority = 0)
     public void insetObjectDbSuccess() {
         DataAccessImp daoObj = new DataAccessImp();
         HashMap<String,String> test = new HashMap<>();
@@ -20,7 +20,7 @@ public class DataAccessTests {
     }
 
 
-    @Test
+    @Test(priority =1)
     public void selectObjectDBSuccess() {
         DataAccessImp daoOBJ = new DataAccessImp();
         HashMap<String, String> test = new HashMap<>();
@@ -31,7 +31,7 @@ public class DataAccessTests {
         Assert.assertEquals(selectOneTest.length, 1);
     }
 
-    @Test
+    @Test(priority = 1)
     public void selectObjectsDBSuccess() {
         DataAccessImp daoOBJ = new DataAccessImp();
         HashMap<String, String> test = new HashMap<>();
@@ -42,7 +42,7 @@ public class DataAccessTests {
     }
 
 
-    @Test
+    @Test(priority = 1)
     public void updateObjectDBSuccessFirstName() {
         DataAccessImp daoOBJ = new DataAccessImp();
         HashMap<String, String> test = new HashMap<>();
@@ -55,7 +55,7 @@ public class DataAccessTests {
         Assert.assertEquals(updateTicketRequest.newRowObject.get("first_name"), "Bobby");
     }
 
-    @Test
+    @Test(priority = 1)
     public void updateObjectDBSuccessLastName() {
         DataAccessImp daoOBJ = new DataAccessImp();
         HashMap<String, String> test = new HashMap<>();
@@ -68,7 +68,7 @@ public class DataAccessTests {
         Assert.assertEquals(updateTicketRequest.newRowObject.get("last_name"), "Keef");
     }
 
-    @Test
+    @Test(priority = 2)
     public void deleteObjectDbSuccess() {
         DataAccessImp daoObj = new DataAccessImp();
         HashMap<String,String> test = new HashMap<>();
@@ -76,7 +76,7 @@ public class DataAccessTests {
         test.put("employees_id", "-3");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         int result = daoObj.deleteObjectDb(testDbEntity.returnSqlForDeleteOne());
-        Assert.assertNotEquals(result,0);
+        Assert.assertNotEquals(result,"0");
 
     }
 }
