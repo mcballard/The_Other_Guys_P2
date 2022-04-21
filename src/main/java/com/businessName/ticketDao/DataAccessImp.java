@@ -45,6 +45,7 @@ public class DataAccessImp implements DataAccessInterface {
             HashMap<String, String> resultHashMap = new HashMap<>(columnMetadata.getColumnCount());
             DatabaseEntity[] results = new DatabaseEntity[totalRows];
             int indexCount=0;
+            long startTime = System.nanoTime();
             while(rs.next()) {
                 for (int i = 1; i <= columnMetadata.getColumnCount(); ++i) {
                     // put key value pair into hashmap (column name as string,column value converted to string)
@@ -54,6 +55,9 @@ public class DataAccessImp implements DataAccessInterface {
                 results[indexCount] = viewDatabaseRow;
                 indexCount++;
             }
+            long endTime = System.nanoTime();
+            long duration = (endTime - startTime);
+            System.out.println(duration);
             return results;
         } catch(SQLException e) {
             e.printStackTrace();

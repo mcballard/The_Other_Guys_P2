@@ -13,6 +13,7 @@ public class HelpTicketApi {
     public static Logger logger = LogManager.getLogger(HelpTicketApi.class);
 
     public static void main(String[] args) {
+        logger.info("Creating Javalin object");
         Javalin app = Javalin.create(config -> {
             config.enableCorsForAllOrigins();
             config.enableDevLogging();
@@ -21,7 +22,7 @@ public class HelpTicketApi {
         HelpTicketController controller = new HelpTicketController();
 
         app.post("/login", controller.employeeLogin);
-
+        logger.info("Starting App");
         app.start();
 
     }
