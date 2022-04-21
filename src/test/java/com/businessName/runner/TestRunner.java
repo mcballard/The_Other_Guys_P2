@@ -18,8 +18,8 @@ import java.time.Duration;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/resources/features/"},
-        glue = "com/businessName/steps",
-        plugin = {"pretty","html:src/test/resources/reports/html-e2e-report.html"}
+        glue = "com/businessName/steps"
+       // plugin = {"pretty","html:src/test/resources/reports/html-e2e-report.html"}
 )
 
 
