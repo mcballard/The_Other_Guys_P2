@@ -247,7 +247,7 @@ public class ServiceLayerTests {
     }
 
 
-    @Test
+    @Test(priority = 0)
     public void testCreateHelpTicketSuccess() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
         testHelpTicket.put("tableName", "tickets");
@@ -257,6 +257,45 @@ public class ServiceLayerTests {
         JSONObject json = new JSONObject(testHelpTicket);
         String result = techTestObject.createTicket(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)Buddy has a flat tire(.*)"));
+    }
+
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the comments box")
+    public void testCreateHelpTicketCommentTooLong(){
+        HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("tableName", "tickets");
+        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("category", "1");
+        testHelpTicket.put("ticket_comments", "Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. " +
+                "Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy " +
+                "has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a " +
+                "flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat " +
+                "tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. " +
+                "Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy " +
+                "has a flat tire. Buddy has a flat tire. Buddy has a flat tire. ");
+        JSONObject json = new JSONObject(testHelpTicket);
+        String result = techTestObject.createTicket(String.valueOf(json));
+    }
+
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "The category you have entered does not exist")
+    public void testCreateHelpTicketIncorrectCategory() {
+        HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("tableName", "tickets");
+        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("category", "5");
+        testHelpTicket.put("ticket_comments", "Buddy has a flat tire.");
+        JSONObject json = new JSONObject(testHelpTicket);
+        String result = techTestObject.createTicket(String.valueOf(json));
+    }
+
+    @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "Can not have more than one ticket open at a time")
+    public void testCreateHelpTicketOneAlreadyExists() {
+        HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("tableName", "tickets");
+        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("category", "1");
+        testHelpTicket.put("ticket_comments", "Buddy has a flat tire.");
+        JSONObject json = new JSONObject(testHelpTicket);
+        String result = techTestObject.createTicket(String.valueOf(json));
     }
 
 
