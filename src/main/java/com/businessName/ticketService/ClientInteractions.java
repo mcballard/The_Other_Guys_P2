@@ -50,6 +50,7 @@ public class ClientInteractions extends EmployeeInteractions{
             throw new RecordNotFound("You have no open help requests.");
         }
         JSONObject viewResponseJson = new JSONObject(viewResponse[0].newRowObject);
+        System.out.println(viewResponseJson);
         return String.valueOf(viewResponseJson);
     }
 
