@@ -105,7 +105,12 @@ public class DatabaseEntity {
             }
         }
         if(!newRowObject.containsKey("employees_id")) {
-            columnValues += "ticket_requests_id = "+newRowObject.get("ticket_requests_id");
+            if (newRowObject.containsKey("tickets_id")){
+                columnValues += "tickets_id = "+newRowObject.get("tickets_id");
+            }
+            else {
+                columnValues += "ticket_requests_id = "+newRowObject.get("ticket_requests_id");
+            }
         } else {
             columnValues += "employees_id = " + newRowObject.get("employees_id");
         }
