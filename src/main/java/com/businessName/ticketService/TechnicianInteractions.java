@@ -89,7 +89,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
         if (updateOpenTicket.newRowObject.containsKey("tickets_id")) {
             if (updateOpenTicket.newRowObject.get("ticket_comments").length() <= 250) {
                 if (updateOpenTicket.newRowObject.containsKey("category")) {
-                     if (daoObject.selectObjectsDb(updateOpenTicket.returnSqlForSelectOne()).length < 1) {
+                    if (daoObject.selectObjectsDb(updateOpenTicket.returnSqlForSelectByEmployeeId()).length < 1) {
                         throw new RecordNotFound("No request with id "
                                 + updateOpenTicket.newRowObject.get("tickets_id") + " was found.");
                     }
