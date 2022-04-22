@@ -41,7 +41,7 @@ public class HelpTicketController {
             ctx.result(response);
             ctx.status(201);
         } catch (MalformedObjectException | RecordNotFound e) {
-            ctx.result("{\"message\":\"" + e.getMessage() + "\"}");
+            ctx.result("{\"message\":\"" + e + "\"}");
             ctx.status(400);
         }
     };
@@ -49,12 +49,10 @@ public class HelpTicketController {
     public Handler viewRequestStatus = ctx -> {
         String body = ctx.body();
         try {
- //            int id = Integer.parseInt(ctx.pathParam("employee_id"));
-//            ClientInteractions ciObject =
-            String response = "";
+            String response = ciObject.viewHelpRequest(body);
             ctx.result(response);
             ctx.status(201);
-        } catch (RecordNotFound e) {
+        } catch (MalformedObjectException | RecordNotFound e) {
             ctx.result("{\"message\":\""+e.getMessage()+"\"}");
             ctx.status(400);
         }
@@ -64,7 +62,7 @@ public class HelpTicketController {
     public Handler clientUpdateHelpRequest = ctx -> {
         String body = ctx.body();
         try {
-            String response = "{\"Updated\":\"" + ciObject.updateHelpRequest(body) + "\"}";
+            String response = ciObject.updateHelpRequest(body);
             ctx.result(response);
             ctx.status(201);
         } catch (RecordNotFound e) {

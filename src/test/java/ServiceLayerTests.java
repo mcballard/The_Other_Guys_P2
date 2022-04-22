@@ -20,6 +20,8 @@ public class ServiceLayerTests {
     public static ClientInteractions clientTestObject;
     public static TechnicianInteractions techTestObject;
 
+    public static TechnicianInteractions techMockObject;
+
     @BeforeClass
     public void setup() {
         // define class to mock
@@ -31,6 +33,7 @@ public class ServiceLayerTests {
         clientMockObject = new ClientInteractions(daoTestObject);
         clientTestObject = new ClientInteractions(daoSuccessObject);
         techTestObject = new TechnicianInteractions(daoSuccessObject);
+        techMockObject = new TechnicianInteractions(daoTestObject);
 
     }
 
@@ -369,6 +372,7 @@ public class ServiceLayerTests {
         Assert.assertTrue(result.matches("(.*)I have two flat tires(.*)"));
     }
 
+
     @Test(priority = 3)
     public void resolveTicketSuccess(){
         HashMap<String, String> resolveTicket = new HashMap<>();
@@ -380,6 +384,48 @@ public class ServiceLayerTests {
         JSONObject json = new JSONObject(resolveTicket);
         String result = techTestObject.resolveTicket(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)request closed successfully(.*)"));
+    }
+
+
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in description")
+    public void testUpdateTicketNegativeComment(){
+        HashMap<String, String> updateTicket = new HashMap<>();
+        updateTicket.put("token", "sometoken");
+        updateTicket.put("tableName", "tickets");
+        updateTicket.put("tickets_id", "1");
+        updateTicket.put("employee_id", "2");
+        updateTicket.put("ticket_comments", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+        updateTicket.put("category", "1");
+        JSONObject json = new JSONObject(updateTicket);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        String result = techTestObject.updateTicket(String.valueOf(json));
+    }
+    @Test(expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "No request with id 1 was found.")
+    public void testUpdateTicketNoTicket(){
+        HashMap<String, String> updateTicket = new HashMap<>();
+        updateTicket.put("token", "sometoken");
+        updateTicket.put("tableName", "tickets");
+        updateTicket.put("tickets_id", "1");
+        updateTicket.put("employee_id", "2");
+        updateTicket.put("ticket_comments", "I have two flat tires");
+        updateTicket.put("category", "1");
+        DatabaseEntity noRecord = new DatabaseEntity(updateTicket);
+        JSONObject json = new JSONObject(updateTicket);
+        DatabaseEntity[] response = new DatabaseEntity[0];
+        Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(noRecord.returnSqlForSelectByEmployeeId());
+        String result = techMockObject.updateTicket(String.valueOf(json));
+    }
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please choose new category")
+    public void testUpdateTicketNoCategory() {
+        HashMap<String, String> updateTicket = new HashMap<>();
+        updateTicket.put("token", "sometoken");
+        updateTicket.put("tableName", "tickets");
+        updateTicket.put("tickets_id", "1");
+        updateTicket.put("employee_id", "2");
+        updateTicket.put("ticket_comments", "I have two flat tires");
+        JSONObject json = new JSONObject(updateTicket);
+        DatabaseEntity[] response = new DatabaseEntity[1];
+        String result = techTestObject.updateTicket(String.valueOf(json));
     }
 
 }

@@ -91,7 +91,9 @@ public class TechnicianInteractions extends EmployeeInteractions {
         if (updateOpenTicket.newRowObject.containsKey("tickets_id")) {
             if (updateOpenTicket.newRowObject.get("ticket_comments").length() <= 250) {
                 if (updateOpenTicket.newRowObject.containsKey("category")) {
+
                     if (daoObject.selectObjectsDb(updateOpenTicket.returnSqlForSelectOne()).length < 1) {
+
                         throw new RecordNotFound("No request with id "
                                 + updateOpenTicket.newRowObject.get("tickets_id") + " was found.");
                     }
@@ -116,6 +118,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
     public String resolveTicket(String jsonFromApi) {
         HashMap<String, String> resolveMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
+
                 new TypeToken<HashMap<String, String>>() {
                 }.getType());
         DatabaseEntity resolveTicket = new DatabaseEntity(resolveMap);
