@@ -4,26 +4,26 @@ import com.businessName.CustomerExceptions.LoginFailedException;
 import com.businessName.CustomerExceptions.MalformedObjectException;
 import com.businessName.CustomerExceptions.RecordNotFound;
 import com.businessName.ticketDao.DataAccessImp;
+import com.businessName.ticketDao.DataAccessInterface;
 import com.businessName.ticketService.ClientInteractions;
+import com.businessName.ticketService.EmployeeInteractions;
 import com.businessName.ticketService.TechnicianInteractions;
-import com.google.gson.Gson;
 import io.javalin.http.Handler;
 
 public class HelpTicketController {
 
+    public DataAccessInterface daoObject = new DataAccessImp();
+    public EmployeeInteractions eiObject = new EmployeeInteractions(daoObject);
+    public ClientInteractions ciObject = new ClientInteractions(daoObject);
+    public TechnicianInteractions tiObject = new TechnicianInteractions(daoObject);
 
     public HelpTicketController() {
     }
 
     public Handler employeeLogin = ctx -> {
-        DataAccessImp daoObject = new DataAccessImp();
-        TechnicianInteractions tiObject = new TechnicianInteractions(daoObject);
-        Gson gson = new Gson();
         String body = ctx.body();
-        // use gson to convert the json into an object that we need
-        // this code here simulates sending the new object into your service/da layer
         try {
-            String response = "{\"token\":\"" + tiObject.doLogin(body) + "\"}";
+            String response = "{\"token\":\"" + eiObject.doLogin(body) + "\"}";
             ctx.result(response);
             ctx.status(201);
         } catch (LoginFailedException e) {
@@ -35,14 +35,9 @@ public class HelpTicketController {
     };
 
     public Handler clientCreateHelpRequest = ctx -> {
-        DataAccessImp daoObject = new DataAccessImp();
-        ClientInteractions ciObject = new ClientInteractions(daoObject);
-        Gson gson = new Gson();
         String body = ctx.body();
-        // use gson to convert the json into an object that we need
-        // this code here simulates sending the new object into your service/da layer
         try {
-            String response = "";
+            String response = ciObject.createHelpRequest(body);
             ctx.result(response);
             ctx.status(201);
         } catch (MalformedObjectException | RecordNotFound e) {
@@ -52,17 +47,10 @@ public class HelpTicketController {
     };
 
     public Handler viewRequestStatus = ctx -> {
-
-        DataAccessImp daoObject = new DataAccessImp();
-        ClientInteractions ciObject = new ClientInteractions(daoObject);
-        Gson gson = new Gson();
         String body = ctx.body();
-//         use gson to convert the json into an object that we need
-//         this code here simulates sending the new object into your service/da layer
         try {
-//            int id = Integer.parseInt(ctx.pathParam("employee_id"));
+ //            int id = Integer.parseInt(ctx.pathParam("employee_id"));
 //            ClientInteractions ciObject =
-
             String response = "";
             ctx.result(response);
             ctx.status(201);
@@ -74,12 +62,7 @@ public class HelpTicketController {
     };
 
     public Handler clientUpdateHelpRequest = ctx -> {
-        DataAccessImp daoObject = new DataAccessImp();
-        ClientInteractions ciObject = new ClientInteractions(daoObject);
-        Gson gson = new Gson();
         String body = ctx.body();
-        // use gson to convert the json into an object that we need
-        // this code here simulates sending the new object into your service/da layer
         try {
             String response = "{\"Updated\":\"" + ciObject.updateHelpRequest(body) + "\"}";
             ctx.result(response);
@@ -93,12 +76,7 @@ public class HelpTicketController {
     };
 
     public Handler clientCancelHelpRequest = ctx -> {
-        DataAccessImp daoObject = new DataAccessImp();
-        ClientInteractions ciObject = new ClientInteractions(daoObject);
-        Gson gson = new Gson();
         String body = ctx.body();
-        // use gson to convert the json into an object that we need
-        // this code here simulates sending the new object into your service/da layer
         try {
             String response = ciObject.cancelHelpRequest(body);
             ctx.result(response);

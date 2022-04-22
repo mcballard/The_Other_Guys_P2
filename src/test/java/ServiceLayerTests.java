@@ -38,6 +38,7 @@ public class ServiceLayerTests {
     @Test
     public void testDoLoginSuccess() {
         HashMap<String, String> testLogin = new HashMap<>();
+        testLogin.put("token", "sometoken");
         testLogin.put("tableName", "employees");
         testLogin.put("username", "mb1");
         testLogin.put("pass", "pass");
@@ -61,6 +62,7 @@ public class ServiceLayerTests {
     @Test(priority = 0)
     public void testCreateHelpRequestSuccess() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("status_id", "1");
@@ -74,6 +76,7 @@ public class ServiceLayerTests {
     @Test(priority = 2)
     public void testUpdateHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("ticket_requests_id", "1");
@@ -86,6 +89,7 @@ public class ServiceLayerTests {
     @Test(priority = 3)
     public void viewHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         JSONObject json = new JSONObject(testHelpRequest);
@@ -96,6 +100,7 @@ public class ServiceLayerTests {
     @Test(priority = 4, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "You have no open help requests.")
     public void testViewHelpRequestNoRecord() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         DatabaseEntity noRecord = new DatabaseEntity(testHelpRequest);
@@ -108,6 +113,7 @@ public class ServiceLayerTests {
     @Test(priority = 4)
     public void testCancelHelpRequestSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("ticket_requests_id", "1");
@@ -119,6 +125,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Username!")
     public void testDoLoginBadUsername() {
         HashMap<String, String> testLogin = new HashMap<>();
+        testLogin.put("token", "sometoken");
         testLogin.put("tableName", "employees");
         testLogin.put("username", "mb");
         testLogin.put("pass", "pass");
@@ -132,6 +139,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = LoginFailedException.class, expectedExceptionsMessageRegExp = "Incorrect Password!")
     public void testDoLoginBadPassword() {
         HashMap<String, String> testLogin = new HashMap<>();
+        testLogin.put("token", "sometoken");
         testLogin.put("tableName", "employees");
         testLogin.put("username", "mb1");
         testLogin.put("pass", "pas");
@@ -151,6 +159,7 @@ public class ServiceLayerTests {
     @Test(priority = 4, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "No request with id 1 was found.")
     public void testUpdateHelpRequestNoRecord() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("ticket_requests_id", "1");
@@ -165,6 +174,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
     public void testUpdateHelpRequestDescriptionLong() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "ticket_requests");
         testHelpRequest.put("employee_id", "2");
         testHelpRequest.put("ticket_requests_id", "1");
@@ -177,6 +187,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the description box")
     public void testCreateHelpRequestDescriptionTooLong() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName","ticket_requests");
         testHelpRequest.put("employee_id","2");
         testHelpRequest.put("status_id","1");
@@ -194,6 +205,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "Can not have more than one request open at a time")
     public void testCreateHelpRequestOneAlreadyExists() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName","ticket_requests");
         testHelpRequest.put("employee_id","2");
         testHelpRequest.put("status_id","1");
@@ -214,6 +226,7 @@ public class ServiceLayerTests {
     @Test(priority = 1)
     public void testUpdatePersonalInfoFirstNameSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName","employees");
         testHelpRequest.put("employees_id", "2");
         testHelpRequest.put("first_name", "Chicken");
@@ -225,6 +238,7 @@ public class ServiceLayerTests {
     @Test(priority = 1)
     public void testUpdatePersonalInfoLastNameSuccess(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName","employees");
         testHelpRequest.put("employees_id", "2");
         testHelpRequest.put("first_name", "Chicken");
@@ -236,6 +250,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 12 characters in the description box")
     public void testUpdatePersonalInfoTooManyCharacters(){
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName","employees");
         testHelpRequest.put("employees_id", "2");
         testHelpRequest.put("first_name", "ChickenChickenChicken");
@@ -249,6 +264,7 @@ public class ServiceLayerTests {
     @Test(priority = 0)
     public void testCreateHelpTicketSuccess() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
         testHelpTicket.put("employee_id", "2");
         testHelpTicket.put("category", "1");
@@ -261,6 +277,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the comments box")
     public void testCreateHelpTicketCommentTooLong(){
         HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
         testHelpTicket.put("employee_id", "2");
         testHelpTicket.put("category", "1");
@@ -278,6 +295,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "The category you have entered does not exist")
     public void testCreateHelpTicketIncorrectCategory() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
         testHelpTicket.put("employee_id", "2");
         testHelpTicket.put("category", "5");
@@ -289,6 +307,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "Can not have more than one ticket open at a time")
     public void testCreateHelpTicketOneAlreadyExists() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
+        testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
         testHelpTicket.put("employee_id", "2");
         testHelpTicket.put("category", "1");
@@ -300,6 +319,7 @@ public class ServiceLayerTests {
     @Test(priority = 1)
     public void viewHelpTicketSuccess() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "tickets");
         testHelpRequest.put("employee_id", "2");
         JSONObject json = new JSONObject(testHelpRequest);
@@ -310,6 +330,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "You have no open tickets.")
     public void viewHelpTicketNoOpenTicket() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
+        testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "tickets");
         testHelpRequest.put("employee_id", "5");
         DatabaseEntity noRecord = new DatabaseEntity(testHelpRequest);
@@ -323,6 +344,7 @@ public class ServiceLayerTests {
     @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
     public void testCancelRecordNotFound() {
         HashMap<String, String> cancelRequest = new HashMap<>();
+        cancelRequest.put("token", "sometoken");
         cancelRequest.put("tableName", "ticket_requests");
         cancelRequest.put("employee_id", "2");
         cancelRequest.put("ticket_requests_id", "9001");
@@ -336,6 +358,7 @@ public class ServiceLayerTests {
     @Test
     public void testUpdateTicketSuccess(){
         HashMap<String, String> updateTicket = new HashMap<>();
+        updateTicket.put("token", "sometoken");
         updateTicket.put("tableName", "tickets");
         updateTicket.put("tickets_id", "1");
         updateTicket.put("employee_id", "2");

@@ -2,15 +2,12 @@ package com.businessName.ticketService;
 
 import com.businessName.CustomerExceptions.LoginFailedException;
 import com.businessName.CustomerExceptions.MalformedObjectException;
-import com.businessName.CustomerExceptions.RecordNotFound;
 import com.businessName.dataEntity.DatabaseEntity;
 import com.businessName.ticketDao.DataAccessImp;
 import com.businessName.ticketDao.DataAccessInterface;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
-
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Objects;
 
