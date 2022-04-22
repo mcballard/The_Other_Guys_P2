@@ -24,6 +24,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 }.getType());
         DatabaseEntity helpTicketTech = new DatabaseEntity(helpRequestMap);
         helpTicketTech.sanitizeFromApi();
+        System.out.println(daoObject.selectObjectsDb(helpTicketTech.returnSqlForSelectByEmployeeId()).length);
         if (helpTicketTech.newRowObject.containsKey("ticket_comments")) {
             if (helpTicketTech.newRowObject.get("ticket_comments").length() > 250) {
                 throw new MalformedObjectException("Please enter less than 250 characters in the comments box");
@@ -45,21 +46,21 @@ public class TechnicianInteractions extends EmployeeInteractions {
     }
 
 
-
-        public String viewOpenRequests(String jsonFromApi) {
-            //for viewing all open client help requests
-            HashMap<String, String> viewMap = new Gson().fromJson(
-                    String.valueOf(jsonFromApi),
-                    new TypeToken<HashMap<String, String>>() {}.getType());
-            DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
-            viewRequest.sanitizeFromApi();
-            DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectAll());
-            if(viewResponse.length < 1) {
-                throw new RecordNotFound("You have no open help requests.");
-            }
-            JSONObject viewResponseJson = new JSONObject(viewResponse[0].newRowObject);
-            return String.valueOf(viewResponseJson);
+    public String viewOpenRequests(String jsonFromApi) {
+        //for viewing all open client help requests
+        HashMap<String, String> viewMap = new Gson().fromJson(
+                String.valueOf(jsonFromApi),
+                new TypeToken<HashMap<String, String>>() {
+                }.getType());
+        DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
+        viewRequest.sanitizeFromApi();
+        DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectAll());
+        if (viewResponse.length < 1) {
+            throw new RecordNotFound("You have no open help requests.");
         }
+        JSONObject viewResponseJson = new JSONObject(viewResponse[0].newRowObject);
+        return String.valueOf(viewResponseJson);
+    }
 
     public String viewOpenTicket(String jsonFromApi) {
         //for viewing only open ticket for specified employee_id
@@ -70,6 +71,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 }.getType());
         DatabaseEntity viewTicket = new DatabaseEntity(viewMap);
         viewTicket.sanitizeFromApi();
+        System.out.println(viewTicket.returnSqlForSelectByEmployeeId());
         DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewTicket.returnSqlForSelectByEmployeeId());
         if (viewResponse.length < 1) {
             throw new RecordNotFound("You have no open tickets.");
@@ -89,18 +91,17 @@ public class TechnicianInteractions extends EmployeeInteractions {
         if (updateOpenTicket.newRowObject.containsKey("tickets_id")) {
             if (updateOpenTicket.newRowObject.get("ticket_comments").length() <= 250) {
                 if (updateOpenTicket.newRowObject.containsKey("category")) {
-                     if (daoObject.selectObjectsDb(updateOpenTicket.returnSqlForSelectOne()).length < 1) {
+                    if (daoObject.selectObjectsDb(updateOpenTicket.returnSqlForSelectOne()).length < 1) {
                         throw new RecordNotFound("No request with id "
                                 + updateOpenTicket.newRowObject.get("tickets_id") + " was found.");
                     }
-                     HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateOpenTicket.returnSqlForUpdateOne()).newRowObject;
+                    HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateOpenTicket.returnSqlForUpdateOne()).newRowObject;
                     if (databaseResponse.isEmpty()) {
                         throw new RecordNotFound("Unable to locate record with id " + updateOpenTicket.newRowObject.get("tickets_id"));
                     }
                     JSONObject updateRequestJson = new JSONObject(databaseResponse);
                     return String.valueOf(updateRequestJson);
-                }
-                else {
+                } else {
                     throw new MalformedObjectException("Please choose new category");
                 }
             } else {
@@ -110,24 +111,33 @@ public class TechnicianInteractions extends EmployeeInteractions {
             throw new MalformedObjectException("Key not found for ticket requests");
         }
     }
-}
-/*
+
+
     public String resolveTicket(String jsonFromApi) {
-        HashMap<String, String> loginMap = new Gson().fromJson(
+        HashMap<String, String> resolveMap = new Gson().fromJson(
                 String.valueOf(jsonFromApi),
-                new TypeToken<HashMap<String, String>>() {}.getType());
-        DatabaseEntity cancelHelpRequest = new DatabaseEntity(loginMap);
-        cancelHelpRequest.sanitizeFromApi();
-        if(cancelHelpRequest.newRowObject.containsKey("ticket_requests_id")) {
-            int result = daoObject.deleteObjectDb(cancelHelpRequest.returnSqlForDeleteOne());
-            if (result > 0){
-                return "record deleted success";
-            }else{
-                throw new RecordNotFound("recordNotFound");
+                new TypeToken<HashMap<String, String>>() {
+                }.getType());
+        DatabaseEntity resolveTicket = new DatabaseEntity(resolveMap);
+        resolveTicket.sanitizeFromApi();
+        if (resolveTicket.newRowObject.containsKey("tickets_id")) {
+            if (resolveTicket.newRowObject.get("resolution").length() > 250) {
+                throw new MalformedObjectException("Please enter less than 250 characters in the resolution");
+            } else { System.out.println(resolveTicket.returnSqlForResolution());
+                HashMap<String, String> databaseResponse1 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolution()).newRowObject;
+                HashMap<String, String> databaseResponse2 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveTicket()).newRowObject;
+                System.out.println((databaseResponse2));
+                HashMap<String, String> databaseResponse3 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveHelpRequest(databaseResponse2.get("ticket_requests_id"))).newRowObject;
+                System.out.println(databaseResponse1);
+                System.out.println(databaseResponse2);
+                System.out.println(databaseResponse3);
+                return "{\"message\":\"request closed successfully\"}";
             }
         } else {
-            throw new MalformedObjectException("missing key");
+                throw new RecordNotFound("recordNotFound");
+            }
         }
     }
-*/
+//return String.valueOf(resolveRequestJson1 + "" + resolveRequestJson2 + "" + resolveRequestJson3);
+//return String.valueOf(resolveRequestJson1 + " CHAR(13) " + resolveRequestJson2 + " CHAR(13) " + resolveRequestJson3);
 

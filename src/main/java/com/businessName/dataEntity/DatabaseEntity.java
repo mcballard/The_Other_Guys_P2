@@ -100,11 +100,12 @@ public class DatabaseEntity {
             commas++;
             if(!Objects.equals(entry.getKey(), "tableName")
                     && (
-                            !Objects.equals(entry.getKey(), "employees_id") && !Objects.equals(entry.getKey(), "ticket_requests_id")
+                    !Objects.equals(entry.getKey(), "tickets_id") && !Objects.equals(entry.getKey(), "employees_id") && !Objects.equals(entry.getKey(), "ticket_requests_id")
                     )
                 ) {
                 columnNames +=  entry.getKey() + " = '" + entry.getValue() + "'";
-            } else { commas++; }
+            } else if(Objects.equals(entry.getKey(), "tickets_id")){ commas+=2;
+            }else {commas++;}
             if(commas<tooManyCommas){
                 columnNames += ",";
             }
@@ -121,6 +122,18 @@ public class DatabaseEntity {
         }
         sqlQuery += columnNames + columnValues + " returning *;";
         return sqlQuery;
+    }
+
+    public String returnSqlForResolution(){
+        return "update p2_sandbox.tickets set resolution = '" + newRowObject.get("resolution") + "' where tickets_id = " + newRowObject.get("tickets_id") + " returning *;";
+    }
+
+    public String returnSqlForResolveTicket() {
+        return "update p2_sandbox.tickets set status_id = 2 where tickets_id = " + newRowObject.get("tickets_id") + " returning *;";
+    }
+
+    public String returnSqlForResolveHelpRequest(String tr_id) {
+        return "update p2_sandbox.ticket_requests set status_id = 2 where ticket_requests_id = " + tr_id + " returning *;";
     }
 
     public String returnSqlForDeleteOne() {

@@ -27,7 +27,7 @@ public class ServiceLayerTests {
         DataAccessImp daoSuccessObject = new DataAccessImp();
         daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.ticket_requests RESTART IDENTITY CASCADE;");
         daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.tickets RESTART IDENTITY CASCADE;");
-
+        daoSuccessObject.insertObjectDb("insert into p2_sandbox.ticket_requests  values (default, 5, 'uhuhuhuh', 1);");
         clientMockObject = new ClientInteractions(daoTestObject);
         clientTestObject = new ClientInteractions(daoSuccessObject);
         techTestObject = new TechnicianInteractions(daoSuccessObject);
@@ -207,14 +207,14 @@ public class ServiceLayerTests {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName","ticket_requests");
-        testHelpRequest.put("employee_id","2");
+        testHelpRequest.put("employee_id","5");
         testHelpRequest.put("status_id","1");
         testHelpRequest.put("description","I have a flat tire.");
         DatabaseEntity createClient = new DatabaseEntity(testHelpRequest);
         JSONObject json = new JSONObject(testHelpRequest);
         HashMap<String, String> testHelpRequestMock = new HashMap<>();
         testHelpRequestMock.put("tableName","ticket_requests");
-        testHelpRequestMock.put("employee_id","2");
+        testHelpRequestMock.put("employee_id","5");
         testHelpRequestMock.put("status_id","1");
         testHelpRequestMock.put("description","I have a flat tire.");
         DatabaseEntity createClient2 = new DatabaseEntity(testHelpRequestMock);
@@ -261,12 +261,13 @@ public class ServiceLayerTests {
     }
 
 
-    @Test(priority = 0)
+    @Test(priority = 1)
     public void testCreateHelpTicketSuccess() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
         testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
-        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("employee_id", "5");
+        testHelpTicket.put("ticket_requests_id", "2");
         testHelpTicket.put("category", "1");
         testHelpTicket.put("ticket_comments", "Buddy has a flat tire");
         JSONObject json = new JSONObject(testHelpTicket);
@@ -274,12 +275,12 @@ public class ServiceLayerTests {
         Assert.assertTrue(result.matches("(.*)Buddy has a flat tire(.*)"));
     }
 
-    @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the comments box")
+    @Test(priority = 2, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please enter less than 250 characters in the comments box")
     public void testCreateHelpTicketCommentTooLong(){
         HashMap<String, String> testHelpTicket = new HashMap<>();
         testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
-        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("employee_id", "5");
         testHelpTicket.put("category", "1");
         testHelpTicket.put("ticket_comments", "Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. " +
                 "Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy has a flat tire. Buddy " +
@@ -292,24 +293,24 @@ public class ServiceLayerTests {
         String result = techTestObject.createTicket(String.valueOf(json));
     }
 
-    @Test(priority = 1, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "The category you have entered does not exist")
+    @Test(priority = 2, expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "The category you have entered does not exist")
     public void testCreateHelpTicketIncorrectCategory() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
         testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
-        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("employee_id", "5");
         testHelpTicket.put("category", "5");
         testHelpTicket.put("ticket_comments", "Buddy has a flat tire.");
         JSONObject json = new JSONObject(testHelpTicket);
         String result = techTestObject.createTicket(String.valueOf(json));
     }
 
-    @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "Can not have more than one ticket open at a time")
+    @Test(priority = 2, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "Can not have more than one ticket open at a time")
     public void testCreateHelpTicketOneAlreadyExists() {
         HashMap<String, String> testHelpTicket = new HashMap<>();
         testHelpTicket.put("token", "sometoken");
         testHelpTicket.put("tableName", "tickets");
-        testHelpTicket.put("employee_id", "2");
+        testHelpTicket.put("employee_id", "5");
         testHelpTicket.put("category", "1");
         testHelpTicket.put("ticket_comments", "Buddy has a flat tire.");
         JSONObject json = new JSONObject(testHelpTicket);
@@ -321,13 +322,13 @@ public class ServiceLayerTests {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("token", "sometoken");
         testHelpRequest.put("tableName", "tickets");
-        testHelpRequest.put("employee_id", "2");
+        testHelpRequest.put("employee_id", "5");
         JSONObject json = new JSONObject(testHelpRequest);
-        String result = clientTestObject.viewHelpRequest(String.valueOf(json));
+        String result = techTestObject.viewOpenTicket(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)tickets_id(.*)"));
     }
 
-    @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "You have no open tickets.")
+    @Test(priority = 5, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "You have no open tickets.")
     public void viewHelpTicketNoOpenTicket() {
         HashMap<String, String> testHelpRequest = new HashMap<>();
         testHelpRequest.put("token", "sometoken");
@@ -341,7 +342,7 @@ public class ServiceLayerTests {
     }
 
 
-    @Test(priority = 1, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
+    @Test(priority = 4, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "record not found")
     public void testCancelRecordNotFound() {
         HashMap<String, String> cancelRequest = new HashMap<>();
         cancelRequest.put("token", "sometoken");
@@ -355,18 +356,30 @@ public class ServiceLayerTests {
         String cancelResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
     }
 
-    @Test
+    @Test(priority = 2)
     public void testUpdateTicketSuccess(){
         HashMap<String, String> updateTicket = new HashMap<>();
         updateTicket.put("token", "sometoken");
         updateTicket.put("tableName", "tickets");
         updateTicket.put("tickets_id", "1");
-        updateTicket.put("employee_id", "2");
         updateTicket.put("ticket_comments", "I have two flat tires");
         updateTicket.put("category", "1");
         JSONObject json = new JSONObject(updateTicket);
         String result = techTestObject.updateTicket(String.valueOf(json));
         Assert.assertTrue(result.matches("(.*)I have two flat tires(.*)"));
+    }
+
+    @Test(priority = 3)
+    public void resolveTicketSuccess(){
+        HashMap<String, String> resolveTicket = new HashMap<>();
+        resolveTicket.put("token", "sometoken");
+        resolveTicket.put("tableName", "tickets");
+        resolveTicket.put("tickets_id", "1");
+        resolveTicket.put("ticket_requests_id", "2");
+        resolveTicket.put("resolution", "it is donezoo");
+        JSONObject json = new JSONObject(resolveTicket);
+        String result = techTestObject.resolveTicket(String.valueOf(json));
+        Assert.assertTrue(result.matches("(.*)request closed successfully(.*)"));
     }
 
 }
