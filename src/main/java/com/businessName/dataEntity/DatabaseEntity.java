@@ -16,15 +16,20 @@ public class DatabaseEntity {
     }
 
     public void sanitizeFromApi() {
+        if(newRowObject.containsKey("token")) {
+            newRowObject.remove("token");
+        } else {
+            throw new MalformedObjectException("Access Denied!!!");
+        }
         if(newRowObject.containsKey("tableName")) {
             for (Map.Entry<String, String> entry : newRowObject.entrySet()) {
-                if(entry.getKey()!="tableName") {
+                if(!Objects.equals(entry.getKey(), "tableName")) {
                     if(entry.getKey().matches("\\w*Id\\b") || entry.getKey().matches("\\w*_id\\b")) {
                         if(!entry.getValue().matches("\\d+")) {
                             throw new MalformedObjectException("Id cannot be converted to integer!");
                         }
                     }
-                    if(entry.getKey()=="description" && (entry.getValue()=="" || entry.getValue()==null)) {
+                    if(entry.getKey().equals("description") && (Objects.equals(entry.getValue(), "") || entry.getValue()==null)) {
                         throw new MalformedObjectException("Description must have at least 1 character!");
                     }
                 }
