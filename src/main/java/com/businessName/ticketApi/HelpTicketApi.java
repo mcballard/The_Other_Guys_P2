@@ -24,7 +24,7 @@ public class HelpTicketApi {
 
         app.post("/client/requests", controller.clientCreateHelpRequest);
 
-        app.get("/client/requests", controller.viewRequestStatus);
+        app.put("/client/requests", controller.viewRequestStatus);
 
         app.patch("/client/requests", controller.clientUpdateHelpRequest);
 

@@ -120,6 +120,8 @@ public class TechnicianInteractions extends EmployeeInteractions {
         cancelHelpRequest.sanitizeFromApi();
         if(cancelHelpRequest.newRowObject.containsKey("ticket_requests_id")) {
             int result = daoObject.deleteObjectDb(cancelHelpRequest.returnSqlForDeleteOne());
+            sql+query=update requests table set status to closed;
+            daoObject.update(sql_query);
             if (result > 0){
                 return "record deleted success";
             }else{
