@@ -7,7 +7,6 @@ import com.businessName.ticketDao.DataAccessInterface;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -24,7 +23,6 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 }.getType());
         DatabaseEntity helpTicketTech = new DatabaseEntity(helpRequestMap);
         helpTicketTech.sanitizeFromApi();
-        System.out.println(daoObject.selectObjectsDb(helpTicketTech.returnSqlForSelectByEmployeeId()).length);
         if (helpTicketTech.newRowObject.containsKey("ticket_comments")) {
             if (helpTicketTech.newRowObject.get("ticket_comments").length() > 250) {
                 throw new MalformedObjectException("Please enter less than 250 characters in the comments box");
@@ -71,7 +69,6 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 }.getType());
         DatabaseEntity viewTicket = new DatabaseEntity(viewMap);
         viewTicket.sanitizeFromApi();
-        System.out.println(viewTicket.returnSqlForSelectByEmployeeId());
         DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewTicket.returnSqlForSelectByEmployeeId());
         if (viewResponse.length < 1) {
             throw new RecordNotFound("You have no open tickets.");
@@ -91,8 +88,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
         if (updateOpenTicket.newRowObject.containsKey("tickets_id")) {
             if (updateOpenTicket.newRowObject.get("ticket_comments").length() <= 250) {
                 if (updateOpenTicket.newRowObject.containsKey("category")) {
-
-                    if (daoObject.selectObjectsDb(updateOpenTicket.returnSqlForSelectOne()).length < 1) {
+                    if (daoObject.selectObjectsDb(updateOpenTicket.returnSqlForSelectByEmployeeId()).length < 1) {
 
                         throw new RecordNotFound("No request with id "
                                 + updateOpenTicket.newRowObject.get("tickets_id") + " was found.");
@@ -126,14 +122,10 @@ public class TechnicianInteractions extends EmployeeInteractions {
         if (resolveTicket.newRowObject.containsKey("tickets_id")) {
             if (resolveTicket.newRowObject.get("resolution").length() > 250) {
                 throw new MalformedObjectException("Please enter less than 250 characters in the resolution");
-            } else { System.out.println(resolveTicket.returnSqlForResolution());
+            } else {
                 HashMap<String, String> databaseResponse1 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolution()).newRowObject;
                 HashMap<String, String> databaseResponse2 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveTicket()).newRowObject;
-                System.out.println((databaseResponse2));
                 HashMap<String, String> databaseResponse3 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveHelpRequest(databaseResponse2.get("ticket_requests_id"))).newRowObject;
-                System.out.println(databaseResponse1);
-                System.out.println(databaseResponse2);
-                System.out.println(databaseResponse3);
                 return "{\"message\":\"request closed successfully\"}";
             }
         } else {
@@ -141,6 +133,3 @@ public class TechnicianInteractions extends EmployeeInteractions {
             }
         }
     }
-//return String.valueOf(resolveRequestJson1 + "" + resolveRequestJson2 + "" + resolveRequestJson3);
-//return String.valueOf(resolveRequestJson1 + " CHAR(13) " + resolveRequestJson2 + " CHAR(13) " + resolveRequestJson3);
-
