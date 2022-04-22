@@ -29,7 +29,7 @@ public class ServiceLayerTests {
         DataAccessImp daoSuccessObject = new DataAccessImp();
         daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.ticket_requests RESTART IDENTITY CASCADE;");
         daoSuccessObject.deleteObjectDb("TRUNCATE TABLE p2_sandbox.tickets RESTART IDENTITY CASCADE;");
-        daoSuccessObject.insertObjectDb("insert into p2_sandbox.ticket_requests  values (default, 5, 'uhuhuhuh', 1);");
+        daoSuccessObject.insertObjectDb("insert into p2_sandbox.ticket_requests  values (default, 5, 'uhuhuhuh', 1) returning *;");
         clientMockObject = new ClientInteractions(daoTestObject);
         clientTestObject = new ClientInteractions(daoSuccessObject);
         techTestObject = new TechnicianInteractions(daoSuccessObject);
@@ -359,12 +359,13 @@ public class ServiceLayerTests {
         String cancelResponse = clientMockObject.cancelHelpRequest(String.valueOf(json));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 1)
     public void testUpdateTicketSuccess(){
         HashMap<String, String> updateTicket = new HashMap<>();
         updateTicket.put("token", "sometoken");
         updateTicket.put("tableName", "tickets");
         updateTicket.put("tickets_id", "1");
+        updateTicket.put("employee_id", "5");
         updateTicket.put("ticket_comments", "I have two flat tires");
         updateTicket.put("category", "1");
         JSONObject json = new JSONObject(updateTicket);
@@ -379,6 +380,7 @@ public class ServiceLayerTests {
         resolveTicket.put("token", "sometoken");
         resolveTicket.put("tableName", "tickets");
         resolveTicket.put("tickets_id", "1");
+        resolveTicket.put("employee_id", "5");
         resolveTicket.put("ticket_requests_id", "2");
         resolveTicket.put("resolution", "it is donezoo");
         JSONObject json = new JSONObject(resolveTicket);
@@ -393,20 +395,20 @@ public class ServiceLayerTests {
         updateTicket.put("token", "sometoken");
         updateTicket.put("tableName", "tickets");
         updateTicket.put("tickets_id", "1");
-        updateTicket.put("employee_id", "2");
+        updateTicket.put("employee_id", "5");
         updateTicket.put("ticket_comments", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
         updateTicket.put("category", "1");
         JSONObject json = new JSONObject(updateTicket);
         DatabaseEntity[] response = new DatabaseEntity[1];
         String result = techTestObject.updateTicket(String.valueOf(json));
     }
-    @Test(expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "No request with id 1 was found.")
+    @Test(priority = 5, expectedExceptions = RecordNotFound.class, expectedExceptionsMessageRegExp = "No request with id 1 was found.")
     public void testUpdateTicketNoTicket(){
         HashMap<String, String> updateTicket = new HashMap<>();
         updateTicket.put("token", "sometoken");
         updateTicket.put("tableName", "tickets");
         updateTicket.put("tickets_id", "1");
-        updateTicket.put("employee_id", "2");
+        updateTicket.put("employee_id", "5");
         updateTicket.put("ticket_comments", "I have two flat tires");
         updateTicket.put("category", "1");
         DatabaseEntity noRecord = new DatabaseEntity(updateTicket);
@@ -421,7 +423,7 @@ public class ServiceLayerTests {
         updateTicket.put("token", "sometoken");
         updateTicket.put("tableName", "tickets");
         updateTicket.put("tickets_id", "1");
-        updateTicket.put("employee_id", "2");
+        updateTicket.put("employee_id", "5");
         updateTicket.put("ticket_comments", "I have two flat tires");
         JSONObject json = new JSONObject(updateTicket);
         DatabaseEntity[] response = new DatabaseEntity[1];
