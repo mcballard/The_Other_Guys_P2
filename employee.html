@@ -54,9 +54,9 @@
 <body bgcolor="black" onload="pickEmployeeType()">
     <button type="button">Update Personal Info</button>
     <button type="button" style="margin-left: 80%;" onclick="doLogout()">Log Out</button>
-    <button type="button" class="collapsible client" id="createCollapseButton"></button>
+    <button type="button" class="collapsible" id="createCollapseButton"></button>
     <div class="content">
-        <table>
+        <table id="clientCreate">
             <tr>
                <!-- <td><h3>Select the reason for reimbursement:</h3></td>
                 <td><select id="reason">
@@ -76,7 +76,7 @@
             </tr>
         </table>
     </div>
-    <button type="button" class="collapsible client" id="viewCollapseButton"></button>
+    <button type="button" class="collapsible" id="viewCollapseButton"></button>
     <div class="content">
         <table>
             <tr>
@@ -87,7 +87,7 @@
             </tr>
         </table>
     </div> 
-    <button type="button" class="collapsible client" id="updateCollapseButton"></button>
+    <button type="button" class="collapsible" id="updateCollapseButton"></button>
     <div class="content">
         <table>
             <tr>
@@ -99,7 +99,7 @@
             </tr>
         </table>
     </div> 
-    <button type="button" class="collapsible client" id="cancelCollapseButton"></button>
+    <button type="button" class="collapsible" id="cancelCollapseButton"></button>
     <div class="content">
         <table>
             <tr>
@@ -115,7 +115,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script>
     //for testing creating token to observe edits on page
-    window.sessionStorage.setItem("token", "mb1_1_2");
+    window.sessionStorage.setItem("token", "mb1_2_2");
         if(!window.sessionStorage.getItem("token")) {
             swal.fire({
                 title: 'You do not have access to this page!',
@@ -140,18 +140,25 @@
         const employeeType = window.sessionStorage.getItem("token").split("_")[1];
         //alert(employeeId);
         const tableName =  "reimbursement_requests";
-        const apiURL = "http://localhost:5000/home";
-        const fillURL = "http://localhost:5000/";
+        const apiURL = "http://localhost:8080/";
+        const fillURL = "http://localhost:8080/";
 
         function pickEmployeeType() {
             if(employeeType==1) {
-                for (let el of document.querySelectorAll('.client')) el.style.display = 'block';
+                //for (let el of document.querySelectorAll('collapsible')) el.style.display = 'block';
                 document.getElementById("createCollapseButton").innerText = "Create Help Request";
                 document.getElementById("viewCollapseButton").innerText = "View My Help Request";
                 document.getElementById("updateCollapseButton").innerText = "Update My Help Request";
                 document.getElementById("cancelCollapseButton").innerText = "Cancel My Help Request";
             } else {
-                for (let el of document.querySelectorAll('.client')) el.style.display = 'none';
+                //for (let el of document.querySelectorAll('collapsible')) el.style.display = 'none';
+                //for (let el of document.querySelectorAll('content')) el.display = 'none';
+                document.getElementById("clientCreate").display = 'none';
+                document.getElementById("createCollapseButton").innerText = "Create Ticket";
+                document.getElementById("viewCollapseButton").innerText = "View Open Requests";
+                document.getElementById("updateCollapseButton").innerText = "Update Ticket";
+                document.getElementById("cancelCollapseButton").innerText = "Resolve Ticket";
+
             }
         }
 
