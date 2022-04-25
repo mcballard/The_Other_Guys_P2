@@ -46,6 +46,7 @@ public class ClientInteractions extends EmployeeInteractions{
         DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
         viewRequest.sanitizeFromApi();
         DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectByEmployeeId());
+        System.out.println(viewRequest.returnSqlForSelectByEmployeeId());
         if(viewResponse.length < 1) {
             throw new RecordNotFound("You have no open help requests.");
         }
@@ -85,7 +86,7 @@ public class ClientInteractions extends EmployeeInteractions{
                 new TypeToken<HashMap<String, String>>() {}.getType());
         DatabaseEntity cancelHelpRequest = new DatabaseEntity(loginMap);
         cancelHelpRequest.sanitizeFromApi();
-        if(cancelHelpRequest.newRowObject.containsKey("ticket_requests_id")) {
+        if(cancelHelpRequest.newRowObject.containsKey("ticket_requests_id")) { System.out.println(cancelHelpRequest.returnSqlForDeleteOne());
             int result = daoObject.deleteObjectDb(cancelHelpRequest.returnSqlForDeleteOne());
             if (result > 0){
                 return "record deleted success";

@@ -113,7 +113,7 @@ public class HelpTicketController {
         String body = ctx.body();
         try {
             String response = ciObject.cancelHelpRequest(body);
-            ctx.result(response);
+            ctx.result("{\"message\":\"" + response + "\"}");
             ctx.status(201);
         } catch (MalformedObjectException | RecordNotFound e) {
             ctx.result("{\"message\":\"" + e.getMessage() + "\"}");
