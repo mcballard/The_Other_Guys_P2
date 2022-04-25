@@ -7,6 +7,8 @@ import com.businessName.ticketDao.DataAccessInterface;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -14,6 +16,24 @@ public class TechnicianInteractions extends EmployeeInteractions {
 
     public TechnicianInteractions(DataAccessInterface daoObject) {
         super(daoObject);
+    }
+
+    public String fillCategory(String jsonFromApi) {
+        HashMap<String, String> fillCat = new Gson().fromJson(
+                String.valueOf(jsonFromApi),
+                new TypeToken<HashMap<String, String>>() {
+                }.getType());
+        DatabaseEntity fillCatObj = new DatabaseEntity(fillCat);
+        fillCatObj.sanitizeFromApi();
+        DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(fillCatObj.returnSqlForSelectAll());
+        if (viewResponse.length < 1) {
+            throw new RecordNotFound("You have no open tickets.");
+        }
+        JSONObject[] fillResponse = new JSONObject[viewResponse.length];
+        for(int i=0;i<viewResponse.length;i++) {
+            fillResponse[i]= new JSONObject(viewResponse[i].newRowObject);
+        }
+        return Arrays.toString(fillResponse);
     }
 
     public String createTicket(String jsonFromApi) {
@@ -39,7 +59,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 throw new RecordNotFound("Can not have more than one ticket open at a time");
             }
         } else {
-            throw new RecordNotFound("Something went wrong");
+            throw new RecordNotFound("Incorrect comment key");
         }
     }
 
@@ -52,12 +72,15 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 }.getType());
         DatabaseEntity viewRequest = new DatabaseEntity(viewMap);
         viewRequest.sanitizeFromApi();
-        DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectAll());
+        DatabaseEntity[] viewResponse = daoObject.selectObjectsDb(viewRequest.returnSqlForSelectAllOpen());
         if (viewResponse.length < 1) {
             throw new RecordNotFound("You have no open help requests.");
         }
-        JSONObject viewResponseJson = new JSONObject(viewResponse[0].newRowObject);
-        return String.valueOf(viewResponseJson);
+        JSONObject[] viewResponseJson = new JSONObject[viewResponse.length];
+        for(int i=0;i<viewResponse.length;i++) {
+            viewResponseJson[i]= new JSONObject(viewResponse[i].newRowObject);
+        }
+        return Arrays.toString(viewResponseJson);
     }
 
     public String viewOpenTicket(String jsonFromApi) {

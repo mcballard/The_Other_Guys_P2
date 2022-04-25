@@ -40,9 +40,10 @@
             margin-left: 10%;
         }
         body {
-            background-image: url("spyvsspy.jpg");
+            background-image: url("revimage.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
+            background-size: contain;
         }
 
         table {
@@ -51,71 +52,34 @@
     </style>
     <title>Employee Home Page</title>
 </head>
-<body bgcolor="black" onload="pickEmployeeType()">
+<body onload="pickEmployeeType()">
     <button type="button">Update Personal Info</button>
     <button type="button" style="margin-left: 80%;" onclick="doLogout()">Log Out</button>
     <button type="button" class="collapsible" id="createCollapseButton"></button>
     <div class="content">
-        <table id="clientCreate">
-            <tr>
-               <!-- <td><h3>Select the reason for reimbursement:</h3></td>
-                <td><select id="reason">
-                        filled with javascript
-                    </select>
-                </td>-->
-            </tr>
-            <tr>
-                <td><h3>Enter description of help request:</h3></td>
-                <td><textarea id="help_request_comment" rows="5" cols="50"></textarea></td>
-            </tr>  
-            <tr>
-                
-            </tr>
-            <tr>
-                <td><button id="create_request" onclick="createRequest()">Create Request</button></td>
-            </tr>
+        <table id="employeeCreate">            
         </table>
     </div>
     <button type="button" class="collapsible" id="viewCollapseButton"></button>
     <div class="content">
-        <table>
-            <tr>
-                <td><button id="view_request" onclick="viewTotalById()">View Request</button></td>
-            </tr>
-            <tr>
-
-            </tr>
+        <table id="employeeView">
         </table>
     </div> 
     <button type="button" class="collapsible" id="updateCollapseButton"></button>
     <div class="content">
-        <table>
-            <tr>
-                <td><h3>Enter description of help request:</h3></td>
-                <td><textarea id="help_request_comment" rows="5" cols="50"></textarea></td>
-            </tr>
-            <tr>
-                <td><button id="update_request" onclick="">Update Request</button></td>
-            </tr>
+        <table id="employeeUpdate">
         </table>
     </div> 
     <button type="button" class="collapsible" id="cancelCollapseButton"></button>
     <div class="content">
-        <table>
-            <tr>
-                <td><h3>Please enter the request id number:</h3></td>
-                <td><input type="number" id="ticket_requests_id"></td>
-            </tr> 
-            <tr>
-                <td><button id="cancel_request" onclick="cancelRequestById()">Cancel Request</button></td>
-            </tr>
+        <table id="employeeCancelResolve">
         </table>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script>
     //for testing creating token to observe edits on page
-    window.sessionStorage.setItem("token", "mb1_2_2");
+    window.sessionStorage.setItem("token", "mb1_1_4");
         if(!window.sessionStorage.getItem("token")) {
             swal.fire({
                 title: 'You do not have access to this page!',
@@ -140,56 +104,149 @@
         const employeeType = window.sessionStorage.getItem("token").split("_")[1];
         //alert(employeeId);
         const tableName =  "reimbursement_requests";
-        const apiURL = "http://localhost:8080/";
+        
         const fillURL = "http://localhost:8080/";
-
         function pickEmployeeType() {
             if(employeeType==1) {
-                //for (let el of document.querySelectorAll('collapsible')) el.style.display = 'block';
+                const apiURL = "";
                 document.getElementById("createCollapseButton").innerText = "Create Help Request";
+                document.getElementById("employeeCreate").innerHTML = 
+                "<tr><td><h3>Enter description of help request:</h3></td><td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr>"+
+                "<tr><td><button id='create_request'onclick='createHelpRequest()'>Create Request</button></td></tr>";
                 document.getElementById("viewCollapseButton").innerText = "View My Help Request";
+                document.getElementById("employeeView").innerHTML = "<tr><td><button id='view_request' onclick='viewTotalById()'>View Request</button></td></tr><tr></tr>";
                 document.getElementById("updateCollapseButton").innerText = "Update My Help Request";
+                document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter description of help request:</h3></td>"+
+                "<td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick=''>Update Request</button></td></tr>";
                 document.getElementById("cancelCollapseButton").innerText = "Cancel My Help Request";
+                document.getElementById("employeeCancelResolve").innerHTML="<tr><td><h3>Please enter the request id number:</h3></td><td><input type='number' id='ticket_requests_id'>"+
+                "</td></tr><tr><td><button id='cancel_request' onclick='cancelRequestById()'>Cancel Request</button></td></tr>";
             } else {
-                //for (let el of document.querySelectorAll('collapsible')) el.style.display = 'none';
-                //for (let el of document.querySelectorAll('content')) el.display = 'none';
-                document.getElementById("clientCreate").display = 'none';
+                const apiURL = "http://localhost:8080/technician";
                 document.getElementById("createCollapseButton").innerText = "Create Ticket";
-                document.getElementById("viewCollapseButton").innerText = "View Open Requests";
+                document.getElementById("employeeCreate").innerHTML = "<tr><td><button id='view_request' onclick='viewOpenRequestsTech()'>View Open Help Requests</button></td></tr><tr></tr>";
+                document.getElementById("viewCollapseButton").innerText = "View My Open Ticket";
+                document.getElementById("employeeView").innerHTML = "<tr><td><button id='view_request' onclick='viewOpenTicket()'>View Ticket</button></td></tr><tr></tr>";
                 document.getElementById("updateCollapseButton").innerText = "Update Ticket";
+                document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
+                "<td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='updateTicket()'>Update Ticket</button></td></tr>";
                 document.getElementById("cancelCollapseButton").innerText = "Resolve Ticket";
+                document.getElementById("employeeCancelResolve").innerHTML = "<tr><td><h3>Enter description of how the issue was resolved:</h3></td>"+
+                "<td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='resolveTicket()'>Resolve Ticket</button></td></tr>";
 
             }
         }
 
-        async function fillReasonSelect() {
-
-            const selectToPop = document.getElementById("reason");
-
+        async function viewOpenRequestsTech() {
             fillReasonJSON = {
                 'token': window.sessionStorage.getItem("token"),
-                'tableName': 'reasons_table'
+                'tableName': 'ticket_requests'
             }
             let sendFillReason = {
                 method:"POST",
                 headers:{'Content-Type':"application/json"},
                 body: JSON.stringify(fillReasonJSON)
             }
-            let response = await fetch(fillURL, sendFillReason);
+            let response = await fetch("http://localhost:8080/technician/", sendFillReason);
             jsonResponse = await response.json();
+            document.getElementById("employeeCreate").innerHTML = "";
+            let fillFormString = "";
+            for(let ticket in jsonResponse) {
+                for(let key in jsonResponse[ticket]) {
+                    fillFormString += "<tr>";
+                    if(key=="description") {
+                        fillFormString += "<td>"+jsonResponse[ticket].description+"</td>";
+                    }
+                    if(key=="ticket_requests_id") {
+                        fillFormString += "<td><button onclick='fillTicketCreateForm("+jsonResponse[ticket].ticket_requests_id+")'>Create Ticket</button></td>";
+                    }
+                    fillFormString += "</tr>";
+                }
+            }
+            document.getElementById("employeeCreate").innerHTML=fillFormString;
+        }
+
+        async function fillTicketCreateForm(ticketRequestsId) {          
+
+            fillReasonJSON = {
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'ticket_category'
+            }
+            let sendFillReason = {
+                method:"PATCH",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(fillReasonJSON)
+            }
+            let response = await fetch("http://localhost:8080/technician/", sendFillReason);
+            jsonResponse = await response.json();
+            document.getElementById("employeeCreate").innerHTML="<tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
+                "<td><textarea id='help_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><select id='categoryList'></select>";
+            const selectToPop = document.getElementById("categoryList");
             let defOption = document.createElement("option");
             defOption.value="";
-            defOption.text="Please select reason...";
+            defOption.text="Please select category...";
             selectToPop.append(defOption);
-            for(let reason in jsonResponse) {
+            for(let category in jsonResponse) {
                 let nextOption = document.createElement("option");
-                for(let key in jsonResponse[reason]) {
-                    nextOption.value=jsonResponse[reason].reasonId;
-                    nextOption.text=jsonResponse[reason].description;      
+                for(let key in jsonResponse[category]) {
+                    nextOption.value=jsonResponse[category].type_id;
+                    nextOption.text=jsonResponse[category].description;      
                 }
                 selectToPop.append(nextOption);
             }
+            document.getElementById("employeeCreate").innerHTML += 
+                "</td></tr><tr><td><button id='create_request' onclick='createTicket("+ticketRequestsId+")'>Create Ticket</button></td></tr>";
         }
+
+
+
+        async function createTicket(ticketRequestsId) {
+            const description = document.getElementById("help_ticket_comment").value;
+            helpRequestJSON = {
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'tickets',
+                'employee_id': employeeId,
+                'ticket_requests_id': ticketRequestsId,
+                'category': document.getElementById("categoryList").value,
+                'ticket_comments': description
+            }
+            let sendRequest = {
+                method:"POST",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(helpRequestJSON)
+            }
+            const response = await fetch("http://localhost:8080/technician/requests", sendRequest);
+            if (response.status === 201) {
+                const apiResponse = await response.json();
+                swal.fire({
+                title: 'Request successfully generated with ID number '+String(apiResponse.ticket_requests_id),
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    //resetInputs();
+                } 
+                });
+            } else if (response.status === 400 || response.status === 404) { 
+                const apiResponse = await response.json();
+                alert(apiResponse);
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                resetInputs();
+            } else {
+                swal.fire(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
+
+            }
+        }
+
+
 
         function doLogout() {
             window.sessionStorage.removeItem("token");
@@ -204,37 +261,34 @@
             });
         }
 
-        async function createRequest() {
-            const reasonId = document.getElementById("reason").value;
-            const reimbursementRequestComment = document.getElementById("reimbursement_request_comment").value;
-            const amount = document.getElementById("amount").value;
-            reimbursmentRequestJSON = {
+        async function createHelpRequest() {
+            const description = document.getElementById("help_request_comment").value;
+            helpRequestJSON = {
                 'token': window.sessionStorage.getItem("token"),
-                'tableName': tableName,
-                'employeeId': employeeId,
-                'reasonId': reasonId,
-                'reimbursementRequestComment': reimbursementRequestComment,
-                'amount': amount
+                'tableName': 'ticket_requests',
+                'employee_id': employeeId,
+                'description': description
             }
             let sendRequest = {
                 method:"POST",
                 headers:{'Content-Type':"application/json"},
-                body: JSON.stringify(reimbursmentRequestJSON)
+                body: JSON.stringify(helpRequestJSON)
             }
-            const response = await fetch(apiURL, sendRequest);
+            const response = await fetch("http://localhost:8080/client/requests", sendRequest);
             if (response.status === 201) {
                 const apiResponse = await response.json();
                 swal.fire({
-                title: 'Request successfully generated with ID number '+String(apiResponse.reimbursementRequestId),
+                title: 'Request successfully generated with ID number '+String(apiResponse.ticket_requests_id),
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    resetInputs();
+                    //resetInputs();
                 } 
                 });
-            } else if (response.status === 400) { 
+            } else if (response.status === 400 || response.status === 404) { 
                 const apiResponse = await response.json();
+                alert(apiResponse);
                 swal.fire(
                     "Could not complete request..",
                     apiResponse.message,
@@ -242,7 +296,7 @@
                 );
                 resetInputs();
             } else {
-                swal(
+                swal.fire(
                     "Something really, really bad happened...",
                     "Please try again.",
                     "error"

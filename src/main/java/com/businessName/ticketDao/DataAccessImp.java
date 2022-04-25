@@ -42,10 +42,10 @@ public class DataAccessImp implements DataAccessInterface {
             rs.last();
             int totalRows = rs.getRow();
             rs.beforeFirst();
-            HashMap<String, String> resultHashMap = new HashMap<>(columnMetadata.getColumnCount());
             DatabaseEntity[] results = new DatabaseEntity[totalRows];
             int indexCount=0;
             while(rs.next()) {
+                HashMap<String, String> resultHashMap = new HashMap<>(columnMetadata.getColumnCount());
                 for (int i = 1; i <= columnMetadata.getColumnCount(); ++i) {
                     // put key value pair into hashmap (column name as string,column value converted to string)
                     resultHashMap.put(columnMetadata.getColumnName(i), String.valueOf(rs.getObject(columnMetadata.getColumnName(i))));

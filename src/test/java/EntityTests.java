@@ -9,6 +9,7 @@ public class EntityTests {
     @Test
     public void sanitizeFromApiTestSuccess() {
         HashMap<String,String> test = new HashMap<>();
+        test.put("token","test_token");
         test.put("tableName","ticket_requests");
         test.put("description", "this is something");
         test.put("employee_id", "1");
@@ -17,9 +18,20 @@ public class EntityTests {
         Assert.assertTrue(test.containsKey("tableName"));
     }
 
+    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Access Denied!!!")
+    public void sanitizeFromApiTestTokenSuccess() {
+        HashMap<String,String> test = new HashMap<>();
+        test.put("tableName","ticket_requests");
+        test.put("description", "this is something");
+        test.put("employee_id", "1");
+        DatabaseEntity testDbEntity = new DatabaseEntity(test);
+        testDbEntity.sanitizeFromApi();
+    }
+
     @Test
     public void sanitizeFromApiTestNoTableName() {
         HashMap<String,String> test = new HashMap<>();
+        test.put("token","test_token");
         test.put("description", "this is something");
         test.put("employee_id", "1");
         test.put("status_id","0");
@@ -35,6 +47,7 @@ public class EntityTests {
     @Test
     public void sanitizeFromApiTestIdValuesNotConvertible() {
         HashMap<String,String> test = new HashMap<>();
+        test.put("token","test_token");
         test.put("tableName","ticket_requests");
         test.put("description", "this is something");
         test.put("employee_id", "1a");
@@ -50,6 +63,7 @@ public class EntityTests {
     @Test
     public void sanitizeFromApiTestIdValuesNotConvertibleIsEmpty() {
         HashMap<String,String> test = new HashMap<>();
+        test.put("token","test_token");
         test.put("tableName","ticket_requests");
         test.put("description", "this is something");
         test.put("employee_id", "");
@@ -65,6 +79,7 @@ public class EntityTests {
     @Test
     public void sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore() {
         HashMap<String,String> test = new HashMap<>();
+        test.put("token","test_token");
         test.put("tableName","ticket_requests");
         test.put("description", "this is something");
         test.put("employeeId", "1a");
@@ -80,6 +95,7 @@ public class EntityTests {
     @Test
     public void sanitizeFromApiTestDescriptionEmpty() {
         HashMap<String,String> test = new HashMap<>();
+        test.put("token","test_token");
         test.put("tableName","ticket_requests");
         test.put("description", "");
         test.put("employee_id", "1");
@@ -95,6 +111,7 @@ public class EntityTests {
     @Test
     public void sanitizeFromApiTestDescriptionNull() {
         HashMap<String,String> test = new HashMap<>();
+        test.put("token","test_token");
         test.put("tableName","ticket_requests");
         test.put("description", null);
         test.put("employee_id", "1");

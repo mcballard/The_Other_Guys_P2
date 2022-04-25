@@ -85,6 +85,10 @@ public class DatabaseEntity {
         return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + ";";
     }
 
+    public String returnSqlForSelectAllOpen() {
+        return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where status_id=1;";
+    }
+
     public String returnSqlForSelectByEmployeeId() {
         return "select * from " + schemaPrefix + "." + newRowObject.get("tableName") + " where (employee_id=" +
                 newRowObject.get("employee_id") + ") and (status_id=1);";
