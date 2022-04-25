@@ -36,6 +36,12 @@ public class HelpTicketApi {
 
         app.delete("/client/requests", controller.clientCancelHelpRequest);
 
+        app.patch("/technician/requests", controller.updateTicketTech);
+
+        app.put("/technician/requests", controller.viewOpenTicketTech);
+
+        app.delete("/technician/requests", controller.resolveTicketTech);
+
         app.start();
 
     }
