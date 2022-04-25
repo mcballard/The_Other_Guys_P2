@@ -26,5 +26,7 @@ public class LoginPom {
     @FindBy(xpath="/html/body/div/div/div[3]/button[1]")
     public WebElement sweetalertContinueButton;
 
+    @FindBy(id="createCollapseButton")
+    public WebElement createRequestCollapsibleClient;
 
 }
