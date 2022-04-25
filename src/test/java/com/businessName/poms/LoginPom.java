@@ -29,4 +29,16 @@ public class LoginPom {
     @FindBy(id="createCollapseButton")
     public WebElement createRequestCollapsibleClient;
 
+    @FindBy(id="cancelCollapseButton")
+    public WebElement cancelCollapseButton;
+
+    @FindBy(id="updateCollapseButton")
+    public WebElement updateCollapseButton;
+
+    @FindBy(id="viewCollapseButton")
+    public WebElement viewCollapseButton;
+
+    @FindBy(id="help_request_comment")
+    public WebElement helpRequestComment;
+
 }
