@@ -1,0 +1,6 @@
+Defect Report:
+
+select all returned list full of last entity create:
+high priority, high severity.
+resolved by placing hashmap initialization inside for loop to create new map each iteration.
+line 48 DataAccessImp.java
