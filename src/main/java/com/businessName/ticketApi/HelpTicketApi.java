@@ -14,13 +14,16 @@ public class HelpTicketApi {
 
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
+            logger.info("Javalin starting...");
             config.enableCorsForAllOrigins();
             config.enableDevLogging();
+            logger.info("Javalin started...");
         });
 
         HelpTicketController controller = new HelpTicketController();
 
         app.post("/login", controller.employeeLogin);
+
 
         app.post("/client/requests", controller.clientCreateHelpRequest);
 

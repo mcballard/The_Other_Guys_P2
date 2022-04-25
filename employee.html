@@ -79,7 +79,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script>
     //for testing creating token to observe edits on page
-    window.sessionStorage.setItem("token", "mb1_1_4");
+    window.sessionStorage.setItem("token", "mb1_2_5");
+
         if(!window.sessionStorage.getItem("token")) {
             swal.fire({
                 title: 'You do not have access to this page!',
@@ -114,13 +115,13 @@
                 "<tr><td><h3>Enter description of help request:</h3></td><td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr>"+
                 "<tr><td><button id='create_request'onclick='createHelpRequest()'>Create Request</button></td></tr>";
                 document.getElementById("viewCollapseButton").innerText = "View My Help Request";
-                document.getElementById("employeeView").innerHTML = "<tr><td><button id='view_request' onclick='viewTotalById()'>View Request</button></td></tr><tr></tr>";
+                document.getElementById("employeeView").innerHTML = "<tr><td><button id='view_request' onclick='viewHelpRequestStatus()'>View Request</button></td></tr><tr></tr>";
                 document.getElementById("updateCollapseButton").innerText = "Update My Help Request";
-                document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter description of help request:</h3></td>"+
-                "<td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick=''>Update Request</button></td></tr>";
+                document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter help request ID:</h3></td> <td><input type = 'number' id= 'update_request_id'></td></tr> <tr><td><h3>Enter description of help request:</h3></td>"+
+                "<td><textarea id='update_request_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='update_request()'>Update Request</button></td></tr>";
                 document.getElementById("cancelCollapseButton").innerText = "Cancel My Help Request";
                 document.getElementById("employeeCancelResolve").innerHTML="<tr><td><h3>Please enter the request id number:</h3></td><td><input type='number' id='ticket_requests_id'>"+
-                "</td></tr><tr><td><button id='cancel_request' onclick='cancelRequestById()'>Cancel Request</button></td></tr>";
+                "</td></tr><tr><td><button id='cancel_request' onclick='cancelHelpRequest()'>Cancel Request</button></td></tr>";
             } else {
                 const apiURL = "http://localhost:8080/technician";
                 document.getElementById("createCollapseButton").innerText = "Create Ticket";
@@ -128,11 +129,11 @@
                 document.getElementById("viewCollapseButton").innerText = "View My Open Ticket";
                 document.getElementById("employeeView").innerHTML = "<tr><td><button id='view_request' onclick='viewOpenTicket()'>View Ticket</button></td></tr><tr></tr>";
                 document.getElementById("updateCollapseButton").innerText = "Update Ticket";
-                document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
-                "<td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='updateTicket()'>Update Ticket</button></td></tr>";
+                document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter ticket ID:</h3></td> <td><input type = 'number' id= 'update_ticket'></td></tr> <tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
+                "<td><textarea id='update_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='updateTicket()'>Update Ticket</button></td></tr>";
                 document.getElementById("cancelCollapseButton").innerText = "Resolve Ticket";
-                document.getElementById("employeeCancelResolve").innerHTML = "<tr><td><h3>Enter description of how the issue was resolved:</h3></td>"+
-                "<td><textarea id='help_request_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='resolveTicket()'>Resolve Ticket</button></td></tr>";
+                document.getElementById("employeeCancelResolve").innerHTML = "<tr><td><h3>Enter ticket ID:</h3></td> <td><input type = 'number' id= 'cancel_ticket_id'></td></tr><tr><td><h3>Enter ticket request ID:</h3></td> <td><input type = 'number' id= 'cancel_ticket_request_id'></td></tr> <tr><td><h3>Enter description of how the issue was resolved:</h3></td>"+
+                "<td><textarea id='resolution' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='resolveTicket()'>Resolve Ticket</button></td></tr>";
 
             }
         }
@@ -219,17 +220,18 @@
             if (response.status === 201) {
                 const apiResponse = await response.json();
                 swal.fire({
-                title: 'Request successfully generated with ID number '+String(apiResponse.ticket_requests_id),
+                title: 'Request successfully generated with ID number '+String(apiResponse.tickets_id),
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
+                document.location.reload();
                 if (result.isConfirmed) {
-                    //resetInputs();
+                    document.location.reload();
                 } 
                 });
             } else if (response.status === 400 || response.status === 404) { 
                 const apiResponse = await response.json();
-                alert(apiResponse);
+                // alert(apiResponse);
                 swal.fire(
                     "Could not complete request..",
                     apiResponse.message,
@@ -243,6 +245,94 @@
                     "error"
                 );
 
+            }
+        }
+
+        async function updateTicket(ticketRequestsId){
+            const description = document.getElementById("update_ticket_comment").value;
+            helpRequestJSON = {
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'tickets',
+                'employee_id': employeeId,
+                'ticket_requests_id': ticketRequestsId,
+                'category': 1,
+                'ticket_comments': description,
+                'tickets_id': document.getElementById('update_ticket').value
+            }
+            let sendRequest = {
+                method:"PATCH",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(helpRequestJSON)
+            }
+            const response = await fetch("http://localhost:8080/technician/requests", sendRequest);
+            if (response.status === 201) {
+                const apiResponse = await response.json();
+                swal.fire({
+                title: 'Request successfully updated with ID number '+String(apiResponse.tickets_id),
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                document.location.reload();
+                if (result.isConfirmed) {
+                    document.location.reload();
+                } 
+                });
+            } else if (response.status === 400 || response.status === 404) { 
+                const apiResponse = await response.json();
+                // alert(apiResponse);
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                // resetInputs();
+            } else {
+                swal.fire(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
+
+            }
+        }
+
+        async function viewOpenTicket(){
+            helpRequestJSON = {
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'tickets',
+                'employee_id': employeeId
+            }
+            let sendRequest = {
+                method:"PUT",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(helpRequestJSON)
+            }
+            const response = await fetch("http://localhost:8080/client/requests", sendRequest);
+            if (response.status === 201) {
+                const apiResponse = await response.json();
+                swal.fire({
+                title: 'Your open ticket id #' +String(apiResponse.tickets_id),
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                   document.location.reload();
+                } 
+                });
+                } else if (response.status === 400) { 
+                const apiResponse = await response.json();
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                resetInputs();
+            } else {
+                swal(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
             }
         }
 
@@ -278,17 +368,17 @@
             if (response.status === 201) {
                 const apiResponse = await response.json();
                 swal.fire({
-                title: 'Request successfully generated with ID number '+String(apiResponse.ticket_requests_id),
+                title: 'Request successfully updated with ID number '+String(apiResponse.ticket_requests_id),
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    //resetInputs();
+                    document.location.reload();
                 } 
                 });
             } else if (response.status === 400 || response.status === 404) { 
                 const apiResponse = await response.json();
-                alert(apiResponse);
+                // alert(apiResponse);
                 swal.fire(
                     "Could not complete request..",
                     apiResponse.message,
@@ -305,28 +395,87 @@
             }
         }
 
-        async function viewTotalById() {
-            viewTotalByIdJSON = {
+
+        
+
+        async function update_request(){
+            const description = document.getElementById("update_request_comment").value;
+            helpRequestJSON = {
                 'token': window.sessionStorage.getItem("token"),
-                'tableName': tableName,
-                'employeeId': employeeId,
+                'tableName': 'ticket_requests',
+                'employee_id': employeeId,
+                'description': description,
+                'ticket_requests_id': document.getElementById('update_request_id').value
             }
+            // alert (helpRequestJSON);
             let sendRequest = {
-                method:"PATCH",
+                method: "PATCH",
                 headers:{'Content-Type':"application/json"},
-                body: JSON.stringify(viewTotalByIdJSON)
+                body: JSON.stringify(helpRequestJSON)
             }
-            const response = await fetch(apiURL, sendRequest);
+            const response = await fetch("http://localhost:8080/client/requests", sendRequest);
             if (response.status === 201) {
                 const apiResponse = await response.json();
-
                 swal.fire({
-                title: 'Your total amount requested across all requests is $'+String(apiResponse.message),
+                title: 'Request successfully updated with ID number '+String(apiResponse.ticket_requests_id),
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                document.location.reload();
+                if (result.isConfirmed) {
+                    document.location.reload();
+                } 
+                });
+            } else if (response.status === 400 || response.status === 404) { 
+                const apiResponse = await response.json();
+                // alert(apiResponse);
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                // document.location.reload();
+            } else {
+                swal.fire({
+                    title: "Something really, really bad happened...",
+                    body: "Please try again. error",
+                    confirmButtonText: 'Okay'
+                });
+                
+            }
+        }
+
+
+        async function viewHelpRequestStatus() {
+            viewHelpRequestStatusJSON = {
+
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'ticket_requests',
+                'employee_id': employeeId,
+            }
+            let sendRequest = {
+                method:"PUT",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(viewHelpRequestStatusJSON)
+            }
+            const response = await fetch("http://localhost:8080/client/requests", sendRequest);
+            if (response.status === 201) {
+                const apiResponse = await response.json();
+                let statusPhrase = "";
+                //alert(apiResponse.status_id);
+                if (apiResponse.status_id == "1"){
+                    statusPhrase = "open";
+                }
+                else {
+                    statusPhrase = "close";
+                }
+                swal.fire({
+                title: 'Your help request status for help request id #' +String(apiResponse.ticket_requests_id)+ ' is ' +String(statusPhrase),
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    resetInputs();
+                   document.location.reload();
                 } 
                 });
                 } else if (response.status === 400) { 
@@ -346,28 +495,76 @@
             }
         }
 
-        async function cancelRequestById() {
-            const reimbursement_request_id = document.getElementById("reimbursement_request_id").value;
-            cancelRequestByIdJSON = {
+        async function cancelHelpRequest() {
+            const ticket_requests_id = document.getElementById("ticket_requests_id").value;
+            cancelHelpRequestByIdJSON = {
                 'token': window.sessionStorage.getItem("token"),
-                'tableName': tableName,
-                'reimbursement_request_id': reimbursement_request_id
+                'tableName': 'ticket_requests',
+                'ticket_requests_id': ticket_requests_id
             }
             let sendRequest = {
                 method:"DELETE",
                 headers:{'Content-Type':"application/json"},
-                body: JSON.stringify(cancelRequestByIdJSON)
+                body: JSON.stringify(cancelHelpRequestByIdJSON)
             }
-            const response = await fetch(apiURL, sendRequest);
+            const response = await fetch("http://localhost:8080/client/requests", sendRequest);
             if (response.status === 201) {
                 const apiResponse = await response.json();
                 swal.fire({
-                title: 'The request with ID number '+String(reimbursement_request_id)+' has been successfully deleted.',
+                title: 'The request has been successfully deleted.',
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    resetInputs();
+                    document.location.reload();
+                } 
+                });
+            } else if (response.status === 400) { 
+                const apiResponse = await response.json();
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                resetInputs();
+            } else {
+                swal(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
+
+            }
+        }
+
+        async function resolveTicket() {
+        
+            const resolution = document.getElementById("resolution").value;
+            const cancel_ticket_id = document.getElementById("cancel_ticket_id").value;
+            const cancel_ticket_request_id = document.getElementById("cancel_ticket_request_id").value;
+            resolveTicketByIdJSON = {
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'tickets',
+                'employee_id': employeeId,
+                'resolution': resolution,
+                'tickets_id': cancel_ticket_id,
+                'ticket_requests_id': cancel_ticket_request_id
+            }
+            let sendRequest = {
+                method:"DELETE",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(resolveTicketByIdJSON)
+            }
+            const response = await fetch("http://localhost:8080/technician/requests", sendRequest);
+            if (response.status === 201) {
+                const apiResponse = await response.json();
+                swal.fire({
+                title: 'The ticket has been successfully resolved.',
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    document.location.reload();
                 } 
                 });
             } else if (response.status === 400) { 
