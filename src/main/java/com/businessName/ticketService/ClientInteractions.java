@@ -62,7 +62,7 @@ public class ClientInteractions extends EmployeeInteractions{
         updateRequest.sanitizeFromApi();
         if(updateRequest.newRowObject.containsKey("ticket_requests_id")) {
             if (updateRequest.newRowObject.get("description").length() <= 250) {
-                 if(daoObject.selectObjectsDb(updateRequest.returnSqlForSelectByEmployeeId()).length < 1) {
+                 System.out.println(updateRequest.returnSqlForSelectByEmployeeId()); if(daoObject.selectObjectsDb(updateRequest.returnSqlForSelectByEmployeeId()).length < 1) {
                     throw new RecordNotFound("No request with id "
                             +updateRequest.newRowObject.get("ticket_requests_id")+" was found.");
                 }
