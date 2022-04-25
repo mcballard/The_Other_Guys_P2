@@ -120,6 +120,49 @@ public class HelpTicketController {
             ctx.status(400);
         }
 
+    };
+
+        public Handler updateTicketTech = ctx -> {
+            String body = ctx.body();
+            try {
+                String response = tiObject.updateTicket(body);
+                ctx.result(response);
+                ctx.status(201);
+            } catch (RecordNotFound e) {
+                ctx.result("{\"message\":\"" + e.getMessage() + "\"}");
+                ctx.status(400);
+            }
+
+
+        };
+
+    public Handler viewOpenTicketTech = ctx -> {
+        String body = ctx.body();
+        try {
+            String response = tiObject.viewOpenTicket(body);
+            ctx.result(response);
+            ctx.status(201);
+        } catch (RecordNotFound e) {
+            ctx.result("{\"message\":\""+e.getMessage()+"\"}");
+            ctx.status(400);
+        }
+
+    };
+
+
+
+
+    public Handler resolveTicketTech = ctx -> {
+        String body = ctx.body();
+        try {
+            String response = tiObject.resolveTicket(body);
+            ctx.result(response);
+            ctx.status(201);
+        } catch (MalformedObjectException | RecordNotFound e) {
+            ctx.result("{\"message\":\"" + e.getMessage() + "\"}");
+            ctx.status(400);
+        }
+
 
     };
 }
