@@ -41,7 +41,7 @@ public class HelpTicketController {
             ctx.result(response);
             ctx.status(201);
         } catch (MalformedObjectException | RecordNotFound e) {
-            ctx.result("{\"message\":\"" + e + "\"}");
+            ctx.result("{\"message\":\"" + e.getMessage() + "\"}");
             ctx.status(400);
         }
     };
@@ -101,7 +101,7 @@ public class HelpTicketController {
             String response = ciObject.updateHelpRequest(body);
             ctx.result(response);
             ctx.status(201);
-        } catch (RecordNotFound e) {
+        } catch (MalformedObjectException | RecordNotFound e) {
             ctx.result("{\"message\":\"" + e.getMessage() + "\"}");
             ctx.status(400);
         }
