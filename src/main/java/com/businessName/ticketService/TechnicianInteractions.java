@@ -110,7 +110,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 new TypeToken<HashMap<String, String>>() {
                 }.getType());
         DatabaseEntity updateOpenTicket = new DatabaseEntity(updateMap);
-        updateOpenTicket.sanitizeFromApi();
+        System.out.println(updateOpenTicket.newRowObject); updateOpenTicket.sanitizeFromApi();
         if (updateOpenTicket.newRowObject.containsKey("tickets_id")) {
             if (updateOpenTicket.newRowObject.get("ticket_comments").length() <= 250) {
                 if (updateOpenTicket.newRowObject.containsKey("category")) {
@@ -119,6 +119,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                         throw new RecordNotFound("No request with id "
                                 + updateOpenTicket.newRowObject.get("tickets_id") + " was found.");
                     }
+                    System.out.println(updateOpenTicket.returnSqlForUpdateOne());
                     HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateOpenTicket.returnSqlForUpdateOne()).newRowObject;
                     if (databaseResponse.isEmpty()) {
                         throw new RecordNotFound("Unable to locate record with id " + updateOpenTicket.newRowObject.get("tickets_id"));
