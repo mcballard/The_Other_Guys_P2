@@ -42,6 +42,8 @@ public class HelpTicketApi {
 
         app.delete("/technician/requests", controller.resolveTicketTech);
 
+        app.post("/", controller.updatePersonalInfo);
+
         app.start();
 
     }

@@ -165,4 +165,18 @@ public class HelpTicketController {
 
 
     };
+
+    public Handler updatePersonalInfo = ctx -> {
+        String body = ctx.body();
+        try {
+            String response = eiObject.updatePersonalInfo(body);
+            ctx.result(response);
+            ctx.status(201);
+        } catch (MalformedObjectException e) {
+            ctx.result("{\"message\":\"" + e.getMessage() + "\"}");
+            ctx.status(400);
+        }
+
+
+    };
 }
