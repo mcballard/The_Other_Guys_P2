@@ -15,7 +15,6 @@ Feature: As a client, I should be able to login and submit a help request
   When I click the submit button
   Then I am notified that the request has been submitted
 
-Feature: As a client, I should be able to update my help request
 
   Scenario: As a client, I should be able to update my help request
 
@@ -24,7 +23,6 @@ Feature: As a client, I should be able to update my help request
   When I click the submit button
   Then I am notified of a successful update
 
-Feature: As a client, I should be able to update my personal information
 
   Scenario: As a client, I should be able to update my personal information
 
@@ -38,7 +36,6 @@ Feature: As a client, I should be able to update my personal information
   When I click the continue button
   Then I am redirected to the client home page
 
-Feature: As a client, I should be able to cancel a help request
 
   Scenario: As a client, I should be informed if I have no help request
   Given I am logged in and on the client home page
@@ -57,7 +54,6 @@ Feature: As a client, I should be able to cancel a help request
   When I click the continue button
   Then I remain on the client home page
 
-Feature: As a client, I should be able to view my help request status
 
   Scenario: As a client, I should be informed if I have no help request
   Given I am logged in and on the client home page

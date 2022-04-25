@@ -8,7 +8,6 @@ Feature: As a technician, I should be able to view the request pool
   When I click the view help requests button
   Then I am shown the open requests on the right-hand side of the page
 
-Feature: As a technician, I should be able to create work tickets
 
   Scenario: As a technician, I should not be able to create a ticket
   Given I am logged in and on the technician home page
@@ -41,7 +40,6 @@ Feature: As a technician, I should be able to create work tickets
   When I click the continue button
   Then I remain on the technician home page
 
-Feature: As a technician, I should be able to update ticket information
 
   Scenario: As a technician, I should not be able to update ticket if I do not have one
 
@@ -64,7 +62,6 @@ Feature: As a technician, I should be able to update ticket information
   When I click the continue button
   Then I remain on the technician home page
 
-Feature: As a technician, I should be able to resolve tickets
 
   Scenario: As a technician, I should not be able to resolve ticket if I do not have one
 
@@ -84,7 +81,6 @@ Feature: As a technician, I should be able to resolve tickets
   When I click the continue button
   Then I remain on the technician home page
 
-Feature: As a technician, I should be able to update my personal information
 
   Scenario: As a technician, I should be able to update my personal information
 
