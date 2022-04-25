@@ -94,6 +94,10 @@ public class DatabaseEntity {
                 newRowObject.get("employee_id") + ") and (status_id=1);";
     }
 
+    public String returnSqlForSelectCheckTicketsIdReference() {
+        return "select * from " + schemaPrefix + ".ticket_requests where ticket_requests_id="+newRowObject.get("ticket_requests_id")+";";
+    }
+
     public String returnSqlForUpdateOne() {
         String sqlQuery = "update "+schemaPrefix+"."+newRowObject.get("tableName")+" ";
         String columnNames = "set ";

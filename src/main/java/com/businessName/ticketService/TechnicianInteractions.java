@@ -43,6 +43,9 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 }.getType());
         DatabaseEntity helpTicketTech = new DatabaseEntity(helpRequestMap);
         helpTicketTech.sanitizeFromApi();
+        if(daoObject.selectObjectsDb(helpTicketTech.returnSqlForSelectCheckTicketsIdReference()).length<1) {
+            throw new RecordNotFound("No help request with given id.");
+        }
         if (helpTicketTech.newRowObject.containsKey("ticket_comments")) {
             if (helpTicketTech.newRowObject.get("ticket_comments").length() > 250) {
                 throw new MalformedObjectException("Please enter less than 250 characters in the comments box");
