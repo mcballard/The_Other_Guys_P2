@@ -417,18 +417,18 @@ public class ServiceLayerTests {
         Mockito.doReturn(response).when(daoTestObject).selectObjectsDb(noRecord.returnSqlForSelectByEmployeeId());
         String result = techMockObject.updateTicket(String.valueOf(json));
     }
-    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please choose new category")
-    public void testUpdateTicketNoCategory() {
-        HashMap<String, String> updateTicket = new HashMap<>();
-        updateTicket.put("token", "sometoken");
-        updateTicket.put("tableName", "tickets");
-        updateTicket.put("tickets_id", "1");
-        updateTicket.put("employee_id", "5");
-        updateTicket.put("ticket_comments", "I have two flat tires");
-        JSONObject json = new JSONObject(updateTicket);
-        DatabaseEntity[] response = new DatabaseEntity[1];
-        String result = techTestObject.updateTicket(String.valueOf(json));
-    }
+//    @Test(expectedExceptions = MalformedObjectException.class, expectedExceptionsMessageRegExp = "Please choose new category")
+//    public void testUpdateTicketNoCategory() {
+//        HashMap<String, String> updateTicket = new HashMap<>();
+//        updateTicket.put("token", "sometoken");
+//        updateTicket.put("tableName", "tickets");
+//        updateTicket.put("tickets_id", "1");
+//        updateTicket.put("employee_id", "5");
+//        updateTicket.put("ticket_comments", "I have two flat tires");
+//        JSONObject json = new JSONObject(updateTicket);
+//        DatabaseEntity[] response = new DatabaseEntity[1];
+//        String result = techTestObject.updateTicket(String.valueOf(json));
+//    }
 
 }
 
