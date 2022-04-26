@@ -11,7 +11,7 @@ Feature: As a client, I should be able to login and submit a help request
 
   Given I am logged in and on the client home page
   When I click click help request button
-  When I enter my request description
+  When I enter my request comment
   When I click the submit button
   Then I am notified that the request has been submitted
 

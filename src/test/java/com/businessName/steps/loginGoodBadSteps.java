@@ -10,7 +10,7 @@ public class loginGoodBadSteps {
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
-        TestRunner.driver.get("file://C:\\"+System.getenv("HOMEPATH")+"\\Desktop\\The_Other_Guys_P2\\login.html");
+
     }
     @When("I enter wrong {string}")
     public void i_enter_wrong_mb(String string) {
@@ -80,19 +80,16 @@ public class loginGoodBadSteps {
 
     @Then("I am notified that the request has been submitted")
     public void i_am_notified_that_the_request_has_been_submitted() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.createRequestCollapsibleClient.isDisplayed();
     }
 
     @When("I click the update request button")
     public void i_click_the_update_request_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.updateCollapseButton.click();
     }
-    @When("I edit my help request description")
-    public void i_edit_my_help_request_description() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("I edit my help request comment")
+    public void i_edit_my_help_request_comment() {
+       TestRunner.loginPom.updateTicketComment.getText();
     }
     /*
     @When("I click the submit button")
@@ -104,77 +101,56 @@ public class loginGoodBadSteps {
      */
     @Then("I am notified of a successful update")
     public void i_am_notified_of_a_successful_update() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       TestRunner.loginPom.sweetalertContinueButton.click();
     }
 
     @When("I click the update information button")
     public void i_click_the_update_information_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.updateCollapseButton.click();
     }
     @When("I am redirected to the client profile page")
     public void i_am_redirected_to_the_client_profile_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals(TestRunner.driver.getTitle(),"Client profile page");
+
     }
     @When("I enter my first name")
     public void i_enter_my_first_name() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       TestRunner.loginPom.updatePersonalInfo.getText();
     }
     @When("I enter my last name")
     public void i_enter_my_last_name() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.employeeUpdate.getText();
     }
     @When("I click the update button")
     public void i_click_the_update_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       TestRunner.loginPom.updatePersonalInfo.click();
     }
-    /*
     @When("I am notified of a successful update")
     public void i_am_notified_of_a_successful_update() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       TestRunner.loginPom.sweetalertContinueButton.click();
     }
 
-     */
     @When("I click the continue button")
     public void i_click_the_continue_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.sweetalertContinueButton.click();
     }
     @Then("I am redirected to the client home page")
     public void i_am_redirected_to_the_client_home_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals(TestRunner.driver.getTitle(),"Client Home Page");
     }
 
     @When("I click the cancel request button")
     public void i_click_the_cancel_request_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.cancelCollapseButton.click();
     }
     @When("I am notified with a popup that I have no open help request")
     public void i_am_notified_with_a_popup_that_i_have_no_open_help_request() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.sweetalertContinueButton.click();
     }
-    /*
-    @When("I click the continue button")
-    public void i_click_the_continue_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-     */
-    @Then("I remain on the client home page")
-    public void i_remain_on_the_client_home_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+////    @Then("I remain on the client home page")
+////    public void i_remain_on_the_client_home_page() {
+//
+//    }
 /*
     @When("I click the cancel request button")
     public void i_click_the_cancel_request_button() {
@@ -185,18 +161,15 @@ public class loginGoodBadSteps {
  */
     @When("I am prompted with a confirm button")
     public void i_am_prompted_with_a_confirm_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       TestRunner.loginPom.sweetalertContinueButton.click();
     }
     @When("I click confirm")
     public void i_click_confirm() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       TestRunner.loginPom.
     }
     @When("I am notified of a successful request deletion")
     public void i_am_notified_of_a_successful_request_deletion() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        TestRunner.loginPom.
     }
     /*
     @When("I click the continue button")
