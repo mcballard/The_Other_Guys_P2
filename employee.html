@@ -59,6 +59,7 @@
         <table id="updatePersonalInfo">
             <tr><td><h3>Enter first name:</h3><input type="text" id="firstName"></td></tr>
             <tr><td><h3>Enter last name:</h3><input type="text" id="lastName"></td></tr>
+            <tr><td><button id="updateInfo" onclick="updatePersonalInfo()">Update Info</button></td></tr>
         </table>
     </div>
     <button type="button" class="collapsible" id="createCollapseButton"></button>
@@ -85,7 +86,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script>
     //for testing creating token to observe edits on page
-    window.sessionStorage.setItem("token", "mb1_2_5");
+    window.sessionStorage.setItem("token", "mb1_1_2");
 
         if(!window.sessionStorage.getItem("token")) {
             swal.fire({
@@ -152,20 +153,20 @@
                 'token': window.sessionStorage.getItem("token"),
                 'tableName': 'employees',
                 'employees_id': employeeId,
-                'first_name': document.getElementById("firstName"),
-                'last_name': document.getElementById("firstName")
+                'first_name': document.getElementById("firstName").value,
+                'last_name': document.getElementById("lastName").value
             }
             let sendUpdate = {
                 method:"POST",
                 headers:{'Content-Type':"application/json"},
                 body: JSON.stringify(updateJSON)
             }
-            let response = await fetch("http://localhost:8080/", sendFillReason);
-            jsonResponse = await response.json();
+            let response = await fetch("http://localhost:8080/", sendUpdate);
+            //jsonResponse = await response.json();
             if (response.status === 201) {
                 const apiResponse = await response.json();
                 swal.fire({
-                title: 'Request successfully generated with ID number '+String(apiResponse.tickets_id),
+                title: 'Employee info successfully changed!!! ',
                 confirmButtonText: 'Continue'
                 }).then(function (result) {
                 /* Read more about isConfirmed, isDenied below */
@@ -204,10 +205,9 @@
                 body: JSON.stringify(fillReasonJSON)
             }
             let response = await fetch("http://localhost:8080/technician/", sendFillReason);
-            jsonResponse = await response.json();
-
-
+            
             if (response.status === 201) {
+                jsonResponse = await response.json();
                 document.getElementById("employeeCreate").innerHTML = "";
                 let fillFormString = "";
                 for(let ticket in jsonResponse) {
@@ -224,11 +224,11 @@
                 }
                 document.getElementById("employeeCreate").innerHTML=fillFormString;
             } else if (response.status === 400 || response.status === 404) { 
-                const apiResponse = await response.json();
+                jsonResponse = await response.json();
                 // alert(apiResponse);
                 swal.fire(
                     "Could not complete request..",
-                    apiResponse.message,
+                    jsonResponse.message,
                     "error"
                 );
                 document.location.reload();
@@ -252,9 +252,8 @@
                 body: JSON.stringify(fillReasonJSON)
             }
             let response = await fetch("http://localhost:8080/technician/", sendFillReason);
-            jsonResponse = await response.json();
-
             if (response.status === 201) {
+                jsonResponse = await response.json();
                 document.getElementById("employeeCancelResolve").innerHTML = "";
                 let fillFormString = "";
                 for(let ticket in jsonResponse) {
@@ -271,7 +270,7 @@
                 }
                 document.getElementById("employeeCancelResolve").innerHTML=fillFormString;
             } else if (response.status === 400 || response.status === 404) { 
-                //const apiResponse = await response.json();
+                jsonResponse = await response.json();
                 // alert(apiResponse);
                 swal.fire(
                     "No open Tickets",
@@ -314,8 +313,8 @@
                 body: JSON.stringify(fillReasonJSON)
             }
             let response = await fetch("http://localhost:8080/technician/", sendFillReason);
-            jsonResponse = await response.json();
             if (response.status === 201) {
+                jsonResponse = await response.json();
                 document.getElementById("employeeCreate").innerHTML="<tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
                 "<td><textarea id='help_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><select id='categoryList'></select>";
                 const selectToPop = document.getElementById("categoryList");
