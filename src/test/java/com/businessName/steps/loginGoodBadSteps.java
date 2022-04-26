@@ -59,7 +59,7 @@ public class loginGoodBadSteps {
        TestRunner.loginPom.sweetalertContinueButton.click();
     }
     @Then("I am notified that the request has been too long")
-    public void i_am_notified_that_the_request_has_been_too_long() {
+    public void i_am_notified_that_helpRequest_has_been_too_long() {
        TestRunner.loginPom.helpRequestComment.isDisplayed();
     }
 
@@ -107,7 +107,6 @@ public class loginGoodBadSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
-
 
     @When("I click the update information button")
     public void i_click_the_update_information_button() {
