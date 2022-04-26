@@ -1,0 +1,17 @@
+Daily Standup for 4/26/22
+
+Progress:
+    Service layer
+      technician
+        resolve ticket implementation
+        tests
+       Negative Test Update Ticket
+           api
+               postman testing
+    front-end
+            end-to-end testing
+
+To do:
+    clean-up tests
+    clean-up documentation
+        traceability matrix

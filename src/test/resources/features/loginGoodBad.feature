@@ -5,7 +5,7 @@ Feature: As a client, I should be able to log in and log out
     Given I am on the login page
     When I enter wrong "<username>"
     When I enter my "<password>"
-    When  I click submit button
+    When  I click login button
     When I am notified of bad input
     Then I am redirected to login page
     Examples:
@@ -18,7 +18,7 @@ Feature: As a client, I should be able to log in and log out
     Given I am on the login page
     When I enter wrong "<username>"
     When  I enter my "<password>"
-    When I click submit button
+    When I click login button
     When I am notified of bad input
     Then I am redirected to login page
 
@@ -32,7 +32,7 @@ Feature: As a client, I should be able to log in and log out
     Given I am on the login page
     When I enter wrong "<username>"
     When  I enter my "<password>"
-    When I click submit button
+    When I click login button
     When I am notified of bad input
     Then I am redirected to employee home page
 
