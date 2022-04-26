@@ -152,7 +152,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
             }
             else {
                 try {
-                    ////HashMap<String, String> databaseResponse1 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolution()).newRowObject;
+                    //HashMap<String, String> databaseResponse1 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveTicket()).newRowObject;
                     HashMap<String, String> databaseResponse2 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolution()).newRowObject;
                     DatabaseEntity databaseResponse3 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveHelpRequest(resolveTicket.newRowObject.get("ticket_requests_id")));
                     return "{\"message\":\"request closed successfully\"}";
