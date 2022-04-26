@@ -147,11 +147,10 @@ public class loginGoodBadSteps {
     public void i_am_notified_with_a_popup_that_i_have_no_open_help_request() {
         TestRunner.loginPom.sweetalertContinueButton.click();
     }
-////    @Then("I remain on the client home page")
-////    public void i_remain_on_the_client_home_page() {
-//
-//    }
-/*
+/*    @Then("I remain on the client home page")
+     public void i_remain_on_the_client_home_page() {
+
+      }
     @When("I click the cancel request button")
     public void i_click_the_cancel_request_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -171,6 +170,10 @@ public class loginGoodBadSteps {
     public void i_am_notified_of_a_successful_request_deletion() {
         TestRunner.loginPom.
     }
+    @When("I click the view status button")
+    public void i_click_the_view_status_button() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     /*
     @When("I click the continue button")
     public void i_click_the_continue_button() {
@@ -183,10 +186,7 @@ public class loginGoodBadSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-    @When("I click the view status button")
-    public void i_click_the_view_status_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
     @When("I am notified with a popup that I have no open help request")
     public void i_am_notified_with_a_popup_that_i_have_no_open_help_request() {
