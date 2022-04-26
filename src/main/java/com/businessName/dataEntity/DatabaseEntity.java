@@ -133,11 +133,13 @@ public class DatabaseEntity {
     }
 
     public String returnSqlForResolution(){
-        return "update p2_sandbox.tickets set resolution = '" + newRowObject.get("resolution") + "' where tickets_id = " + newRowObject.get("tickets_id") + " returning *;";
+        return "update p2_sandbox.tickets set resolution = '" + newRowObject.get("resolution") + "'" +
+                " where tickets_id = " + newRowObject.get("tickets_id") + " and ticket_requests_id = '" + newRowObject.get("ticket_requests_id") + "' and status_id = 1 returning *;";
     }
 
     public String returnSqlForResolveTicket() {
-        return "update p2_sandbox.tickets set status_id = 2 where tickets_id = " + newRowObject.get("tickets_id") + " returning *;";
+        return "update p2_sandbox.tickets set status_id = 2 where tickets_id = " + newRowObject.get("tickets_id") +
+                " and ticket_requests_id = '" + newRowObject.get("ticket_requests_id") +" and status_id = 1 returning *;";
     }
 
     public String returnSqlForResolveHelpRequest(String tr_id) {
