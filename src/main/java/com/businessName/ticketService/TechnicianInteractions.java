@@ -149,11 +149,18 @@ public class TechnicianInteractions extends EmployeeInteractions {
         if (resolveTicket.newRowObject.containsKey("tickets_id")) {
             if (resolveTicket.newRowObject.get("resolution").length() > 250) {
                 throw new MalformedObjectException("Please enter less than 250 characters in the resolution");
-            } else {
-                HashMap<String, String> databaseResponse1 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolution()).newRowObject;
-                HashMap<String, String> databaseResponse2 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveTicket()).newRowObject;
-                HashMap<String, String> databaseResponse3 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveHelpRequest(databaseResponse2.get("ticket_requests_id"))).newRowObject;
-                return "{\"message\":\"request closed successfully\"}";
+            }
+            if (!Objects.equals(resolveTicket.newRowObject.get("status_id"), "1")){
+                throw new MalformedObjectException("The ticket you have selected has already been resolved");
+            }
+
+            else {
+                try {
+                    HashMap<String, String> databaseResponse1 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolution()).newRowObject;
+                    HashMap<String, String> databaseResponse2 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveTicket()).newRowObject;
+                    HashMap<String, String> databaseResponse3 = daoObject.updateObjectDb(resolveTicket.returnSqlForResolveHelpRequest(databaseResponse2.get("ticket_requests_id"))).newRowObject;
+                    return "{\"message\":\"request closed successfully\"}";
+                } catch (RecordNotFound e){return "{\"message\":\"The information you have inputted is incorrect\"}";}
             }
         } else {
                 throw new RecordNotFound("recordNotFound");
