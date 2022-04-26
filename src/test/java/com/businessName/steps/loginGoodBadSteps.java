@@ -8,9 +8,43 @@ import org.testng.Assert;
 
 public class loginGoodBadSteps {
 
+    @Given("I am on the login page")
+    public void i_am_on_the_login_page() {
+        TestRunner.driver.get("file://C:\\Users\\meow\\Desktop\\The_Other_Guys_P2\\login.html");
+    }
+    @When("I enter wrong {string}")
+    public void i_enter_wrong_mb(String string) {
+        TestRunner.loginPom.usernameField.sendKeys(string);
+    }
+    @When("I enter my {string}")
+    public void i_enter_my_pass(String string) {
+        TestRunner.loginPom.passwordField.sendKeys(string);
+    }
+    @When("I click submit button")
+    public void i_click_login_button() {
+        TestRunner.loginPom.loginSubmitButton.click();
+    }
+    @When("I am notified of bad input")
+    public void i_am_notified_of_bad_input() {
+        TestRunner.loginPom.sweetalertContinueButton.click();
+    }
+    @Then("I am redirected to login page")
+    public void i_am_redirected_to_login_page() {
+        Assert.assertEquals(TestRunner.driver.getTitle(),"Employee Login");
+    }
+    @Then("I am redirected to employee home page")
+    public void i_am_redirected_to_employee_home_page() {
+        Assert.assertEquals(TestRunner.driver.getTitle(),"Employee Home Page");
+    }
+
     @Given("I am logged in and on the client home page")
     public void i_am_logged_in_and_on_the_client_home_page() {
         TestRunner.driver.get("File://C:\\Users\\Almas\\Desktop\\The_Other_Guys_P2\\login.html");
+        TestRunner.loginPom.usernameField.sendKeys("mb1");
+        TestRunner.loginPom.passwordField.sendKeys("pass");
+        TestRunner.loginPom.loginSubmitButton.click();
+        TestRunner.loginPom.sweetalertContinueButton.click();
+        Assert.assertEquals(TestRunner.driver.getTitle(),"Client Home Page");
     }
     @When("I click create request button")
     public void i_click_create_request_button() {
@@ -29,10 +63,6 @@ public class loginGoodBadSteps {
        TestRunner.loginPom.helpRequestComment.isDisplayed();
     }
 
-    @Given("I am logged in and on the client home page")
-    public void i_am_logged_in_and_on_the_client_home_page() {
-      TestRunner.loginPom.
-    }
     @When("I click click help request button")
     public void i_click_click_help_request_button() {
        TestRunner.loginPom.createRequestCollapsibleClient.click();
@@ -41,10 +71,13 @@ public class loginGoodBadSteps {
     public void i_enter_my_request_description() {
         TestRunner.loginPom.createRequestCollapsibleClient.click();
     }
+    /*
     @When("I click the submit button")
     public void i_click_the_submit_button() {
         TestRunner.loginPom.createRequestCollapsibleClient.click();
     }
+    */
+
     @Then("I am notified that the request has been submitted")
     public void i_am_notified_that_the_request_has_been_submitted() {
         // Write code here that turns the phrase above into concrete actions
@@ -61,22 +94,20 @@ public class loginGoodBadSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+    /*
     @When("I click the submit button")
     public void i_click_the_submit_button() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+     */
     @Then("I am notified of a successful update")
     public void i_am_notified_of_a_successful_update() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
 
-    @Given("I am logged in and on the client home page")
-    public void i_am_logged_in_and_on_the_client_home_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
     @When("I click the update information button")
     public void i_click_the_update_information_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -102,11 +133,14 @@ public class loginGoodBadSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+    /*
     @When("I am notified of a successful update")
     public void i_am_notified_of_a_successful_update() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+     */
     @When("I click the continue button")
     public void i_click_the_continue_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -118,15 +152,6 @@ public class loginGoodBadSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-
-    io.cucumber.junit.UndefinedStepException: The step 'I am logged in and on the client home page' and 4 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
-
-    @Given("I am logged in and on the client home page")
-    public void i_am_logged_in_and_on_the_client_home_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
     @When("I click the cancel request button")
     public void i_click_the_cancel_request_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -137,31 +162,27 @@ public class loginGoodBadSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+    /*
     @When("I click the continue button")
     public void i_click_the_continue_button() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+     */
     @Then("I remain on the client home page")
     public void i_remain_on_the_client_home_page() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
-
-
-    io.cucumber.junit.UndefinedStepException: The step 'I am logged in and on the client home page' and 6 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
-
-    @Given("I am logged in and on the client home page")
-    public void i_am_logged_in_and_on_the_client_home_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
+/*
     @When("I click the cancel request button")
     public void i_click_the_cancel_request_button() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+ */
     @When("I am prompted with a confirm button")
     public void i_am_prompted_with_a_confirm_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -177,6 +198,7 @@ public class loginGoodBadSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+    /*
     @When("I click the continue button")
     public void i_click_the_continue_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -188,15 +210,6 @@ public class loginGoodBadSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-
-    io.cucumber.junit.UndefinedStepException: The step 'I am logged in and on the client home page' and 4 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
-
-    @Given("I am logged in and on the client home page")
-    public void i_am_logged_in_and_on_the_client_home_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
     @When("I click the view status button")
     public void i_click_the_view_status_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -218,15 +231,6 @@ public class loginGoodBadSteps {
         throw new io.cucumber.java.PendingException();
     }
 
-
-    io.cucumber.junit.UndefinedStepException: The step 'I am logged in and on the client home page' and 4 other step(s) are undefined.
-    You can implement these steps using the snippet(s) below:
-
-    @Given("I am logged in and on the client home page")
-    public void i_am_logged_in_and_on_the_client_home_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
     @When("I click the view status button")
     public void i_click_the_view_status_button() {
         // Write code here that turns the phrase above into concrete actions
@@ -247,6 +251,6 @@ public class loginGoodBadSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
-
+*/
 }
 
