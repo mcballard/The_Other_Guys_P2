@@ -71,6 +71,18 @@ public class HelpTicketController {
         }
     };
 
+    public Handler viewOpenResolveTech = ctx -> {
+        String body = ctx.body();
+        try {
+            String response = tiObject.viewOpenRequests(body);
+            ctx.result(response);
+            ctx.status(201);
+        } catch (MalformedObjectException | RecordNotFound e) {
+            ctx.result("{\"message\":\""+e.getMessage()+"\"}");
+            ctx.status(400);
+        }
+    };
+
     public Handler createTicketTech = ctx -> {
         String body = ctx.body();
         logger.info("tech create ticket attempt with: "+body);

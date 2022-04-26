@@ -53,8 +53,14 @@
     <title></title>
 </head>
 <body onload="pickEmployeeType()">
-    <button type="button">Update Personal Info</button>
     <button type="button" style="margin-left: 80%;" onclick="doLogout()">Log Out</button>
+    <button type="button" class="collapsible">Update Personal Info</button>
+    <div class="content">
+        <table id="updatePersonalInfo">
+            <tr><td><h3>Enter first name:</h3><input type="text" id="firstName"></td></tr>
+            <tr><td><h3>Enter last name:</h3><input type="text" id="lastName"></td></tr>
+        </table>
+    </div>
     <button type="button" class="collapsible" id="createCollapseButton"></button>
     <div class="content">
         <table id="employeeCreate">            
@@ -134,8 +140,55 @@
                 document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter ticket ID:</h3></td> <td><input type = 'number' id= 'update_ticket'></td></tr> <tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
                 "<td><textarea id='update_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='updateTicket()'>Update Ticket</button></td></tr>";
                 document.getElementById("cancelCollapseButton").innerText = "Resolve Ticket";
-                document.getElementById("employeeCancelResolve").innerHTML = "<tr><td><h3>Enter ticket ID:</h3></td> <td><input type = 'number' id= 'cancel_ticket_id'></td></tr><tr><td><h3>Enter ticket request ID:</h3></td> <td><input type = 'number' id= 'cancel_ticket_request_id'></td></tr> <tr><td><h3>Enter description of how the issue was resolved:</h3></td>"+
-                "<td><textarea id='resolution' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='resolveTicket()'>Resolve Ticket</button></td></tr>";
+                document.getElementById("employeeCancelResolve").innerHTML = "<tr><td><button id='view_open_resolve' onclick='viewOpenTicketsFill()'>View Open Tickets</button></td></tr><tr></tr>";
+                //document.getElementById("employeeCancelResolve").innerHTML = "<tr><td><h3>Enter ticket ID:</h3></td> <td><input type = 'number' id= 'cancel_ticket_id'></td></tr><tr><td><h3>Enter ticket request ID:</h3></td> <td><input type = 'number' id= 'cancel_ticket_request_id'></td></tr> <tr><td><h3>Enter description of how the issue was resolved:</h3></td>"+
+                //"<td><textarea id='resolution' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='resolveTicket()'>Resolve Ticket</button></td></tr>";
+
+            }
+        }
+
+        async function updatePersonalInfo() {
+            updateJSON = {
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'employees',
+                'employees_id': employeeId,
+                'first_name': document.getElementById("firstName"),
+                'last_name': document.getElementById("firstName")
+            }
+            let sendUpdate = {
+                method:"POST",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(updateJSON)
+            }
+            let response = await fetch("http://localhost:8080/", sendFillReason);
+            jsonResponse = await response.json();
+            if (response.status === 201) {
+                const apiResponse = await response.json();
+                swal.fire({
+                title: 'Request successfully generated with ID number '+String(apiResponse.tickets_id),
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                document.location.reload();
+                if (result.isConfirmed) {
+                    document.location.reload();
+                } 
+                });
+            } else if (response.status === 400 || response.status === 404) { 
+                const apiResponse = await response.json();
+                // alert(apiResponse);
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                resetInputs();
+            } else {
+                swal.fire(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
 
             }
         }
@@ -152,22 +205,102 @@
             }
             let response = await fetch("http://localhost:8080/technician/", sendFillReason);
             jsonResponse = await response.json();
-            document.getElementById("employeeCreate").innerHTML = "";
-            let fillFormString = "";
-            for(let ticket in jsonResponse) {
-                for(let key in jsonResponse[ticket]) {
-                    fillFormString += "<tr>";
-                    if(key=="description") {
-                        fillFormString += "<td>"+jsonResponse[ticket].description+"</td>";
+
+
+            if (response.status === 201) {
+                document.getElementById("employeeCreate").innerHTML = "";
+                let fillFormString = "";
+                for(let ticket in jsonResponse) {
+                    for(let key in jsonResponse[ticket]) {
+                        fillFormString += "<tr>";
+                        if(key=="description") {
+                            fillFormString += "<td>"+jsonResponse[ticket].description+"</td>";
+                        }
+                        if(key=="ticket_requests_id") {
+                            fillFormString += "<td><button onclick='fillTicketCreateForm("+jsonResponse[ticket].ticket_requests_id+")'>Create Ticket</button></td>";
+                        }
+                        fillFormString += "</tr>";
                     }
-                    if(key=="ticket_requests_id") {
-                        fillFormString += "<td><button onclick='fillTicketCreateForm("+jsonResponse[ticket].ticket_requests_id+")'>Create Ticket</button></td>";
-                    }
-                    fillFormString += "</tr>";
                 }
+                document.getElementById("employeeCreate").innerHTML=fillFormString;
+            } else if (response.status === 400 || response.status === 404) { 
+                const apiResponse = await response.json();
+                // alert(apiResponse);
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                document.location.reload();
+            } else {
+                swal.fire(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
             }
-            document.getElementById("employeeCreate").innerHTML=fillFormString;
         }
+
+        async function viewOpenTicketsFill() {
+            fillReasonJSON = {
+                'token': window.sessionStorage.getItem("token"),
+                'tableName': 'tickets'
+            }
+            let sendFillReason = {
+                method:"PUT",
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(fillReasonJSON)
+            }
+            let response = await fetch("http://localhost:8080/technician/", sendFillReason);
+            jsonResponse = await response.json();
+
+            if (response.status === 201) {
+                document.getElementById("employeeCancelResolve").innerHTML = "";
+                let fillFormString = "";
+                for(let ticket in jsonResponse) {
+                    for(let key in jsonResponse[ticket]) {
+                        fillFormString += "<tr>";
+                        if(key=="ticket_comments") {
+                            fillFormString += "<td>"+jsonResponse[ticket].ticket_comments+"</td>";
+                        }
+                        if(key=="ticket_requests_id") {
+                            fillFormString += "<td><button onclick='fillTicketResolveForm("+jsonResponse[ticket].tickets_id+","+jsonResponse[ticket].ticket__requests_id+")'>Resolve Ticket</button></td>";
+                        }
+                        fillFormString += "</tr>";
+                    }
+                }
+                document.getElementById("employeeCancelResolve").innerHTML=fillFormString;
+            } else if (response.status === 400 || response.status === 404) { 
+                //const apiResponse = await response.json();
+                // alert(apiResponse);
+                swal.fire(
+                    "No open Tickets",
+                    "Continue.",
+                    "error"
+                );
+                document.location.reload();
+            } else {
+                swal.fire(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
+
+            }
+
+
+           
+        }
+
+
+        async function fillTicketResolveForm(ticketsId,ticketRequestsId) {
+            document.getElementById("employeeCancelResolve").innerHTML="";
+            document.getElementById("employeeCancelResolve").innerHTML="<tr><td><h3>Enter resolution description:</h3></td>"+
+                "<td><textarea id='resolution' rows='5' cols='50'></textarea>";
+            document.getElementById("employeeCancelResolve").innerHTML += 
+                "</td></tr><tr><td><button id='resolve_button' onclick='resolveTicket("+ticketsId+","+ticketRequestsId+")'>Resolve Ticket</button></td></tr>";
+        }
+
 
         async function fillTicketCreateForm(ticketRequestsId) {          
 
@@ -182,23 +315,43 @@
             }
             let response = await fetch("http://localhost:8080/technician/", sendFillReason);
             jsonResponse = await response.json();
-            document.getElementById("employeeCreate").innerHTML="<tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
+            if (response.status === 201) {
+                document.getElementById("employeeCreate").innerHTML="<tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
                 "<td><textarea id='help_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><select id='categoryList'></select>";
-            const selectToPop = document.getElementById("categoryList");
-            let defOption = document.createElement("option");
-            defOption.value="";
-            defOption.text="Please select category...";
-            selectToPop.append(defOption);
-            for(let category in jsonResponse) {
-                let nextOption = document.createElement("option");
-                for(let key in jsonResponse[category]) {
-                    nextOption.value=jsonResponse[category].type_id;
-                    nextOption.text=jsonResponse[category].description;      
-                }
-                selectToPop.append(nextOption);
-            }
-            document.getElementById("employeeCreate").innerHTML += 
+                const selectToPop = document.getElementById("categoryList");
+                let defOption = document.createElement("option");
+                defOption.value="";
+                defOption.text="Please select category...";
+                selectToPop.append(defOption);
+                for(let category in jsonResponse) {
+                    let nextOption = document.createElement("option");
+                    for(let key in jsonResponse[category]) {
+                        nextOption.value=jsonResponse[category].type_id;
+                        nextOption.text=jsonResponse[category].description;      
+                    }
+                    selectToPop.append(nextOption);
+                    }
+                document.getElementById("employeeCreate").innerHTML += 
                 "</td></tr><tr><td><button id='create_request' onclick='createTicket("+ticketRequestsId+")'>Create Ticket</button></td></tr>";
+            } else if (response.status === 400 || response.status === 404) { 
+                const apiResponse = await response.json();
+                // alert(apiResponse);
+                swal.fire(
+                    "Could not complete request..",
+                    apiResponse.message,
+                    "error"
+                );
+                resetInputs();
+            } else {
+                swal.fire(
+                    "Something really, really bad happened...",
+                    "Please try again.",
+                    "error"
+                );
+
+            }
+
+            
         }
 
 
@@ -539,18 +692,18 @@
             }
         }
 
-        async function resolveTicket() {
+        async function resolveTicket(ticketsId,ticketRequestsId) {
         
             const resolution = document.getElementById("resolution").value;
-            const cancel_ticket_id = document.getElementById("cancel_ticket_id").value;
-            const cancel_ticket_request_id = document.getElementById("cancel_ticket_request_id").value;
+//            const cancel_ticket_id = document.getElementById("cancel_ticket_id").value;
+//            const cancel_ticket_request_id = document.getElementById("cancel_ticket_request_id").value;
             resolveTicketByIdJSON = {
                 'token': window.sessionStorage.getItem("token"),
                 'tableName': 'tickets',
                 'employee_id': employeeId,
                 'resolution': resolution,
-                'tickets_id': cancel_ticket_id,
-                'ticket_requests_id': cancel_ticket_request_id
+                'tickets_id': ticketsId,
+                'ticket_requests_id': ticketRequestsId
             }
             let sendRequest = {
                 method:"DELETE",

@@ -10,7 +10,7 @@ public class loginGoodBadSteps {
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
-        TestRunner.driver.get("file://C:\\Users\\Almas\\Desktop\\The_Other_Guys_P2\\login.html");
+
     }
     @When("I enter wrong {string}")
     public void i_enter_wrong_mb(String string) {
@@ -39,7 +39,7 @@ public class loginGoodBadSteps {
 
     @Given("I am logged in and on the client home page")
     public void i_am_logged_in_and_on_the_client_home_page() {
-        TestRunner.driver.get("File://C:\\Users\\Almas\\Desktop\\The_Other_Guys_P2\\login.html");
+        TestRunner.driver.get("file://C:\\"+System.getenv("HOMEPATH")+"\\Desktop\\The_Other_Guys_P2\\login.html");
         TestRunner.loginPom.usernameField.sendKeys("mb1");
         TestRunner.loginPom.passwordField.sendKeys("pass");
         TestRunner.loginPom.loginSubmitButton.click();
