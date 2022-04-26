@@ -24,12 +24,13 @@ public class HelpTicketApi {
 
         app.post("/login", controller.employeeLogin);
 
-
         app.post("/client/requests", controller.clientCreateHelpRequest);
 
         app.put("/client/requests", controller.viewRequestStatus);
 
         app.post("/technician/", controller.viewOpenRequestsTech);
+
+        app.put("/technician/", controller.viewOpenResolveTech);
 
         app.patch("/technician/", controller.fillCreateFormTech);
 
