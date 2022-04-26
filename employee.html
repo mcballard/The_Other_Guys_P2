@@ -86,7 +86,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script>
     //for testing creating token to observe edits on page
-    window.sessionStorage.setItem("token", "mb1_1_2");
+    window.sessionStorage.setItem("token", "mb1_2_5");
 
         if(!window.sessionStorage.getItem("token")) {
             swal.fire({
@@ -102,10 +102,13 @@
 
 
         function resetInputs() {
-            document.getElementById("reason").value="";
-            document.getElementById("reimbursement_request_comment").value="";
-            document.getElementById("amount").value="";
-            document.getElementById("reimbursement_request_id").value="";
+            document.getElementById("first_name").value="";
+            document.getElementById("last_name").value="";
+            document.getElementById("help_request_comment").value="";
+            document.getElementById("help_ticket_comment").value="";
+            document.getElementById("update_request_id").value="";
+            document.getElementById("update_ticket").value="";
+            document.getElementById("resolution").value="";
         }
 
         const employeeId = window.sessionStorage.getItem("token").split("_")[2];
@@ -226,12 +229,16 @@
             } else if (response.status === 400 || response.status === 404) { 
                 jsonResponse = await response.json();
                 // alert(apiResponse);
-                swal.fire(
-                    "Could not complete request..",
-                    jsonResponse.message,
-                    "error"
-                );
-                document.location.reload();
+                swal.fire({
+                title: 'Unable to complete request!'+jsonResponse.message,
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+               // document.location.reload();
+                if (result.isConfirmed) {
+                    document.location.reload();
+                } 
+                });
             } else {
                 swal.fire(
                     "Something really, really bad happened...",
@@ -272,12 +279,16 @@
             } else if (response.status === 400 || response.status === 404) { 
                 jsonResponse = await response.json();
                 // alert(apiResponse);
-                swal.fire(
-                    "No open Tickets",
-                    "Continue.",
-                    "error"
-                );
-                document.location.reload();
+                swal.fire({
+                title: 'Unable to complete request!'+jsonResponse.message,
+                confirmButtonText: 'Continue'
+                }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+               // document.location.reload();
+                if (result.isConfirmed) {
+                    document.location.reload();
+                } 
+                });
             } else {
                 swal.fire(
                     "Something really, really bad happened...",
