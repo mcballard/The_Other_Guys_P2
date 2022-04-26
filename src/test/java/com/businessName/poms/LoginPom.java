@@ -86,6 +86,25 @@ public class LoginPom {
     @FindBy(id="ticket_requests_id")
     public  WebElement cancelRequestIdInput;
 
+    @FindBy(id="view_request")
+    public WebElement viewOpenRequestsTechnician;
 
+    @FindBy(xpath = "/html/body/div[2]/table/tbody/tr[1]/td/button")
+    public WebElement startCreateTicketTechnician;
 
+    @FindBy(id = "create_request")
+    public WebElement createsTicketToDatabase;
+
+    @FindBy(id= "categoryList")
+    public WebElement categoryDropDown;
+
+    @FindBy(xpath = "//*[@id=\"update_request\"]")
+    public WebElement updateTicket;
+
+    @FindBy(id = "view_open_resolve")
+    public WebElement viewOpenTicketResolve;
+
+    @FindBy(xpath = "/html/body/div[5]/table/tbody/tr[3]/td/button")
+    public WebElement resolveTicketTech;
+    
 }
