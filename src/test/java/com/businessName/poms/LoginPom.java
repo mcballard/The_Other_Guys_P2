@@ -41,4 +41,15 @@ public class LoginPom {
     @FindBy(id="help_request_comment")
     public WebElement helpRequestComment;
 
+    @FindBy(id="update_ticket_comment")
+    public WebElement updateTicketComment;
+
+     @FindBy(xpath="/html/body/button[1]")
+    public WebElement updatePersonalInfo;
+
+     @FindBy(id="employeeUpdate")
+    public WebElement employeeUpdate;
+
+
+
 }
