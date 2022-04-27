@@ -66,9 +66,9 @@ Ticket Tracking System For IT Support
      - Logging out
 
 # Contributors
-  -Matt Ballard
-  -Joseph Raghuraj
-  -Andraey Pompey
-  -Alemayehu Ashagre
+  - Matt Ballard
+  - Joseph Raghuraj
+  - Andraey Pompey
+  - Alemayehu Ashagre
   
 
