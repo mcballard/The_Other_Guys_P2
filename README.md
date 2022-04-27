@@ -40,13 +40,13 @@ Ticket Tracking System For IT Support
 
 # Getting Started
 - to clone:
-  - git clone 
+  - git clone https://github.com/mcballard/The_Other_Guys_P2.git
 - Database:
   - Create a local or cloud based Postgres RDS.
   - Use your preferred database management software to run scripts located in the database documentation folder.
 - To deploy:
   - Install application required technologies to be found in the virtual environment.
-  - Run  main.py to start the application. 
+  - Run HelpTicketApi.java to start the application. 
 
 # Usage
 - Log in on the login.html page as either an internal client or a technician
