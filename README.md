@@ -51,16 +51,16 @@ Ticket Tracking System For IT Support
 # Usage
 - Log in on the login.html page as either an internal client or a technician
   - As a client you will have access to:
-      Updating personal information 
-      Creating a help request
-      Viewing your open help request
-      Updating your open help request
-      Cancelling your open help request
-      Logging out
+     - Updating personal information 
+     - Creating a help request
+     - Viewing your open help request
+     - Updating your open help request
+     - Cancelling your open help request
+     - Logging out
   - As a Technician you will have access to: 
-      Updating personal information
-      Creating a work ticket for an open help request
-      Viewing your open work ticket
-      Updating your open work ticket
-      Resolving your open work ticket and closing both the ticket and the request
+     - Updating personal information
+     - Creating a work ticket for an open help request
+     - Viewing your open work ticket
+     - Updating your open work ticket
+     - Resolving your open work ticket and closing both the ticket and the request
 
