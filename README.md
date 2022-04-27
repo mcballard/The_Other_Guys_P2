@@ -15,6 +15,7 @@ Ticket Tracking System For IT Support
 - Cucumber
 - Git
 - TestNG
+- JUnit
 
 # Features
 - Employees can log into the app.
@@ -32,7 +33,10 @@ Ticket Tracking System For IT Support
 - Employees can log out of the app.
 
 # To Do
-
+- Allow for multiple tickets per help request
+- Populate tciket and request ids for the update and cancel features
+  to prevent invalid input from the user
+- Allow for changing of username and password in update personal info feature
 
 # Getting Started
 - to clone:
@@ -45,11 +49,18 @@ Ticket Tracking System For IT Support
   - Run  main.py to start the application. 
 
 # Usage
-- Employees 
-  - Employees can 
-  - Employees can . 
-  - Employees can 
-  - Employees can v
-  - Employees can 
-- Employees can 
+- Log in on the login.html page as either an internal client or a technician
+  - As a client you will have access to:
+      Updating personal information 
+      Creating a help request
+      Viewing your open help request
+      Updating your open help request
+      Cancelling your open help request
+      Logging out
+  - As a Technician you will have access to: 
+      Updating personal information
+      Creating a work ticket for an open help request
+      Viewing your open work ticket
+      Updating your open work ticket
+      Resolving your open work ticket and closing both the ticket and the request
 
