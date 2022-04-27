@@ -1,76 +1,63 @@
-Acceptance Criteria
+
+           Acceptance Criteria
 
 Feature: As a client, I should be able to log in and log out
 
 Scenario: As a client, I should be able to log in
-
-	Given: I am on the login page
-	When: I enter my username
-	When: I enter my password
-	When: I click the submit button
-	Then: I am redirected to the client home page
+	Given I am on the login page
+	When I enter my username
+	When I enter my password
+	When I click the submit button
+	Then I am redirected to the client home page
 
 Scenario: As a client, I should not be able to log in with the wrong username
-
-	Given:I am on the login page
-	When:I enter wrong username
-	when: I enter my password
-	When: I click submit button
-	When:I notified for bad username input
-	Then:I am redirected to login page
+	Given I am on the login page
+	When I enter wrong username
+	when I enter my password
+	When I click submit button
+	When I notified for bad username input
+	Then I am redirected to login page
 
 Scenario: As a client, I should not be able to log in with the wrong password
-
 	Given:I am on the login page
-    When:I enter username
-    when: I enter my wrong password
-    When: I click submit button
-    When:I notified for bad password input
-    Then:I am redirected to login page
+    WhenI enter username
+    When I enter my wrong password
+    When I click submit button
+    When I notified for bad password input
+    Then I am redirected to login page
 
 Scenario: As a client, I should be able to log out
+	Given I am on the client home page
+	When I click the logout button
+	When I am notified of a successful logout
+	When I click the continue button
+	Then I am redirected to the login page
 
-	Given: I am on the client home page
-	When: I click the logout button
-	When: I am notified of a successful logout
-	When: I click the continue button
-	Then: I am redirected to the login page
+Feature: As a client, I should be able to submit and update help request
 
-Feature: As a client, I should be able to login and submit a help request
+Scenario: as client I should be able to submit help request
+     Given I am logged in and on the client home page
+     When I click help request button
+     When I enter request description
+     When I click the submit button
+     Then I am notified that the request has been submitted
 
-Scenario: as client I should be informed for too long description
-       Given:I am logged in and on the client home page
-       When: I enter bad  description
-       When: I click the submit button
-       Then: I am notified that the request has been too longin and on the client home page
-
-Scenario: As a client, I should be able to submit a help request
-
-	Given: I am logged in and on the client home page
-	When: I enter my issue description
-	When: I click the submit button
-	Then: I am notified that the request has been submitted
-
-Feature: As a client, I should be able to update my help request
-
-Scenario: As a client, I should be informed the description is too long
-    Given: I am logged in and on the client home page
-  	When: I enter bad  description
-  	When: I click the submit button
-  	Then: I am notified that the description has been too long
+Scenario: As a client, I should be informed for too long description
+    Given I am logged in and on the client home page
+  	When I enter too long description
+  	When I click the submit button
+  	Then I am notified that the description has been too long
 
 Scenario: As a client, I should be able to update my help request
-
-	When: I click the update request button
-	When: I edit my help request description
-	When: I click the submit button
-	Then: I am notified of a successful update
+	When I click the update request button
+	When I edit my help request description
+	When I click the submit button
+	Then I am notified of a successful update
 
 Feature: As a client, I should be able to update my personal information
 
 Scenario: As a client, I should be able to update my personal information
-
-Given: I am logged in and on the client home page
+    Given: I am logged in and on the client home page
 	When I click the update information button
 	When I am redirected to the client profile page
 	When I enter my first name
@@ -90,7 +77,6 @@ Scenario: As a client, I should be informed if I have no help request
     Then I remain on the client home page
 
 Scenario: As a client, I should be able to cancel a help request
-
 	Given I am logged in and on the client home page
 	When I click the cancel request button
 	When I am prompted with a confirm button
@@ -101,25 +87,18 @@ Scenario: As a client, I should be able to cancel a help request
 
 Feature: As a client, I should be able to view my help request status
 
-Scenario: As a client, I should be informed if I have no help request
-    Given I am logged in and on the client home page
-    When I click the view status button
-    When I am notified with a popup that I have no open help request
-    When I click the continue button
-    Then I remain on the client home page
-
 Scenario: As a client, I should be able to view my help request status
-
 	Given I am logged in and on the client home page
 	When I click the view status button
 	When I am notified with a popup of my request status
 	When I click the continue button
 	Then I remain on the client home page
 
+
+
 Feature: As a technician, I should be able to log in and log out
 
 Scenario: As a technician, I should be able to log in
-
 	Given I am on the login page
 	When I enter my username
 	When I enter my password
@@ -127,7 +106,6 @@ Scenario: As a technician, I should be able to log in
 	Then I am redirected to the technician home page
 
 Scenario: As a technician, I should not be able to log in with the wrong username
-
 	Given I am on the login page
 	When I enter wrong username
 	when I enter my password
@@ -136,7 +114,6 @@ Scenario: As a technician, I should not be able to log in with the wrong usernam
 	Then I am redirected to login page
 
 Scenario: As a technician, I should not be able to log in with the wrong password
-
 	Given I am on the login page
     When I enter username
     when I enter my wrong password
@@ -145,7 +122,6 @@ Scenario: As a technician, I should not be able to log in with the wrong passwor
     Then I am redirected to login page
 
 Scenario: As a technician, I should be able to log out
-
 	Given I am on the technician home page
 	When I click the logout button
 	When I am notified of a successful logout
@@ -155,7 +131,6 @@ Scenario: As a technician, I should be able to log out
 Feature: As a technician, I should be able to view the request pool
 
 Scenario: As a technician, I should be able to view the request pool
-
 	Given I am  logged in and on the technician home page
 	When I click the technician home page collapsible button
 	When I click the view help requests button
@@ -172,26 +147,23 @@ Scenario: As a technician, I should not be able to create a work ticket with an 
     Then I remain on the technician home page
 
 Scenario: As a technician, I should not be able to create work tickets with missing info
-
 	Given I am logged in and on the technician home page
 	When I click the technician home page collapsible button
 	When I click the create ticket button
 	When I do not input the comment into the text field
 	When I do not set the category
-	When I do not assign the ticket(?)
 	When I click the create button
 	When I am notified that I am missing required information
 	When I click the continue button
 	Then I remain on the create ticket page
 
 Scenario: As a technician, I should be able to create work tickets
-
 	Given I am logged in and on the technician home page
 	When I click the technician home page collapsible button
 	When I click the create ticket button
 	When I input the comment into the text field
 	When I set the category
-	When I assign the ticket(?)
+	When I assign the ticket
 	When I click the create button
 	When I am notified of a successful creation
 	When I click the continue button
@@ -200,7 +172,6 @@ Scenario: As a technician, I should be able to create work tickets
 Feature: As a technician, I should be able to update ticket information
 
 Scenario: As a technician, I should not be able to update ticket if I do not have one
-
 	Given I am logged in and on the technician home page
 	When I click the technician home page collapsible button
 	When I click the update ticket button
@@ -209,7 +180,6 @@ Scenario: As a technician, I should not be able to update ticket if I do not hav
     Then I remain on the technician home page
 
 Scenario: As a technician, I should be able to update ticket information
-
 	Given I am logged in and on the technician home page
 	When I click the technician home page collapsible button
 	When I click the update ticket button
@@ -223,7 +193,6 @@ Scenario: As a technician, I should be able to update ticket information
 Feature: As a technician, I should be able to resolve tickets
 
 Scenario: As a technician, I should not be able to resolve ticket if I do not have one
-
 	Given I am logged in and on the technician home page
 	When I click the resolve ticket collapsible button
     When I am notified with a popup that I have no open tickets
@@ -231,7 +200,6 @@ Scenario: As a technician, I should not be able to resolve ticket if I do not ha
     Then I remain on the technician home page
 
 Scenario: As a technician, I should be able to resolve tickets
-
 	Given I am logged in and on the technician home page
 	When I click the resolve ticket collapsible button
 	When I enter the resolution text
@@ -243,7 +211,6 @@ Scenario: As a technician, I should be able to resolve tickets
 Feature: As a technician, I should be able to update my personal information
 
 Scenario: As a technician, I should be able to update my personal information
-
     Given I am logged in and on the technician home page
 	When I click the update information button
 	When I am redirected to the technician profile page
