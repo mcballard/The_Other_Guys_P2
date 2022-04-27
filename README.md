@@ -65,3 +65,10 @@ Ticket Tracking System For IT Support
      - Resolving your open work ticket and closing both the ticket and the request
      - Logging out
 
+# Contributors
+  -Matt Ballard
+  -Joseph Raghuraj
+  -Andraey Pompey
+  -Alemayehu Ashagre
+  
+
