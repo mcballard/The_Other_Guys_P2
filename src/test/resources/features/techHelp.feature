@@ -1,19 +1,6 @@
 
 Feature: As a technician, I should be able to view the request pool
 
-  Scenario: As a technician, I should not be able to create a ticket with no open help requests
-  Given I am logged in and on the technician home page
-  When I click the create ticket collapsible button
-  When I click the view open help requests button
-  When I am notified that there are no help requests and I click the continue button
-  Then I remain on the technician home page
-
-  Scenario: As a technician, I should not be able to view my ticket if I do not have one
-  Given I am logged in and on the technician home page
-  When I click the view my open ticket collapsible button
-  When I am notified of a failed ticket viewing and click the continue button
-  Then I remain on the technician home page
-
   Scenario Outline: As a technician, I should not be able to create work tickets with no description
 
   Given I am logged in and on the technician home page
@@ -22,11 +9,12 @@ Feature: As a technician, I should be able to view the request pool
   When I click the create ticket button
   When I enter my ticket description "<description>"
   When I select a category in the drop down bar "<category>"
-  When I click the 2nd create ticket button
+  When I click the second create ticket button
   When I am notified of a failed creation and click the continue button
   Then I remain on the technician home page
     Examples:
-      | description | category |
+      | description    | category |
+      |test description|1|
 
 
   Scenario Outline: As a technician, I should be able to create work tickets
@@ -35,64 +23,64 @@ Feature: As a technician, I should be able to view the request pool
   When I click the create ticket collapsible button
   When I click the view open help requests button
   When I click the create ticket button
-  When I enter my ticket description <description>
-  When I select a category in the drop down bar
-  When I click the 2nd create ticket button
+  When I enter my ticket description "<description>"
+  When I select a category in the drop down bar "<category>"
+  When I click the second create ticket button
   When I am notified of a successful creation and click the continue button
   Then I remain on the technician home page
     Examples:
-      | description |
-      |he needed help|
+      | description    | category |
+      |test description|1         |
 
   Scenario: As a technician, I should be able to view the open ticket
 
-  Given I am  logged in on and the technician home page
+  Given I am logged in and on the technician home page
   When I click the view my open ticket collapsible button
+  When I click the view tickets button
   When I am shown my open ticket and click the continue button
   Then I remain on the technician home page
 
 
-  Scenario: As a technician, I should not be able to update ticket if I do not have one
+  Scenario Outline: As a technician, I should not be able to update ticket if I do not have one
 
   Given I am logged in and on the technician home page
   When I click the update ticket collapsible button
-  When I enter the ticket id <ticket_id>
-  When I input the comment into the text field
-  When I set the category
+  When I enter the ticket id "<ticket_id>"
+  When I input the comment into the text field "<comment>"
   When I click the update ticket button
   When I am notified of a failed ticket update and I click the continue button
   Then I remain on the technician home page
+    Examples:
+      | ticket_id | comment |
+      |4          |something|
 
-  Scenario: As a technician, I should be able to update ticket information
+  Scenario Outline: As a technician, I should be able to update ticket information
 
   Given I am logged in and on the technician home page
   When I click the update ticket collapsible button
-  When I enter the ticket id <ticket_id>
-  When I input the comment into the text field
-  When I set the category
+  When I enter the ticket id "<ticket_id>"
+  When I input the comment into the text field "<comment>"
   When I click the update ticket button
   When I am notified of a successful ticket update and I click the continue button
   Then I remain on the technician home page
+    Examples:
+      | ticket_id | comment |
+      |2          |something else|
 
 
-  Scenario: As a technician, I should not be able to resolve ticket if I do not have one
-
-  Given I am logged in and on the technician home page
-  When I click the resolve ticket collapsible button
-  When I am notified with a popup that I have no open tickets
-  When I click the continue button
-  Then I remain on the technician home page
-
-  Scenario: As a technician, I should be able to resolve tickets
+  Scenario Outline: As a technician, I should be able to resolve tickets
 
   Given I am logged in and on the technician home page
   When I click the resolve ticket collapsible button
   When I click the view open tickets button
   When I click the resolve ticket button
-  When I enter the ticket resolution comment
-  When I click the 2nd resolve ticket button
+  When I enter the ticket resolution comment"<comment>"
+  When I click the second resolve ticket button
   When I am notified of the ticket resolution and I click the continue button
   Then I remain on the technician home page
+    Examples:
+      | comment |
+      |are we there yet?|
 
 
   Scenario Outline: As a technician, I should be able to update my personal information
@@ -107,3 +95,25 @@ Feature: As a technician, I should be able to view the request pool
     Examples:
       | first_name | last_name |
       |new         | name      |
+
+  Scenario: As a technician, I should not be able to create a ticket with no open help requests
+    Given I am logged in and on the technician home page
+    When I click the create ticket collapsible button
+    When I click the view open help requests button
+    When I am notified that there are no help requests and I click the continue button
+    Then I remain on the technician home page
+
+  Scenario: As a technician, I should not be able to view my ticket if I do not have one
+    Given I am logged in and on the technician home page
+    When I click the view my open ticket collapsible button
+    When I click the view tickets button
+    When I am notified of a failed ticket viewing and click the continue button
+    Then I remain on the technician home page
+
+  Scenario: As a technician, I should not be able to resolve ticket if I do not have one
+
+    Given I am logged in and on the technician home page
+    When I click the resolve ticket collapsible button
+    When I click the view open tickets button
+    When I am notified with a popup that I have no open tickets and i click the continue button
+    Then I remain on the technician home page

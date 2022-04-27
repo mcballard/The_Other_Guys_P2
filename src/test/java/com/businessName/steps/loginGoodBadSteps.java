@@ -4,7 +4,12 @@ import com.businessName.runner.TestRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class loginGoodBadSteps {
 
@@ -208,20 +213,100 @@ public class loginGoodBadSteps {
         TestRunner.loginPom.helpTicketComment.sendKeys(arg0);
     }
 
-
     @When("I select a category in the drop down bar {string}")
     public void iSelectACategoryInTheDropDownBar(String arg0) {
-        TestRunner.loginPom.categoryDropDown.selectByValue(arg0);
+        Select categoryChoice = new Select(TestRunner.loginPom.categoryDropDown);
+        categoryChoice.selectByIndex(Integer.parseInt(arg0));
     }
 
-    @When("I click the {int}nd create ticket button")
-    public void iClickTheNdCreateTicketButton(int arg0) {
+    @When("I click the second create ticket button")
+    public void iClickTheNdCreateTicketButton() {
         TestRunner.loginPom.createsTicketToDatabase.click();
     }
 
     @When("I am notified of a failed creation and click the continue button")
     public void iAmNotifiedOfAFailedCreationAndClickTheContinueButton() {
+        TestRunner.loginPom.SweetalertClientCreateContinueButton.click();
+    }
+
+    @When("I am notified of a successful creation and click the continue button")
+    public void iAmNotifiedOfASuccessfulCreationAndClickTheContinueButton() {
+        TestRunner.loginPom.SweetalertClientCreateContinueButton.click();
+    }
+
+    @When("I am shown my open ticket and click the continue button")
+    public void iAmShownMyOpenTicketAndClickTheContinueButton() {
         TestRunner.loginPom.sweetalertContinueButton.click();
+    }
+
+    @When("I click the update ticket collapsible button")
+    public void iClickTheUpdateTicketCollapsibleButton() {
+        TestRunner.loginPom.updateCollapseButton.click();
+    }
+
+    @When("I enter the ticket id {string}")
+    public void iEnterTheTicketId(String arg0) {
+        TestRunner.loginPom.updateTicketIdField.sendKeys(arg0);
+    }
+
+    @When("I input the comment into the text field {string}")
+    public void iInputTheCommentIntoTheTextField(String arg0) {
+        TestRunner.loginPom.updateTicketComment.sendKeys(arg0);
+    }
+
+    @When("I click the update ticket button")
+    public void iClickTheUpdateTicketButton() {
+        TestRunner.loginPom.updateTicket.click();
+    }
+
+    @When("I am notified of a failed ticket update and I click the continue button")
+    public void iAmNotifiedOfAFailedTicketUpdateAndIClickTheContinueButton() {
+        TestRunner.loginPom.sweetalertContinueButton.click();
+    }
+
+    @When("I am notified of a successful ticket update and I click the continue button")
+    public void iAmNotifiedOfASuccessfulTicketUpdateAndIClickTheContinueButton() {
+        TestRunner.loginPom.SweetalertClientCreateContinueButton.click();
+    }
+
+    @When("I click the resolve ticket collapsible button")
+    public void iClickTheResolveTicketCollapsibleButton() {
+        TestRunner.loginPom.cancelCollapseButton.click();
+    }
+
+    @When("I click the view open tickets button")
+    public void iClickTheViewOpenTicketsButton() {
+        TestRunner.loginPom.viewOpenTicketResolve.click();
+    }
+
+    @When("I click the resolve ticket button")
+    public void iClickTheResolveTicketButton() {
+        TestRunner.loginPom.firstResolveButton.click();
+    }
+
+    @When("I enter the ticket resolution comment{string}")
+    public void iEnterTheTicketResolutionComment(String arg0) {
+        TestRunner.loginPom.resolveTicketComment.sendKeys(arg0);
+    }
+
+    @When("I am notified of the ticket resolution and I click the continue button")
+    public void iAmNotifiedOfTheTicketResolutionAndIClickTheContinueButton() {
+        TestRunner.loginPom.SweetalertClientCreateContinueButton.click();
+    }
+
+    @When("I click the second resolve ticket button")
+    public void iClickTheSecondResolveTicketButton() {
+        TestRunner.loginPom.secondResolveButton.click();
+    }
+
+    @When("I am notified with a popup that I have no open tickets and i click the continue button")
+    public void iAmNotifiedWithAPopupThatIHaveNoOpenTicketsAndIClickTheContinueButton() {
+        TestRunner.loginPom.sweetalertContinueButton.click();
+    }
+
+    @When("I click the view tickets button")
+    public void iClickTheViewTicketsButton() {
+        TestRunner.loginPom.viewOpenTickets.click();
     }
 }
 
