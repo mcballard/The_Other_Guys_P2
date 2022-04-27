@@ -38,7 +38,7 @@ public class DataAccessTests {
         test.put("tableName","employees");
         DatabaseEntity testDbEntity = new DatabaseEntity(test);
         DatabaseEntity[] selectOneTest = daoOBJ.selectObjectsDb(testDbEntity.returnSqlForSelectAll());
-        Assert.assertEquals(selectOneTest.length, 4);
+        Assert.assertEquals(selectOneTest.length, 7);
     }
 
 
