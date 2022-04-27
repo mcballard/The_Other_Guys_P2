@@ -63,4 +63,5 @@ Ticket Tracking System For IT Support
      - Viewing your open work ticket
      - Updating your open work ticket
      - Resolving your open work ticket and closing both the ticket and the request
+     - Logging out
 
