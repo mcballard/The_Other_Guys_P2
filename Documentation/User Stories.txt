@@ -1,0 +1,24 @@
+Description: Internal Clients can sign in and manage my help requests
+
+    As a client I should be allowed to log into the client help request home page
+    As a client I would like to update my Personal Information
+    As a client I want to create a help request for my technical issues
+    As a client I would be able to create a help request with an adequate description
+    As a client I would like to view the status of my help request
+    As a client I would like to update the description of my help request
+    As a client I would like to cancel my help request
+
+Description: Internal Technicians can sign in and manage help tickets and help requests
+
+    As a technician I should be allowed to log into the technician home page
+    As a technician I would like to update my Personal Information
+    As a technician I want to create a help ticket for an open help request
+    As a technician I would like to view open help request
+    As a technician I would like to choose an open help request to create a help ticket for
+    As a technician I would like to choose a category for chosen help request
+    As a technician I would like to add an adequate description to the ticket I create
+    As a technician I would like to view my ticket id number
+    As a technician I would like to update my help ticket description
+    As a technician I want to resolve help requests
+    As a technician I would like to resolve tickets with an adequate description
+    As a technician I would like to resolve tickets and associated help requests via ticket id #
