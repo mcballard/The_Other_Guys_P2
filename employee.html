@@ -88,7 +88,7 @@
     //for testing creating token to observe edits on page
 
 
-    window.sessionStorage.setItem("token", "mb1_2_5");
+    //window.sessionStorage.setItem("token", "mb1_2_5");
 
 
         if(!window.sessionStorage.getItem("token")) {
@@ -273,7 +273,7 @@
                             fillFormString += "<td>"+jsonResponse[ticket].ticket_comments+"</td>";
                         }
                         if(key=="ticket_requests_id") {
-                            fillFormString += "<td><button onclick='fillTicketResolveForm("+jsonResponse[ticket].tickets_id+","+jsonResponse[ticket].ticket__requests_id+")'>Resolve Ticket</button></td>";
+                            fillFormString += "<td><button onclick='fillTicketResolveForm("+jsonResponse[ticket].tickets_id+","+jsonResponse[ticket].ticket_requests_id+")'>Resolve Ticket</button></td>";
                         }
                         fillFormString += "</tr>";
                     }

@@ -9,7 +9,7 @@ Feature: As a technician, I should be able to view the request pool
   Then I remain on the technician home page
 
   Scenario: As a technician, I should not be able to view my ticket if I do not have one
-  Given I am  logged in on and the technician home page
+  Given I am logged in and on the technician home page
   When I click the view my open ticket collapsible button
   When I am notified of a failed ticket viewing and click the continue button
   Then I remain on the technician home page
@@ -20,14 +20,14 @@ Feature: As a technician, I should be able to view the request pool
   When I click the create ticket collapsible button
   When I click the view open help requests button
   When I click the create ticket button
-  When I enter my ticket description <description>
-  When I select a category in the drop down bar
+  When I enter my ticket description "<description>"
+  When I select a category in the drop down bar "<category>"
   When I click the 2nd create ticket button
   When I am notified of a failed creation and click the continue button
   Then I remain on the technician home page
     Examples:
-    | description |
-    |             |
+      | description | category |
+
 
   Scenario Outline: As a technician, I should be able to create work tickets
 
@@ -95,7 +95,7 @@ Feature: As a technician, I should be able to view the request pool
   Then I remain on the technician home page
 
 
-  Scenario: As a technician, I should be able to update my personal information
+  Scenario Outline: As a technician, I should be able to update my personal information
 
   Given I am logged in and on the technician home page
   When I click the update information button
@@ -104,3 +104,6 @@ Feature: As a technician, I should be able to view the request pool
   When I click the update button
   When I am notified of a successful update and I click the continue button
   Then I remain on the technician home page
+    Examples:
+      | first_name | last_name |
+      |new         | name      |

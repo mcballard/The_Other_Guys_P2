@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class LoginPom {
 
@@ -96,7 +97,7 @@ public class LoginPom {
     public WebElement createsTicketToDatabase;
 
     @FindBy(id= "categoryList")
-    public WebElement categoryDropDown;
+    public Select categoryDropDown;
 
     @FindBy(xpath = "//*[@id=\"update_request\"]")
     public WebElement updateTicket;
@@ -106,5 +107,8 @@ public class LoginPom {
 
     @FindBy(xpath = "/html/body/div[5]/table/tbody/tr[3]/td/button")
     public WebElement resolveTicketTech;
+
+    @FindBy(id="help_ticket_comment")
+    public WebElement helpTicketComment;
     
 }
