@@ -43,9 +43,6 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 }.getType());
         DatabaseEntity helpTicketTech = new DatabaseEntity(helpRequestMap);
         helpTicketTech.sanitizeFromApi();
-        if(daoObject.selectObjectsDb(helpTicketTech.returnSqlForSelectCheckTicketsIdReference()).length<1) {
-            throw new RecordNotFound("No help request with given id.");
-        }
         if (helpTicketTech.newRowObject.containsKey("ticket_comments")) {
             if (helpTicketTech.newRowObject.get("ticket_comments").length() > 250) {
                 throw new MalformedObjectException("Please enter less than 250 characters in the comments box");
@@ -110,7 +107,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 new TypeToken<HashMap<String, String>>() {
                 }.getType());
         DatabaseEntity updateOpenTicket = new DatabaseEntity(updateMap);
-        System.out.println(updateOpenTicket.newRowObject); updateOpenTicket.sanitizeFromApi();
+        updateOpenTicket.sanitizeFromApi();
         if (updateOpenTicket.newRowObject.containsKey("tickets_id")) {
             if (updateOpenTicket.newRowObject.get("ticket_comments").length() <= 250) {
                 if (updateOpenTicket.newRowObject.containsKey("category")) {
@@ -119,7 +116,6 @@ public class TechnicianInteractions extends EmployeeInteractions {
                         throw new RecordNotFound("No request with id "
                                 + updateOpenTicket.newRowObject.get("tickets_id") + " was found.");
                     }
-                    System.out.println(updateOpenTicket.returnSqlForUpdateOne());
                     HashMap<String, String> databaseResponse = daoObject.updateObjectDb(updateOpenTicket.returnSqlForUpdateOne()).newRowObject;
                     if (databaseResponse.isEmpty()) {
                         throw new RecordNotFound("Unable to locate record with id " + updateOpenTicket.newRowObject.get("tickets_id"));
@@ -159,7 +155,7 @@ public class TechnicianInteractions extends EmployeeInteractions {
                 } catch (RecordNotFound e){return "{\"message\":\"The information you have inputted is incorrect\"}";}
             }
         } else {
-                throw new RecordNotFound("recordNotFound");
+                throw new RecordNotFound("No ticket id given");
             }
         }
     }

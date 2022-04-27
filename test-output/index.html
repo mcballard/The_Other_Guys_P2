@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Default_Suite">
+              <span class="suite-name border-passed">Default Suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Default_Suite">
+                    <span>C:\Users\meow\AppData\Local\JetBrains\IdeaIC2021.3\temp-testng-customsuite.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Default_Suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Default_Suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Default_Suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Default_Suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Default_Suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Default_Suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">44 methods,   44 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_Suite" class="hide-methods passed suite-Default_Suite"> (hide)</a> <!-- hide-methods passed suite-Default_Suite -->
+                      <a href="#" panel-name="suite-Default_Suite" class="show-methods passed suite-Default_Suite"> (show)</a> <!-- show-methods passed suite-Default_Suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Default_Suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="DataAccessTests" hash-for-method="deleteObjectDbSuccess">deleteObjectDbSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="DataAccessTests" hash-for-method="insetObjectDbSuccess">insetObjectDbSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="resolveTicketSuccess">resolveTicketSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="returnDeleteRequest">returnDeleteRequest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="returnInsertQuerySuccess">returnInsertQuerySuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="returnSqlForSelectOne">returnSqlForSelectOne</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestDescriptionEmpty">sanitizeFromApiTestDescriptionEmpty</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestDescriptionNull">sanitizeFromApiTestDescriptionNull</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestIdValuesNotConvertible">sanitizeFromApiTestIdValuesNotConvertible</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestIdValuesNotConvertibleIsEmpty">sanitizeFromApiTestIdValuesNotConvertibleIsEmpty</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore">sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestNoTableName">sanitizeFromApiTestNoTableName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestSuccess">sanitizeFromApiTestSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="sanitizeFromApiTestTokenSuccess">sanitizeFromApiTestTokenSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="DataAccessTests" hash-for-method="selectObjectDBSuccess">selectObjectDBSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="DataAccessTests" hash-for-method="selectObjectsDBSuccess">selectObjectsDBSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCancelHelpRequestSuccess">testCancelHelpRequestSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCancelRecordNotFound">testCancelRecordNotFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCreateHelpRequestDescriptionTooLong">testCreateHelpRequestDescriptionTooLong</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCreateHelpRequestOneAlreadyExists">testCreateHelpRequestOneAlreadyExists</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCreateHelpRequestSuccess">testCreateHelpRequestSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCreateHelpTicketCommentTooLong">testCreateHelpTicketCommentTooLong</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCreateHelpTicketIncorrectCategory">testCreateHelpTicketIncorrectCategory</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCreateHelpTicketOneAlreadyExists">testCreateHelpTicketOneAlreadyExists</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testCreateHelpTicketSuccess">testCreateHelpTicketSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testDoLoginBadPassword">testDoLoginBadPassword</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testDoLoginBadUsername">testDoLoginBadUsername</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testDoLoginSuccess">testDoLoginSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdateHelpRequestDescriptionLong">testUpdateHelpRequestDescriptionLong</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdateHelpRequestNoRecord">testUpdateHelpRequestNoRecord</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdateHelpRequestSuccess">testUpdateHelpRequestSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdatePersonalInfoFirstNameSuccess">testUpdatePersonalInfoFirstNameSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdatePersonalInfoLastNameSuccess">testUpdatePersonalInfoLastNameSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdatePersonalInfoTooManyCharacters">testUpdatePersonalInfoTooManyCharacters</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdateTicketNegativeComment">testUpdateTicketNegativeComment</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdateTicketNoTicket">testUpdateTicketNoTicket</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testUpdateTicketSuccess">testUpdateTicketSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="testViewHelpRequestNoRecord">testViewHelpRequestNoRecord</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="EntityTests" hash-for-method="updateEmployeeSuccess">updateEmployeeSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="DataAccessTests" hash-for-method="updateObjectDBSuccessFirstName">updateObjectDBSuccessFirstName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="DataAccessTests" hash-for-method="updateObjectDBSuccessLastName">updateObjectDBSuccessLastName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="viewHelpRequestSuccess">viewHelpRequestSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="viewHelpTicketNoOpenTicket">viewHelpTicketNoOpenTicket</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_Suite" title="ServiceLayerTests" hash-for-method="viewHelpTicketSuccess">viewHelpTicketSuccess</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Default_Suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Default_Suite" class="panel Default_Suite">
+          <div class="suite-Default_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">DataAccessTests</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="deleteObjectDbSuccess">
+                  </a> <!-- deleteObjectDbSuccess -->
+                  <span class="method-name">deleteObjectDbSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="insetObjectDbSuccess">
+                  </a> <!-- insetObjectDbSuccess -->
+                  <span class="method-name">insetObjectDbSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="selectObjectDBSuccess">
+                  </a> <!-- selectObjectDBSuccess -->
+                  <span class="method-name">selectObjectDBSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="selectObjectsDBSuccess">
+                  </a> <!-- selectObjectsDBSuccess -->
+                  <span class="method-name">selectObjectsDBSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateObjectDBSuccessFirstName">
+                  </a> <!-- updateObjectDBSuccessFirstName -->
+                  <span class="method-name">updateObjectDBSuccessFirstName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateObjectDBSuccessLastName">
+                  </a> <!-- updateObjectDBSuccessLastName -->
+                  <span class="method-name">updateObjectDBSuccessLastName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_Suite-class-passed -->
+          <div class="suite-Default_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">ServiceLayerTests</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="resolveTicketSuccess">
+                  </a> <!-- resolveTicketSuccess -->
+                  <span class="method-name">resolveTicketSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCancelHelpRequestSuccess">
+                  </a> <!-- testCancelHelpRequestSuccess -->
+                  <span class="method-name">testCancelHelpRequestSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCancelRecordNotFound">
+                  </a> <!-- testCancelRecordNotFound -->
+                  <span class="method-name">testCancelRecordNotFound</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateHelpRequestDescriptionTooLong">
+                  </a> <!-- testCreateHelpRequestDescriptionTooLong -->
+                  <span class="method-name">testCreateHelpRequestDescriptionTooLong</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateHelpRequestOneAlreadyExists">
+                  </a> <!-- testCreateHelpRequestOneAlreadyExists -->
+                  <span class="method-name">testCreateHelpRequestOneAlreadyExists</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateHelpRequestSuccess">
+                  </a> <!-- testCreateHelpRequestSuccess -->
+                  <span class="method-name">testCreateHelpRequestSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateHelpTicketCommentTooLong">
+                  </a> <!-- testCreateHelpTicketCommentTooLong -->
+                  <span class="method-name">testCreateHelpTicketCommentTooLong</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateHelpTicketIncorrectCategory">
+                  </a> <!-- testCreateHelpTicketIncorrectCategory -->
+                  <span class="method-name">testCreateHelpTicketIncorrectCategory</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateHelpTicketOneAlreadyExists">
+                  </a> <!-- testCreateHelpTicketOneAlreadyExists -->
+                  <span class="method-name">testCreateHelpTicketOneAlreadyExists</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateHelpTicketSuccess">
+                  </a> <!-- testCreateHelpTicketSuccess -->
+                  <span class="method-name">testCreateHelpTicketSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDoLoginBadPassword">
+                  </a> <!-- testDoLoginBadPassword -->
+                  <span class="method-name">testDoLoginBadPassword</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDoLoginBadUsername">
+                  </a> <!-- testDoLoginBadUsername -->
+                  <span class="method-name">testDoLoginBadUsername</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDoLoginSuccess">
+                  </a> <!-- testDoLoginSuccess -->
+                  <span class="method-name">testDoLoginSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateHelpRequestDescriptionLong">
+                  </a> <!-- testUpdateHelpRequestDescriptionLong -->
+                  <span class="method-name">testUpdateHelpRequestDescriptionLong</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateHelpRequestNoRecord">
+                  </a> <!-- testUpdateHelpRequestNoRecord -->
+                  <span class="method-name">testUpdateHelpRequestNoRecord</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateHelpRequestSuccess">
+                  </a> <!-- testUpdateHelpRequestSuccess -->
+                  <span class="method-name">testUpdateHelpRequestSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdatePersonalInfoFirstNameSuccess">
+                  </a> <!-- testUpdatePersonalInfoFirstNameSuccess -->
+                  <span class="method-name">testUpdatePersonalInfoFirstNameSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdatePersonalInfoLastNameSuccess">
+                  </a> <!-- testUpdatePersonalInfoLastNameSuccess -->
+                  <span class="method-name">testUpdatePersonalInfoLastNameSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdatePersonalInfoTooManyCharacters">
+                  </a> <!-- testUpdatePersonalInfoTooManyCharacters -->
+                  <span class="method-name">testUpdatePersonalInfoTooManyCharacters</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateTicketNegativeComment">
+                  </a> <!-- testUpdateTicketNegativeComment -->
+                  <span class="method-name">testUpdateTicketNegativeComment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateTicketNoTicket">
+                  </a> <!-- testUpdateTicketNoTicket -->
+                  <span class="method-name">testUpdateTicketNoTicket</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateTicketSuccess">
+                  </a> <!-- testUpdateTicketSuccess -->
+                  <span class="method-name">testUpdateTicketSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testViewHelpRequestNoRecord">
+                  </a> <!-- testViewHelpRequestNoRecord -->
+                  <span class="method-name">testViewHelpRequestNoRecord</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="viewHelpRequestSuccess">
+                  </a> <!-- viewHelpRequestSuccess -->
+                  <span class="method-name">viewHelpRequestSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="viewHelpTicketNoOpenTicket">
+                  </a> <!-- viewHelpTicketNoOpenTicket -->
+                  <span class="method-name">viewHelpTicketNoOpenTicket</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="viewHelpTicketSuccess">
+                  </a> <!-- viewHelpTicketSuccess -->
+                  <span class="method-name">viewHelpTicketSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_Suite-class-passed -->
+          <div class="suite-Default_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">EntityTests</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="returnDeleteRequest">
+                  </a> <!-- returnDeleteRequest -->
+                  <span class="method-name">returnDeleteRequest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="returnInsertQuerySuccess">
+                  </a> <!-- returnInsertQuerySuccess -->
+                  <span class="method-name">returnInsertQuerySuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="returnSqlForSelectOne">
+                  </a> <!-- returnSqlForSelectOne -->
+                  <span class="method-name">returnSqlForSelectOne</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestDescriptionEmpty">
+                  </a> <!-- sanitizeFromApiTestDescriptionEmpty -->
+                  <span class="method-name">sanitizeFromApiTestDescriptionEmpty</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestDescriptionNull">
+                  </a> <!-- sanitizeFromApiTestDescriptionNull -->
+                  <span class="method-name">sanitizeFromApiTestDescriptionNull</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestIdValuesNotConvertible">
+                  </a> <!-- sanitizeFromApiTestIdValuesNotConvertible -->
+                  <span class="method-name">sanitizeFromApiTestIdValuesNotConvertible</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestIdValuesNotConvertibleIsEmpty">
+                  </a> <!-- sanitizeFromApiTestIdValuesNotConvertibleIsEmpty -->
+                  <span class="method-name">sanitizeFromApiTestIdValuesNotConvertibleIsEmpty</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore">
+                  </a> <!-- sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore -->
+                  <span class="method-name">sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestNoTableName">
+                  </a> <!-- sanitizeFromApiTestNoTableName -->
+                  <span class="method-name">sanitizeFromApiTestNoTableName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestSuccess">
+                  </a> <!-- sanitizeFromApiTestSuccess -->
+                  <span class="method-name">sanitizeFromApiTestSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sanitizeFromApiTestTokenSuccess">
+                  </a> <!-- sanitizeFromApiTestTokenSuccess -->
+                  <span class="method-name">sanitizeFromApiTestTokenSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="updateEmployeeSuccess">
+                  </a> <!-- updateEmployeeSuccess -->
+                  <span class="method-name">updateEmployeeSuccess</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_Suite-class-passed -->
+        </div> <!-- panel Default_Suite -->
+        <div panel-name="test-xml-Default_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\meow\AppData\Local\JetBrains\IdeaIC2021.3\temp-testng-customsuite.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default Suite&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;The_Other_Guys_P2&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;ServiceLayerTests&quot;/&gt;
+      &lt;class name=&quot;EntityTests&quot;/&gt;
+      &lt;class name=&quot;DataAccessTests&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- The_Other_Guys_P2 --&gt;
+&lt;/suite&gt; &lt;!-- Default Suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Default_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Default Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">The_Other_Guys_P2 (3 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Default_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Default Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Default_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Default Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Default_Suite');
+function tableData_Default_Suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(44);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'testCreateHelpRequestSuccess')
+data.setCell(0, 2, 'ServiceLayerTests')
+data.setCell(0, 3, 584);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'resolveTicketSuccess')
+data.setCell(1, 2, 'ServiceLayerTests')
+data.setCell(1, 3, 543);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testCreateHelpTicketSuccess')
+data.setCell(2, 2, 'ServiceLayerTests')
+data.setCell(2, 3, 491);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testUpdateHelpRequestSuccess')
+data.setCell(3, 2, 'ServiceLayerTests')
+data.setCell(3, 3, 475);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'testUpdateTicketSuccess')
+data.setCell(4, 2, 'ServiceLayerTests')
+data.setCell(4, 3, 468);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'insetObjectDbSuccess')
+data.setCell(5, 2, 'DataAccessTests')
+data.setCell(5, 3, 268);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'selectObjectsDBSuccess')
+data.setCell(6, 2, 'DataAccessTests')
+data.setCell(6, 3, 264);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'testViewHelpRequestNoRecord')
+data.setCell(7, 2, 'ServiceLayerTests')
+data.setCell(7, 3, 257);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'selectObjectDBSuccess')
+data.setCell(8, 2, 'DataAccessTests')
+data.setCell(8, 3, 255);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'updateObjectDBSuccessLastName')
+data.setCell(9, 2, 'DataAccessTests')
+data.setCell(9, 3, 252);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'testUpdatePersonalInfoLastNameSuccess')
+data.setCell(10, 2, 'ServiceLayerTests')
+data.setCell(10, 3, 251);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'testCancelHelpRequestSuccess')
+data.setCell(11, 2, 'ServiceLayerTests')
+data.setCell(11, 3, 250);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'updateObjectDBSuccessFirstName')
+data.setCell(12, 2, 'DataAccessTests')
+data.setCell(12, 3, 248);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'testUpdatePersonalInfoFirstNameSuccess')
+data.setCell(13, 2, 'ServiceLayerTests')
+data.setCell(13, 3, 246);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'deleteObjectDbSuccess')
+data.setCell(14, 2, 'DataAccessTests')
+data.setCell(14, 3, 244);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'viewHelpRequestSuccess')
+data.setCell(15, 2, 'ServiceLayerTests')
+data.setCell(15, 3, 236);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'viewHelpTicketNoOpenTicket')
+data.setCell(16, 2, 'ServiceLayerTests')
+data.setCell(16, 3, 234);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'testCreateHelpTicketOneAlreadyExists')
+data.setCell(17, 2, 'ServiceLayerTests')
+data.setCell(17, 3, 232);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'viewHelpTicketSuccess')
+data.setCell(18, 2, 'ServiceLayerTests')
+data.setCell(18, 3, 232);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'testDoLoginSuccess')
+data.setCell(19, 2, 'ServiceLayerTests')
+data.setCell(19, 3, 21);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'testCancelRecordNotFound')
+data.setCell(20, 2, 'ServiceLayerTests')
+data.setCell(20, 3, 5);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'testUpdatePersonalInfoTooManyCharacters')
+data.setCell(21, 2, 'ServiceLayerTests')
+data.setCell(21, 3, 4);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'testUpdateTicketNoTicket')
+data.setCell(22, 2, 'ServiceLayerTests')
+data.setCell(22, 3, 3);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'testDoLoginBadPassword')
+data.setCell(23, 2, 'ServiceLayerTests')
+data.setCell(23, 3, 2);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'testUpdateHelpRequestDescriptionLong')
+data.setCell(24, 2, 'ServiceLayerTests')
+data.setCell(24, 3, 2);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'testUpdateHelpRequestNoRecord')
+data.setCell(25, 2, 'ServiceLayerTests')
+data.setCell(25, 3, 2);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'testUpdateTicketNegativeComment')
+data.setCell(26, 2, 'ServiceLayerTests')
+data.setCell(26, 3, 2);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'testCreateHelpTicketCommentTooLong')
+data.setCell(27, 2, 'ServiceLayerTests')
+data.setCell(27, 3, 1);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'sanitizeFromApiTestNoTableName')
+data.setCell(28, 2, 'EntityTests')
+data.setCell(28, 3, 1);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'testDoLoginBadUsername')
+data.setCell(29, 2, 'ServiceLayerTests')
+data.setCell(29, 3, 1);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore')
+data.setCell(30, 2, 'EntityTests')
+data.setCell(30, 3, 1);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'updateEmployeeSuccess')
+data.setCell(31, 2, 'EntityTests')
+data.setCell(31, 3, 1);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'testCreateHelpRequestOneAlreadyExists')
+data.setCell(32, 2, 'ServiceLayerTests')
+data.setCell(32, 3, 1);
+data.setCell(33, 0, 33)
+data.setCell(33, 1, 'sanitizeFromApiTestSuccess')
+data.setCell(33, 2, 'EntityTests')
+data.setCell(33, 3, 1);
+data.setCell(34, 0, 34)
+data.setCell(34, 1, 'sanitizeFromApiTestIdValuesNotConvertible')
+data.setCell(34, 2, 'EntityTests')
+data.setCell(34, 3, 1);
+data.setCell(35, 0, 35)
+data.setCell(35, 1, 'testCreateHelpRequestDescriptionTooLong')
+data.setCell(35, 2, 'ServiceLayerTests')
+data.setCell(35, 3, 1);
+data.setCell(36, 0, 36)
+data.setCell(36, 1, 'sanitizeFromApiTestIdValuesNotConvertibleIsEmpty')
+data.setCell(36, 2, 'EntityTests')
+data.setCell(36, 3, 1);
+data.setCell(37, 0, 37)
+data.setCell(37, 1, 'testCreateHelpTicketIncorrectCategory')
+data.setCell(37, 2, 'ServiceLayerTests')
+data.setCell(37, 3, 1);
+data.setCell(38, 0, 38)
+data.setCell(38, 1, 'returnDeleteRequest')
+data.setCell(38, 2, 'EntityTests')
+data.setCell(38, 3, 0);
+data.setCell(39, 0, 39)
+data.setCell(39, 1, 'sanitizeFromApiTestDescriptionEmpty')
+data.setCell(39, 2, 'EntityTests')
+data.setCell(39, 3, 0);
+data.setCell(40, 0, 40)
+data.setCell(40, 1, 'sanitizeFromApiTestTokenSuccess')
+data.setCell(40, 2, 'EntityTests')
+data.setCell(40, 3, 0);
+data.setCell(41, 0, 41)
+data.setCell(41, 1, 'returnInsertQuerySuccess')
+data.setCell(41, 2, 'EntityTests')
+data.setCell(41, 3, 0);
+data.setCell(42, 0, 42)
+data.setCell(42, 1, 'sanitizeFromApiTestDescriptionNull')
+data.setCell(42, 2, 'EntityTests')
+data.setCell(42, 3, 0);
+data.setCell(43, 0, 43)
+data.setCell(43, 1, 'returnSqlForSelectOne')
+data.setCell(43, 2, 'EntityTests')
+data.setCell(43, 3, 0);
+window.suiteTableData['Default_Suite']= { tableData: data, tableDiv: 'times-div-Default_Suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 6 seconds</span>
+              <div id="times-div-Default_Suite">
+              </div> <!-- times-div-Default_Suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Default_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Default Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Default_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Default_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">ServiceLayerTests</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setup</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">testCreateHelpRequestSuccess</span>
+                <span class="method-start">2643 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testDoLoginSuccess</span>
+                <span class="method-start">3231 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateTicketNegativeComment</span>
+                <span class="method-start">3253 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateHelpRequestDescriptionTooLong</span>
+                <span class="method-start">3255 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateHelpRequestOneAlreadyExists</span>
+                <span class="method-start">3257 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateHelpTicketSuccess</span>
+                <span class="method-start">3259 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testDoLoginBadPassword</span>
+                <span class="method-start">3750 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testDoLoginBadUsername</span>
+                <span class="method-start">3754 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateHelpRequestDescriptionLong</span>
+                <span class="method-start">3756 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdatePersonalInfoFirstNameSuccess</span>
+                <span class="method-start">3759 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdatePersonalInfoLastNameSuccess</span>
+                <span class="method-start">4005 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdatePersonalInfoTooManyCharacters</span>
+                <span class="method-start">4260 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateTicketSuccess</span>
+                <span class="method-start">4266 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">viewHelpTicketSuccess</span>
+                <span class="method-start">4734 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateHelpTicketCommentTooLong</span>
+                <span class="method-start">4966 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateHelpTicketIncorrectCategory</span>
+                <span class="method-start">4968 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateHelpTicketOneAlreadyExists</span>
+                <span class="method-start">4971 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateHelpRequestSuccess</span>
+                <span class="method-start">5204 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">resolveTicketSuccess</span>
+                <span class="method-start">5680 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">viewHelpRequestSuccess</span>
+                <span class="method-start">6224 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCancelHelpRequestSuccess</span>
+                <span class="method-start">6461 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCancelRecordNotFound</span>
+                <span class="method-start">6712 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateHelpRequestNoRecord</span>
+                <span class="method-start">6717 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testViewHelpRequestNoRecord</span>
+                <span class="method-start">6721 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateTicketNoTicket</span>
+                <span class="method-start">6982 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">viewHelpTicketNoOpenTicket</span>
+                <span class="method-start">6987 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">EntityTests</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">returnDeleteRequest</span>
+                <span class="method-start">7222 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">returnInsertQuerySuccess</span>
+                <span class="method-start">7224 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">returnSqlForSelectOne</span>
+                <span class="method-start">7225 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestDescriptionEmpty</span>
+                <span class="method-start">7227 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestDescriptionNull</span>
+                <span class="method-start">7228 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestIdValuesNotConvertible</span>
+                <span class="method-start">7229 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestIdValuesNotConvertibleIsEmpty</span>
+                <span class="method-start">7230 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore</span>
+                <span class="method-start">7232 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestNoTableName</span>
+                <span class="method-start">7233 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestSuccess</span>
+                <span class="method-start">7234 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sanitizeFromApiTestTokenSuccess</span>
+                <span class="method-start">7235 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">updateEmployeeSuccess</span>
+                <span class="method-start">7236 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">DataAccessTests</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">insetObjectDbSuccess</span>
+                <span class="method-start">7238 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">selectObjectDBSuccess</span>
+                <span class="method-start">7507 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">selectObjectsDBSuccess</span>
+                <span class="method-start">7763 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">updateObjectDBSuccessFirstName</span>
+                <span class="method-start">8028 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">updateObjectDBSuccessLastName</span>
+                <span class="method-start">8277 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">deleteObjectDbSuccess</span>
+                <span class="method-start">8530 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
+</html>
