@@ -157,5 +157,71 @@ public class loginGoodBadSteps {
     public void iAmNotifiedWithAPopupThatIHaveNoOpenHelpRequestAndIClickTheContinueButton() {
         TestRunner.loginPom.SweetalertClientCreateContinueButton.click();
     }
+
+    @Given("I am logged in and on the technician home page")
+    public void iAmLoggedInAndOnTheTechnicianHomePage() {
+        TestRunner.driver.get("file://C:\\"+System.getenv("HOMEPATH")+"\\Desktop\\The_Other_Guys_P2\\login.html");
+        TestRunner.loginPom.usernameField.sendKeys("test");
+        TestRunner.loginPom.passwordField.sendKeys("test");
+        TestRunner.loginPom.loginSubmitButton.click();
+        TestRunner.loginPom.sweetalertContinueButton.click();
+        Assert.assertEquals(TestRunner.driver.getTitle(),"Technician Home Page");
+    }
+
+    @When("I click the create ticket collapsible button")
+    public void iClickTheCreateTicketCollapsibleButton() {
+        TestRunner.loginPom.createRequestCollapsibleClient.click();
+    }
+
+    @When("I click the view open help requests button")
+    public void iClickTheViewOpenHelpRequestsButton() {
+        TestRunner.loginPom.viewOpenRequestsTechnician.click();
+    }
+
+    @When("I am notified that there are no help requests and I click the continue button")
+    public void iAmNotifiedThatThereAreNoHelpRequestsAndIClickTheContinueButton() {
+        TestRunner.loginPom.sweetalertContinueButton.click();
+    }
+
+    @Then("I remain on the technician home page")
+    public void iRemainOnTheTechnicianHomePage() {
+        Assert.assertEquals(TestRunner.driver.getTitle(),"Technician Home Page");
+    }
+
+    @When("I click the view my open ticket collapsible button")
+    public void iClickTheViewMyOpenTicketCollapsibleButton() {
+        TestRunner.loginPom.viewCollapseButton.click();
+    }
+
+    @When("I am notified of a failed ticket viewing and click the continue button")
+    public void iAmNotifiedOfAFailedTicketViewingAndClickTheContinueButton() {
+        TestRunner.loginPom.sweetalertContinueButton.click();
+    }
+
+    @When("I click the create ticket button")
+    public void iClickTheCreateTicketButton() {
+        TestRunner.loginPom.startCreateTicketTechnician.click();
+    }
+
+    @When("I enter my ticket description {string}")
+    public void iEnterMyTicketDescription(String arg0) {
+        TestRunner.loginPom.helpTicketComment.sendKeys(arg0);
+    }
+
+
+    @When("I select a category in the drop down bar {string}")
+    public void iSelectACategoryInTheDropDownBar(String arg0) {
+        TestRunner.loginPom.categoryDropDown.selectByValue(arg0);
+    }
+
+    @When("I click the {int}nd create ticket button")
+    public void iClickTheNdCreateTicketButton(int arg0) {
+        TestRunner.loginPom.createsTicketToDatabase.click();
+    }
+
+    @When("I am notified of a failed creation and click the continue button")
+    public void iAmNotifiedOfAFailedCreationAndClickTheContinueButton() {
+        TestRunner.loginPom.sweetalertContinueButton.click();
+    }
 }
 
