@@ -1,13 +1,13 @@
-Test Strategy For The Other Guys:
+             Test Strategy For The Other Guys:
 
     API guidelines:
 
 		API should be RESTful
-
 		The API shall be written in Java using Javalin
 
 		The route to be used shall be as follows:
 			/login (POST verb will be used at this endpoint to login)
+
 			/client (used for miscellaneous actions not yet considered)
 			        /requests
 			          GET to view request status
@@ -62,7 +62,7 @@ Test Strategy For The Other Guys:
 		All variable names should be spelled out completely (i.e. employee_id).
 
 		Development should be behaviour driven and test driven:
-			each module in each tier should have a separate suite of unit tests consisting of at least:
+			Each module in each tier should have a separate suite of unit tests consisting of at least:
 				Data layer methods:
 					one positive test
 				Service layer methods:
