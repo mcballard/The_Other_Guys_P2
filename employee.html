@@ -142,7 +142,7 @@
                 document.getElementById("createCollapseButton").innerText = "Create Ticket";
                 document.getElementById("employeeCreate").innerHTML = "<tr><td><button id='view_request' onclick='viewOpenRequestsTech()'>View Open Help Requests</button></td></tr><tr></tr>";
                 document.getElementById("viewCollapseButton").innerText = "View My Open Ticket";
-                document.getElementById("employeeView").innerHTML = "<tr><td><button id='view_request' onclick='viewOpenTicket()'>View Ticket</button></td></tr><tr></tr>";
+                document.getElementById("employeeView").innerHTML = "<tr><td><button id='view_ticket' onclick='viewOpenTicket()'>View Ticket</button></td></tr><tr></tr>";
                 document.getElementById("updateCollapseButton").innerText = "Update Ticket";
                 document.getElementById("employeeUpdate").innerHTML = "<tr><td><h3>Enter ticket ID:</h3></td> <td><input type = 'number' id= 'update_ticket'></td></tr> <tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
                 "<td><textarea id='update_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><button id='update_request' onclick='updateTicket()'>Update Ticket</button></td></tr>";
@@ -223,7 +223,7 @@
                             fillFormString += "<td>"+jsonResponse[ticket].description+"</td>";
                         }
                         if(key=="ticket_requests_id") {
-                            fillFormString += "<td><button onclick='fillTicketCreateForm("+jsonResponse[ticket].ticket_requests_id+")'>Create Ticket</button></td>";
+                            fillFormString += "<td><button id='firstCreateTicketButton' onclick='fillTicketCreateForm("+jsonResponse[ticket].ticket_requests_id+")'>Create Ticket</button></td>";
                         }
                         fillFormString += "</tr>";
                     }
@@ -273,7 +273,7 @@
                             fillFormString += "<td>"+jsonResponse[ticket].ticket_comments+"</td>";
                         }
                         if(key=="ticket_requests_id") {
-                            fillFormString += "<td><button onclick='fillTicketResolveForm("+jsonResponse[ticket].tickets_id+","+jsonResponse[ticket].ticket_requests_id+")'>Resolve Ticket</button></td>";
+                            fillFormString += "<td><button id='firstResolveButton' onclick='fillTicketResolveForm("+jsonResponse[ticket].tickets_id+","+jsonResponse[ticket].ticket_requests_id+")'>Resolve Ticket</button></td>";
                         }
                         fillFormString += "</tr>";
                     }
@@ -300,9 +300,6 @@
                 );
 
             }
-
-
-           
         }
 
 
@@ -330,22 +327,23 @@
             if (response.status === 201) {
                 jsonResponse = await response.json();
                 document.getElementById("employeeCreate").innerHTML="<tr><td><h3>Enter description of the issue the client is having:</h3></td>"+
-                "<td><textarea id='help_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><select id='categoryList'></select>";
+                "<td><textarea id='help_ticket_comment' rows='5' cols='50'></textarea></td></tr><tr><td><select id='categoryList' name='categories'>";
                 const selectToPop = document.getElementById("categoryList");
                 let defOption = document.createElement("option");
-                defOption.value="";
+                defOption.value="0";
                 defOption.text="Please select category...";
                 selectToPop.append(defOption);
                 for(let category in jsonResponse) {
                     let nextOption = document.createElement("option");
                     for(let key in jsonResponse[category]) {
                         nextOption.value=jsonResponse[category].type_id;
+                        nextOption.index=jsonResponse[category].type_id;
                         nextOption.text=jsonResponse[category].description;      
                     }
                     selectToPop.append(nextOption);
                     }
                 document.getElementById("employeeCreate").innerHTML += 
-                "</td></tr><tr><td><button id='create_request' onclick='createTicket("+ticketRequestsId+")'>Create Ticket</button></td></tr>";
+                "</select></td></tr><tr><td><button id='create_request' onclick='createTicket("+ticketRequestsId+")'>Create Ticket</button></td></tr>";
             } else if (response.status === 400 || response.status === 404) { 
                 const apiResponse = await response.json();
                 // alert(apiResponse);

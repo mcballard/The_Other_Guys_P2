@@ -1,10 +1,12 @@
 package com.businessName.poms;
 
+import io.cucumber.java.eo.Se;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
 
 public class LoginPom {
 
@@ -90,14 +92,17 @@ public class LoginPom {
     @FindBy(id="view_request")
     public WebElement viewOpenRequestsTechnician;
 
-    @FindBy(xpath = "/html/body/div[2]/table/tbody/tr[1]/td/button")
+    @FindBy(id="view_ticket")
+    public WebElement viewOpenTickets;
+
+    @FindBy(id = "firstCreateTicketButton")
     public WebElement startCreateTicketTechnician;
 
     @FindBy(id = "create_request")
     public WebElement createsTicketToDatabase;
 
-    @FindBy(id= "categoryList")
-    public Select categoryDropDown;
+    @FindBy(id="categoryList")
+    public WebElement categoryDropDown;
 
     @FindBy(xpath = "//*[@id=\"update_request\"]")
     public WebElement updateTicket;
@@ -110,5 +115,17 @@ public class LoginPom {
 
     @FindBy(id="help_ticket_comment")
     public WebElement helpTicketComment;
+
+    @FindBy(id="update_ticket")
+    public WebElement updateTicketIdField;
+
+    @FindBy(id="resolution")
+    public WebElement resolveTicketComment;
+
+    @FindBy(id="firstResolveButton")
+    public WebElement firstResolveButton;
+
+    @FindBy(id="resolve_button")
+    public WebElement secondResolveButton;
     
 }
