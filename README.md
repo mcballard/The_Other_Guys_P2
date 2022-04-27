@@ -17,6 +17,17 @@ Ticket Tracking System For IT Support
 - TestNG
 - JUnit
 
+# Description
+Help Request Ticketing System
+
+Our application allows a client to submit a request for help with an issue. A technician can then view the open requests 
+and open a resolution ticket to track work done to resolve the issue.  While the ticket is open, the client is restricted 
+from submitting another ticket, but can view the status of their open ticket or update the description if they think of 
+something new that may help the technician or even cancel the request if they resolved the issue on their own.  
+The technician can only work on one ticket at a time and is allowed to view/edit comments on their progress and 
+eventually they can resolve the ticket, which will close the request opened by the client.
+At any time, both client and technician are allowed to change some personal information.
+
 # Features
 - Employees can log into the app.
 - Internal Clients can create and submit new help requests.
