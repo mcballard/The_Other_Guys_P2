@@ -1,0 +1,15 @@
+Sprint Retrospective
+
+    Things done well:
+        Organization of our project helped guide our progress
+        Time management
+        Communication of issues and resolution
+        Teamwork was a priority, each member helped each other if needed
+        Shared troubleshooting experience
+
+    Things to improve:
+        Defect tracking, try to use GitHub Projects issues tracking feature
+        Identifying reusable code (string literals and such)
+        Naming conventions for front-end could be improved
+        Modularize the implementation of the E2E tests to follow front-end as it is completed
+            implement step by step through each feature to reduce duplicated steps
