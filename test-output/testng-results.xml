@@ -2,52 +2,52 @@
 <testng-results skipped="0" failed="0" ignored="0" total="44" passed="44">
   <reporter-output>
   </reporter-output>
-  <suite name="Default Suite" duration-ms="9513" started-at="2022-04-27T17:01:28 EDT" finished-at="2022-04-27T17:01:38 EDT">
+  <suite name="Default Suite" duration-ms="11271" started-at="2022-04-27T18:39:38 EDT" finished-at="2022-04-27T18:39:50 EDT">
     <groups>
     </groups>
-    <test name="The_Other_Guys_P2" duration-ms="9513" started-at="2022-04-27T17:01:28 EDT" finished-at="2022-04-27T17:01:38 EDT">
+    <test name="The_Other_Guys_P2" duration-ms="11271" started-at="2022-04-27T18:39:38 EDT" finished-at="2022-04-27T18:39:50 EDT">
       <class name="EntityTests">
-        <test-method status="PASS" signature="returnDeleteRequest()[pri:0, instance:EntityTests@305fd85d]" name="returnDeleteRequest" duration-ms="1" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="returnDeleteRequest()[pri:0, instance:EntityTests@131276c2]" name="returnDeleteRequest" duration-ms="42" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- returnDeleteRequest -->
-        <test-method status="PASS" signature="returnInsertQuerySuccess()[pri:0, instance:EntityTests@305fd85d]" name="returnInsertQuerySuccess" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="returnInsertQuerySuccess()[pri:0, instance:EntityTests@131276c2]" name="returnInsertQuerySuccess" duration-ms="0" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- returnInsertQuerySuccess -->
-        <test-method status="PASS" signature="returnSqlForSelectOne()[pri:0, instance:EntityTests@305fd85d]" name="returnSqlForSelectOne" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="returnSqlForSelectOne()[pri:0, instance:EntityTests@131276c2]" name="returnSqlForSelectOne" duration-ms="1" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- returnSqlForSelectOne -->
-        <test-method status="PASS" signature="sanitizeFromApiTestDescriptionEmpty()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestDescriptionEmpty" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="sanitizeFromApiTestDescriptionEmpty()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestDescriptionEmpty" duration-ms="1" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sanitizeFromApiTestDescriptionEmpty -->
-        <test-method status="PASS" signature="sanitizeFromApiTestDescriptionNull()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestDescriptionNull" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="sanitizeFromApiTestDescriptionNull()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestDescriptionNull" duration-ms="0" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sanitizeFromApiTestDescriptionNull -->
-        <test-method status="PASS" signature="sanitizeFromApiTestIdValuesNotConvertible()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestIdValuesNotConvertible" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="sanitizeFromApiTestIdValuesNotConvertible()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestIdValuesNotConvertible" duration-ms="1" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sanitizeFromApiTestIdValuesNotConvertible -->
-        <test-method status="PASS" signature="sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore" duration-ms="1" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore -->
-        <test-method status="PASS" signature="sanitizeFromApiTestIdValuesNotConvertibleIsEmpty()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestIdValuesNotConvertibleIsEmpty" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="sanitizeFromApiTestIdValuesNotConvertibleIsEmpty()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestIdValuesNotConvertibleIsEmpty" duration-ms="0" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sanitizeFromApiTestIdValuesNotConvertibleIsEmpty -->
-        <test-method status="PASS" signature="sanitizeFromApiTestNoTableName()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestNoTableName" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore" duration-ms="1" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sanitizeFromApiTestIdValuesNotConvertibleNoUnderscore -->
+        <test-method status="PASS" signature="sanitizeFromApiTestNoTableName()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestNoTableName" duration-ms="0" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sanitizeFromApiTestNoTableName -->
-        <test-method status="PASS" signature="sanitizeFromApiTestSuccess()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestSuccess" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="sanitizeFromApiTestSuccess()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestSuccess" duration-ms="1" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sanitizeFromApiTestSuccess -->
-        <test-method status="PASS" signature="sanitizeFromApiTestTokenSuccess()[pri:0, instance:EntityTests@305fd85d]" name="sanitizeFromApiTestTokenSuccess" duration-ms="0" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="sanitizeFromApiTestTokenSuccess()[pri:0, instance:EntityTests@131276c2]" name="sanitizeFromApiTestTokenSuccess" duration-ms="1" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <exception class="com.businessName.CustomerExceptions.MalformedObjectException">
             <message>
               <![CDATA[Access Denied!!!]]>
@@ -89,25 +89,25 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sanitizeFromApiTestTokenSuccess -->
-        <test-method status="PASS" signature="updateEmployeeSuccess()[pri:0, instance:EntityTests@305fd85d]" name="updateEmployeeSuccess" duration-ms="1" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="updateEmployeeSuccess()[pri:0, instance:EntityTests@131276c2]" name="updateEmployeeSuccess" duration-ms="0" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:39 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- updateEmployeeSuccess -->
       </class> <!-- EntityTests -->
       <class name="ServiceLayerTests">
-        <test-method status="PASS" signature="setup()[pri:0, instance:ServiceLayerTests@76f2b07d]" name="setup" is-config="true" duration-ms="2821" started-at="2022-04-27T17:01:28 EDT" finished-at="2022-04-27T17:01:31 EDT">
+        <test-method status="PASS" signature="setup()[pri:0, instance:ServiceLayerTests@458c1321]" name="setup" is-config="true" duration-ms="1949" started-at="2022-04-27T18:39:42 EDT" finished-at="2022-04-27T18:39:44 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="testCreateHelpRequestSuccess()[pri:0, instance:ServiceLayerTests@76f2b07d]" name="testCreateHelpRequestSuccess" duration-ms="540" started-at="2022-04-27T17:01:31 EDT" finished-at="2022-04-27T17:01:31 EDT">
+        <test-method status="PASS" signature="testCreateHelpRequestSuccess()[pri:0, instance:ServiceLayerTests@458c1321]" name="testCreateHelpRequestSuccess" duration-ms="690" started-at="2022-04-27T18:39:44 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateHelpRequestSuccess -->
-        <test-method status="PASS" signature="testDoLoginSuccess()[pri:0, instance:ServiceLayerTests@76f2b07d]" name="testDoLoginSuccess" duration-ms="20" started-at="2022-04-27T17:01:31 EDT" finished-at="2022-04-27T17:01:31 EDT">
+        <test-method status="PASS" signature="testDoLoginSuccess()[pri:0, instance:ServiceLayerTests@458c1321]" name="testDoLoginSuccess" duration-ms="46" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDoLoginSuccess -->
-        <test-method status="PASS" signature="testUpdateTicketNegativeComment()[pri:0, instance:ServiceLayerTests@76f2b07d]" name="testUpdateTicketNegativeComment" duration-ms="1" started-at="2022-04-27T17:01:31 EDT" finished-at="2022-04-27T17:01:31 EDT">
+        <test-method status="PASS" signature="testUpdateTicketNegativeComment()[pri:0, instance:ServiceLayerTests@458c1321]" name="testUpdateTicketNegativeComment" duration-ms="3" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <exception class="com.businessName.CustomerExceptions.MalformedObjectException">
             <message>
               <![CDATA[Please enter less than 250 characters in description]]>
@@ -149,7 +149,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateTicketNegativeComment -->
-        <test-method status="PASS" signature="testCreateHelpRequestDescriptionTooLong()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testCreateHelpRequestDescriptionTooLong" duration-ms="1" started-at="2022-04-27T17:01:31 EDT" finished-at="2022-04-27T17:01:31 EDT">
+        <test-method status="PASS" signature="testCreateHelpRequestDescriptionTooLong()[pri:1, instance:ServiceLayerTests@458c1321]" name="testCreateHelpRequestDescriptionTooLong" duration-ms="2" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <exception class="com.businessName.CustomerExceptions.MalformedObjectException">
             <message>
               <![CDATA[Please enter less than 250 characters in the description box]]>
@@ -191,7 +191,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateHelpRequestDescriptionTooLong -->
-        <test-method status="PASS" signature="testCreateHelpRequestOneAlreadyExists()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testCreateHelpRequestOneAlreadyExists" duration-ms="2" started-at="2022-04-27T17:01:31 EDT" finished-at="2022-04-27T17:01:31 EDT">
+        <test-method status="PASS" signature="testCreateHelpRequestOneAlreadyExists()[pri:1, instance:ServiceLayerTests@458c1321]" name="testCreateHelpRequestOneAlreadyExists" duration-ms="1" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <exception class="com.businessName.CustomerExceptions.RecordNotFound">
             <message>
               <![CDATA[Can not have more than one request open at a time]]>
@@ -233,11 +233,11 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateHelpRequestOneAlreadyExists -->
-        <test-method status="PASS" signature="testCreateHelpTicketSuccess()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testCreateHelpTicketSuccess" duration-ms="483" started-at="2022-04-27T17:01:31 EDT" finished-at="2022-04-27T17:01:32 EDT">
+        <test-method status="PASS" signature="testCreateHelpTicketSuccess()[pri:1, instance:ServiceLayerTests@458c1321]" name="testCreateHelpTicketSuccess" duration-ms="534" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateHelpTicketSuccess -->
-        <test-method status="PASS" signature="testDoLoginBadPassword()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testDoLoginBadPassword" duration-ms="1" started-at="2022-04-27T17:01:32 EDT" finished-at="2022-04-27T17:01:32 EDT">
+        <test-method status="PASS" signature="testDoLoginBadPassword()[pri:1, instance:ServiceLayerTests@458c1321]" name="testDoLoginBadPassword" duration-ms="3" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <exception class="com.businessName.CustomerExceptions.LoginFailedException">
             <message>
               <![CDATA[Incorrect Password!]]>
@@ -279,7 +279,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDoLoginBadPassword -->
-        <test-method status="PASS" signature="testDoLoginBadUsername()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testDoLoginBadUsername" duration-ms="2" started-at="2022-04-27T17:01:32 EDT" finished-at="2022-04-27T17:01:32 EDT">
+        <test-method status="PASS" signature="testDoLoginBadUsername()[pri:1, instance:ServiceLayerTests@458c1321]" name="testDoLoginBadUsername" duration-ms="2" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:45 EDT">
           <exception class="com.businessName.CustomerExceptions.LoginFailedException">
             <message>
               <![CDATA[Incorrect Username!]]>
@@ -321,7 +321,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDoLoginBadUsername -->
-        <test-method status="PASS" signature="testUpdateHelpRequestDescriptionLong()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testUpdateHelpRequestDescriptionLong" duration-ms="2" started-at="2022-04-27T17:01:32 EDT" finished-at="2022-04-27T17:01:32 EDT">
+        <test-method status="PASS" signature="testUpdateHelpRequestDescriptionLong()[pri:1, instance:ServiceLayerTests@458c1321]" name="testUpdateHelpRequestDescriptionLong" duration-ms="3" started-at="2022-04-27T18:39:45 EDT" finished-at="2022-04-27T18:39:46 EDT">
           <exception class="com.businessName.CustomerExceptions.MalformedObjectException">
             <message>
               <![CDATA[Please enter less than 250 characters in the description box]]>
@@ -363,15 +363,15 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateHelpRequestDescriptionLong -->
-        <test-method status="PASS" signature="testUpdatePersonalInfoFirstNameSuccess()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testUpdatePersonalInfoFirstNameSuccess" duration-ms="236" started-at="2022-04-27T17:01:32 EDT" finished-at="2022-04-27T17:01:32 EDT">
+        <test-method status="PASS" signature="testUpdatePersonalInfoFirstNameSuccess()[pri:1, instance:ServiceLayerTests@458c1321]" name="testUpdatePersonalInfoFirstNameSuccess" duration-ms="329" started-at="2022-04-27T18:39:46 EDT" finished-at="2022-04-27T18:39:46 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdatePersonalInfoFirstNameSuccess -->
-        <test-method status="PASS" signature="testUpdatePersonalInfoLastNameSuccess()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testUpdatePersonalInfoLastNameSuccess" duration-ms="278" started-at="2022-04-27T17:01:32 EDT" finished-at="2022-04-27T17:01:32 EDT">
+        <test-method status="PASS" signature="testUpdatePersonalInfoLastNameSuccess()[pri:1, instance:ServiceLayerTests@458c1321]" name="testUpdatePersonalInfoLastNameSuccess" duration-ms="288" started-at="2022-04-27T18:39:46 EDT" finished-at="2022-04-27T18:39:46 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdatePersonalInfoLastNameSuccess -->
-        <test-method status="PASS" signature="testUpdatePersonalInfoTooManyCharacters()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testUpdatePersonalInfoTooManyCharacters" duration-ms="6" started-at="2022-04-27T17:01:32 EDT" finished-at="2022-04-27T17:01:32 EDT">
+        <test-method status="PASS" signature="testUpdatePersonalInfoTooManyCharacters()[pri:1, instance:ServiceLayerTests@458c1321]" name="testUpdatePersonalInfoTooManyCharacters" duration-ms="2" started-at="2022-04-27T18:39:46 EDT" finished-at="2022-04-27T18:39:46 EDT">
           <exception class="com.businessName.CustomerExceptions.MalformedObjectException">
             <message>
               <![CDATA[Please enter less than 12 characters in the description box]]>
@@ -413,15 +413,15 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdatePersonalInfoTooManyCharacters -->
-        <test-method status="PASS" signature="testUpdateTicketSuccess()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="testUpdateTicketSuccess" duration-ms="510" started-at="2022-04-27T17:01:32 EDT" finished-at="2022-04-27T17:01:33 EDT">
+        <test-method status="PASS" signature="testUpdateTicketSuccess()[pri:1, instance:ServiceLayerTests@458c1321]" name="testUpdateTicketSuccess" duration-ms="618" started-at="2022-04-27T18:39:46 EDT" finished-at="2022-04-27T18:39:47 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateTicketSuccess -->
-        <test-method status="PASS" signature="viewHelpTicketSuccess()[pri:1, instance:ServiceLayerTests@76f2b07d]" name="viewHelpTicketSuccess" duration-ms="375" started-at="2022-04-27T17:01:33 EDT" finished-at="2022-04-27T17:01:33 EDT">
+        <test-method status="PASS" signature="viewHelpTicketSuccess()[pri:1, instance:ServiceLayerTests@458c1321]" name="viewHelpTicketSuccess" duration-ms="493" started-at="2022-04-27T18:39:47 EDT" finished-at="2022-04-27T18:39:47 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- viewHelpTicketSuccess -->
-        <test-method status="PASS" signature="testCreateHelpTicketCommentTooLong()[pri:2, instance:ServiceLayerTests@76f2b07d]" name="testCreateHelpTicketCommentTooLong" duration-ms="1" started-at="2022-04-27T17:01:33 EDT" finished-at="2022-04-27T17:01:33 EDT">
+        <test-method status="PASS" signature="testCreateHelpTicketCommentTooLong()[pri:2, instance:ServiceLayerTests@458c1321]" name="testCreateHelpTicketCommentTooLong" duration-ms="4" started-at="2022-04-27T18:39:47 EDT" finished-at="2022-04-27T18:39:47 EDT">
           <exception class="com.businessName.CustomerExceptions.MalformedObjectException">
             <message>
               <![CDATA[Please enter less than 250 characters in the comments box]]>
@@ -463,7 +463,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateHelpTicketCommentTooLong -->
-        <test-method status="PASS" signature="testCreateHelpTicketIncorrectCategory()[pri:2, instance:ServiceLayerTests@76f2b07d]" name="testCreateHelpTicketIncorrectCategory" duration-ms="1" started-at="2022-04-27T17:01:33 EDT" finished-at="2022-04-27T17:01:33 EDT">
+        <test-method status="PASS" signature="testCreateHelpTicketIncorrectCategory()[pri:2, instance:ServiceLayerTests@458c1321]" name="testCreateHelpTicketIncorrectCategory" duration-ms="3" started-at="2022-04-27T18:39:47 EDT" finished-at="2022-04-27T18:39:47 EDT">
           <exception class="com.businessName.CustomerExceptions.MalformedObjectException">
             <message>
               <![CDATA[The category you have entered does not exist]]>
@@ -505,7 +505,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateHelpTicketIncorrectCategory -->
-        <test-method status="PASS" signature="testCreateHelpTicketOneAlreadyExists()[pri:2, instance:ServiceLayerTests@76f2b07d]" name="testCreateHelpTicketOneAlreadyExists" duration-ms="438" started-at="2022-04-27T17:01:33 EDT" finished-at="2022-04-27T17:01:34 EDT">
+        <test-method status="PASS" signature="testCreateHelpTicketOneAlreadyExists()[pri:2, instance:ServiceLayerTests@458c1321]" name="testCreateHelpTicketOneAlreadyExists" duration-ms="300" started-at="2022-04-27T18:39:47 EDT" finished-at="2022-04-27T18:39:48 EDT">
           <exception class="com.businessName.CustomerExceptions.RecordNotFound">
             <message>
               <![CDATA[Can not have more than one ticket open at a time]]>
@@ -547,23 +547,23 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateHelpTicketOneAlreadyExists -->
-        <test-method status="PASS" signature="testUpdateHelpRequestSuccess()[pri:2, instance:ServiceLayerTests@76f2b07d]" name="testUpdateHelpRequestSuccess" duration-ms="787" started-at="2022-04-27T17:01:34 EDT" finished-at="2022-04-27T17:01:35 EDT">
+        <test-method status="PASS" signature="testUpdateHelpRequestSuccess()[pri:2, instance:ServiceLayerTests@458c1321]" name="testUpdateHelpRequestSuccess" duration-ms="511" started-at="2022-04-27T18:39:48 EDT" finished-at="2022-04-27T18:39:48 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateHelpRequestSuccess -->
-        <test-method status="PASS" signature="resolveTicketSuccess()[pri:3, instance:ServiceLayerTests@76f2b07d]" name="resolveTicketSuccess" duration-ms="490" started-at="2022-04-27T17:01:35 EDT" finished-at="2022-04-27T17:01:35 EDT">
+        <test-method status="PASS" signature="resolveTicketSuccess()[pri:3, instance:ServiceLayerTests@458c1321]" name="resolveTicketSuccess" duration-ms="519" started-at="2022-04-27T18:39:48 EDT" finished-at="2022-04-27T18:39:49 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- resolveTicketSuccess -->
-        <test-method status="PASS" signature="viewHelpRequestSuccess()[pri:3, instance:ServiceLayerTests@76f2b07d]" name="viewHelpRequestSuccess" duration-ms="239" started-at="2022-04-27T17:01:35 EDT" finished-at="2022-04-27T17:01:35 EDT">
+        <test-method status="PASS" signature="viewHelpRequestSuccess()[pri:3, instance:ServiceLayerTests@458c1321]" name="viewHelpRequestSuccess" duration-ms="276" started-at="2022-04-27T18:39:49 EDT" finished-at="2022-04-27T18:39:49 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- viewHelpRequestSuccess -->
-        <test-method status="PASS" signature="testCancelHelpRequestSuccess()[pri:4, instance:ServiceLayerTests@76f2b07d]" name="testCancelHelpRequestSuccess" duration-ms="258" started-at="2022-04-27T17:01:35 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="testCancelHelpRequestSuccess()[pri:4, instance:ServiceLayerTests@458c1321]" name="testCancelHelpRequestSuccess" duration-ms="277" started-at="2022-04-27T18:39:49 EDT" finished-at="2022-04-27T18:39:49 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCancelHelpRequestSuccess -->
-        <test-method status="PASS" signature="testCancelRecordNotFound()[pri:4, instance:ServiceLayerTests@76f2b07d]" name="testCancelRecordNotFound" duration-ms="3" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="testCancelRecordNotFound()[pri:4, instance:ServiceLayerTests@458c1321]" name="testCancelRecordNotFound" duration-ms="5" started-at="2022-04-27T18:39:49 EDT" finished-at="2022-04-27T18:39:49 EDT">
           <exception class="com.businessName.CustomerExceptions.RecordNotFound">
             <message>
               <![CDATA[record not found]]>
@@ -605,7 +605,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCancelRecordNotFound -->
-        <test-method status="PASS" signature="testUpdateHelpRequestNoRecord()[pri:4, instance:ServiceLayerTests@76f2b07d]" name="testUpdateHelpRequestNoRecord" duration-ms="1" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="testUpdateHelpRequestNoRecord()[pri:4, instance:ServiceLayerTests@458c1321]" name="testUpdateHelpRequestNoRecord" duration-ms="2" started-at="2022-04-27T18:39:49 EDT" finished-at="2022-04-27T18:39:49 EDT">
           <exception class="com.businessName.CustomerExceptions.RecordNotFound">
             <message>
               <![CDATA[No request with id 1 was found.]]>
@@ -647,7 +647,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateHelpRequestNoRecord -->
-        <test-method status="PASS" signature="testViewHelpRequestNoRecord()[pri:4, instance:ServiceLayerTests@76f2b07d]" name="testViewHelpRequestNoRecord" duration-ms="247" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="testViewHelpRequestNoRecord()[pri:4, instance:ServiceLayerTests@458c1321]" name="testViewHelpRequestNoRecord" duration-ms="277" started-at="2022-04-27T18:39:49 EDT" finished-at="2022-04-27T18:39:49 EDT">
           <exception class="com.businessName.CustomerExceptions.RecordNotFound">
             <message>
               <![CDATA[You have no open help requests.]]>
@@ -689,7 +689,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testViewHelpRequestNoRecord -->
-        <test-method status="PASS" signature="testUpdateTicketNoTicket()[pri:5, instance:ServiceLayerTests@76f2b07d]" name="testUpdateTicketNoTicket" duration-ms="1" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="testUpdateTicketNoTicket()[pri:5, instance:ServiceLayerTests@458c1321]" name="testUpdateTicketNoTicket" duration-ms="6" started-at="2022-04-27T18:39:49 EDT" finished-at="2022-04-27T18:39:49 EDT">
           <exception class="com.businessName.CustomerExceptions.RecordNotFound">
             <message>
               <![CDATA[No request with id 1 was found.]]>
@@ -731,7 +731,7 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateTicketNoTicket -->
-        <test-method status="PASS" signature="viewHelpTicketNoOpenTicket()[pri:5, instance:ServiceLayerTests@76f2b07d]" name="viewHelpTicketNoOpenTicket" duration-ms="234" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="viewHelpTicketNoOpenTicket()[pri:5, instance:ServiceLayerTests@458c1321]" name="viewHelpTicketNoOpenTicket" duration-ms="280" started-at="2022-04-27T18:39:49 EDT" finished-at="2022-04-27T18:39:50 EDT">
           <exception class="com.businessName.CustomerExceptions.RecordNotFound">
             <message>
               <![CDATA[You have no open tickets.]]>
@@ -775,27 +775,27 @@ at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
         </test-method> <!-- viewHelpTicketNoOpenTicket -->
       </class> <!-- ServiceLayerTests -->
       <class name="DataAccessTests">
-        <test-method status="PASS" signature="insetObjectDbSuccess()[pri:0, instance:DataAccessTests@458c1321]" name="insetObjectDbSuccess" duration-ms="248" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:36 EDT">
+        <test-method status="PASS" signature="insetObjectDbSuccess()[pri:0, instance:DataAccessTests@48503868]" name="insetObjectDbSuccess" duration-ms="2003" started-at="2022-04-27T18:39:39 EDT" finished-at="2022-04-27T18:39:41 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- insetObjectDbSuccess -->
-        <test-method status="PASS" signature="selectObjectDBSuccess()[pri:1, instance:DataAccessTests@458c1321]" name="selectObjectDBSuccess" duration-ms="231" started-at="2022-04-27T17:01:36 EDT" finished-at="2022-04-27T17:01:37 EDT">
+        <test-method status="PASS" signature="selectObjectDBSuccess()[pri:1, instance:DataAccessTests@48503868]" name="selectObjectDBSuccess" duration-ms="251" started-at="2022-04-27T18:39:41 EDT" finished-at="2022-04-27T18:39:41 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- selectObjectDBSuccess -->
-        <test-method status="PASS" signature="selectObjectsDBSuccess()[pri:1, instance:DataAccessTests@458c1321]" name="selectObjectsDBSuccess" duration-ms="244" started-at="2022-04-27T17:01:37 EDT" finished-at="2022-04-27T17:01:37 EDT">
+        <test-method status="PASS" signature="selectObjectsDBSuccess()[pri:1, instance:DataAccessTests@48503868]" name="selectObjectsDBSuccess" duration-ms="329" started-at="2022-04-27T18:39:41 EDT" finished-at="2022-04-27T18:39:41 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- selectObjectsDBSuccess -->
-        <test-method status="PASS" signature="updateObjectDBSuccessFirstName()[pri:1, instance:DataAccessTests@458c1321]" name="updateObjectDBSuccessFirstName" duration-ms="241" started-at="2022-04-27T17:01:37 EDT" finished-at="2022-04-27T17:01:37 EDT">
+        <test-method status="PASS" signature="updateObjectDBSuccessFirstName()[pri:1, instance:DataAccessTests@48503868]" name="updateObjectDBSuccessFirstName" duration-ms="379" started-at="2022-04-27T18:39:41 EDT" finished-at="2022-04-27T18:39:42 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- updateObjectDBSuccessFirstName -->
-        <test-method status="PASS" signature="updateObjectDBSuccessLastName()[pri:1, instance:DataAccessTests@458c1321]" name="updateObjectDBSuccessLastName" duration-ms="232" started-at="2022-04-27T17:01:37 EDT" finished-at="2022-04-27T17:01:37 EDT">
+        <test-method status="PASS" signature="updateObjectDBSuccessLastName()[pri:1, instance:DataAccessTests@48503868]" name="updateObjectDBSuccessLastName" duration-ms="377" started-at="2022-04-27T18:39:42 EDT" finished-at="2022-04-27T18:39:42 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- updateObjectDBSuccessLastName -->
-        <test-method status="PASS" signature="deleteObjectDbSuccess()[pri:2, instance:DataAccessTests@458c1321]" name="deleteObjectDbSuccess" duration-ms="234" started-at="2022-04-27T17:01:37 EDT" finished-at="2022-04-27T17:01:38 EDT">
+        <test-method status="PASS" signature="deleteObjectDbSuccess()[pri:2, instance:DataAccessTests@48503868]" name="deleteObjectDbSuccess" duration-ms="303" started-at="2022-04-27T18:39:42 EDT" finished-at="2022-04-27T18:39:42 EDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteObjectDbSuccess -->
